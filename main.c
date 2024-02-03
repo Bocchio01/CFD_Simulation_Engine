@@ -1,7 +1,10 @@
 #include <stdio.h>
+#include "types.h"
 
-int main()
+#include "solver/solver.h"
+
+int main(int argc, char *argv[])
 {
-    printf("Hello World!\n");
+
     return 0;
 }

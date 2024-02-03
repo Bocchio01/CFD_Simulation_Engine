@@ -2,7 +2,7 @@
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror -pedantic -std=c99 -O2
-SRCS = *.c
+SRCS = main.c
 BENCHDIR = utils
 BENCHTARGET = benchmark
 TARGET = main
