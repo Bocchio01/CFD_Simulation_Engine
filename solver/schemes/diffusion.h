@@ -11,7 +11,7 @@
 #ifndef DIFFUSION_H
 #define DIFFUSION_H
 
-#include "../../types.h"
+#include "../../settings/settings.h"
 
 /**
  * @brief Function to return coefficients for the second order diffusion scheme
@@ -20,7 +20,7 @@
  * @param cell_size
  * @return Ap_coefficients_t
  */
-Ap_coefficients_t solverSchemeDiffusion2(state_t *state, cell_size_t *cell_size);
+Ap_coefficients_t solverSchemeDiffusion2(state_t *state, element_size_t *element_size);
 
 /** @brief Function to return coefficients for the fourth order diffusion scheme
  *
@@ -28,6 +28,6 @@ Ap_coefficients_t solverSchemeDiffusion2(state_t *state, cell_size_t *cell_size)
  * @param cell_size
  * @return Ap_coefficients_t
  */
-Ap_coefficients_t solverSchemeDiffusion4(state_t *state, cell_size_t *cell_size);
+Ap_coefficients_t solverSchemeDiffusion4(state_t *state, element_size_t *element_size);
 
 #endif

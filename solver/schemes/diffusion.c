@@ -1,6 +1,6 @@
 #include "diffusion.h"
 
-Ap_coefficients_t solverSchemeDiffusionUDS(state_t *state, cell_size_t *cell_size)
+Ap_coefficients_t solverSchemeDiffusion2(state_t *state, element_size_t *element_size)
 {
     Ap_coefficients_t Ap;
     Ap.u[0] = 0.0;
@@ -10,7 +10,7 @@ Ap_coefficients_t solverSchemeDiffusionUDS(state_t *state, cell_size_t *cell_siz
     return Ap;
 }
 
-Ap_coefficients_t solverSchemeDiffusionHYBRID(state_t *state, cell_size_t *cell_size)
+Ap_coefficients_t solverSchemeDiffusion4(state_t *state, element_size_t *element_size)
 {
     Ap_coefficients_t Ap;
     Ap.u[0] = 0.0;

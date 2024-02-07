@@ -14,6 +14,6 @@ typedef struct
     bool overwrite_file;
     char *output_file;
     FILE *output_file_pointer;
-} output_t;
+} post_processor_t;
 
 #endif

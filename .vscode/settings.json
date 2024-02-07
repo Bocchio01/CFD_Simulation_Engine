@@ -2,6 +2,13 @@
     "files.associations": {
         "string.h": "c",
         "mesh.h": "c",
-        "types.h": "c"
+        "diffusion.h": "c",
+        "convection.h": "c",
+        "cfd.h": "c",
+        "solver.h": "c",
+        "schemes.h": "c",
+        "parser.h": "c",
+        "settings.h": "c",
+        "stdio.h": "c"
     }
 }

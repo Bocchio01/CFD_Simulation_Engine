@@ -7,9 +7,12 @@
             "command": "gcc",
             "args": [
                 "-g",
+                "${workspaceFolder}/lib/*.c",
+                "${workspaceFolder}/settings/*.c",
+                "${workspaceFolder}/solver/schemes/*.c",
                 "${workspaceFolder}/*.c",
                 "-o",
-                "${workspaceFolder}/main.exe"
+                "${workspaceFolder}/CFD.exe"
             ],
             "group": {
                 "kind": "build",

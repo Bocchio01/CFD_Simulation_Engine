@@ -1,7 +1,7 @@
 #ifndef CONVECTION_H
 #define CONVECTION_H
 
-#include "../../types.h"
+#include "../../settings/settings.h"
 
 /**
  * @brief Function to return 'Ap' coefficients for UDS convection scheme
@@ -11,7 +11,7 @@
  *
  * @return Ap_coefficients_t
  */
-Ap_coefficients_t solverSchemeConvectionUDS(state_t *state, cell_size_t *cell_size);
+Ap_coefficients_t solverSchemeConvectionUDS(state_t *state, element_size_t *element_size);
 
 /**
  * @brief Function to return 'Ap' coefficients for HYBRID convection scheme
@@ -21,7 +21,7 @@ Ap_coefficients_t solverSchemeConvectionUDS(state_t *state, cell_size_t *cell_si
  *
  * @return Ap_coefficients_t
  */
-Ap_coefficients_t solverSchemeConvectionHYBRID(state_t *state, cell_size_t *cell_size);
+Ap_coefficients_t solverSchemeConvectionHYBRID(state_t *state, element_size_t *element_size);
 
 /**
  * @brief Function to return 'Ap' coefficients for QUICK convection scheme
@@ -31,6 +31,6 @@ Ap_coefficients_t solverSchemeConvectionHYBRID(state_t *state, cell_size_t *cell
  *
  * @return Ap_coefficients_t
  */
-Ap_coefficients_t solverSchemeConvectionQUICK(state_t *state, cell_size_t *cell_size);
+Ap_coefficients_t solverSchemeConvectionQUICK(state_t *state, element_size_t *element_size);
 
 #endif

@@ -1,8 +1,8 @@
 .PHONY: compile run bench doxy clean
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -pedantic -std=c99 -O2
-SRCS = main.c
+# FLAGS = -Wall -Wextra -Werror -pedantic -std=c99 -O2
+SRCS = lib/*.c settings/*.c solver/schemes/*.c *.c
 BENCHDIR = utils
 BENCHTARGET = benchmark
 TARGET = main
