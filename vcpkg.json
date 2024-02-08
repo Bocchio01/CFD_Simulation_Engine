@@ -1,0 +1,8 @@
+{
+  "name": "bocchio01-cfd",
+  "version": "1.0",
+  "dependencies": [
+    "cjson",
+    "getopt"
+  ]
+}

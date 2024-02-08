@@ -8,7 +8,30 @@
         "solver.h": "c",
         "schemes.h": "c",
         "parser.h": "c",
-        "settings.h": "c",
-        "stdio.h": "c"
-    }
+        "input.h": "c",
+        "stdio.h": "c",
+        "stdint.h": "c",
+        "output.h": "c",
+        "stdbool.h": "c",
+        "loader.h": "c",
+        "methods.h": "c",
+        "algebra.h": "c",
+        "getopt.h": "c",
+        "cjson.h": "c"
+    },
+    "cmake.configureArgs": [
+        "-DVCPKG_TARGET_TRIPLET=",
+        "-DVCPKG_APPLOCAL_DEPS=ON",
+        "-DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON"
+    ],
+    "vcpkg.general.enable": true,
+    "vcpkg.target.hostTriplet": "x64-windows",
+    "vcpkg.target.defaultTriplet": "",
+    "vcpkg.target.useStaticLib": false,
+    "cmake.configureSettings": {
+        "CMAKE_TOOLCHAIN_FILE": "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+    },
+    "vcpkg.target.installDependencies": true,
+    "vcpkg.target.preferSystemLibs": false,
+    "vcpkg.target.useManifest": false
 }

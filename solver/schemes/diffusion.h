@@ -11,7 +11,26 @@
 #ifndef DIFFUSION_H
 #define DIFFUSION_H
 
-#include "../../settings/settings.h"
+typedef struct state_t state_t;
+typedef struct element_size_t element_size_t;
+// typedef struct Ap_coefficients_t Ap_coefficients_t;
+
+#include "schemes.h"
+
+typedef Ap_coefficients_t (*diffusion_function_t)(state_t *state, element_size_t *element_size);
+
+typedef enum
+{
+    SECOND_ORDER,
+    FOURTH_ORDER,
+} diffusion_enum_t;
+
+typedef struct
+{
+    char *name;
+    diffusion_enum_t type;
+    diffusion_function_t callable;
+} scheme_diffusion_t;
 
 /**
  * @brief Function to return coefficients for the second order diffusion scheme

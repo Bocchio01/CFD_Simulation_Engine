@@ -1,23 +1,25 @@
 #ifndef CFD_H
 #define CFD_H
 
-#include "settings/settings.h"
-// #include "solver/solver.h"
+#include "input/input.h"
+#include "solver/solver.h"
+#include "output/output.h"
 
-typedef struct
+typedef struct CFD_t
 {
-    settings_t *settings;
-    // solver_t *solver;
+    input_t *input;
+    solver_t *solver;
+    output_t *output;
 } CFD_t;
 
-/**
- * @brief Function to initialize CFD
- *
- * @param argc
- * @param argv
- *
- * @return CFD_t
- */
-CFD_t *CFD_Init(int argc, char *argv[]);
+CFD_t *CFD_Init();
+
+void CFD_Free(CFD_t *cfd);
+
+void CFD_Config(CFD_t *cfd, int argc, char *argv[]);
+
+void CFD_Solve(CFD_t *cfd);
+
+void CFD_Output(CFD_t *cfd);
 
 #endif

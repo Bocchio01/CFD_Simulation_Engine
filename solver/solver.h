@@ -1,38 +1,25 @@
 #ifndef SOLVER_H
 #define SOLVER_H
 
+typedef struct CFD_t CFD_t;
+
 #include <stdio.h>
 #include <stdint.h>
-#include "../lib/algebra.h"
 
-double residual[5];
-double x[5];
+#include "../utils/algebra/algebra.h"
 
-typedef struct
-{
-    int i;
-    int j;
-    // int k;
-} index_t;
+// #include "mesh/mesh.h"
+// #include "methods/methods.h"
+// #include "schemes/schemes.h"
 
 typedef struct
 {
-    matrix_t U;
-    matrix_t V;
-    matrix_t P;
-} state_t;
-
-typedef struct
-{
-    state_t state;
-    mesh_t mesh;
+    int a;
+    // mesh_t mesh;
+    // method_t method;
+    // schemes_t schemes;
 } solver_t;
 
-solver_t *init_solver(settings_t *settings);
-state_t *stateInit(grid_dimension_t grid_dimension, halo_size_t halo_size);
-
-void solve(settings_t *settings, solver_t *solver);
-void composeVankaMatrix(Ap_coefficients_t *Ap_coefficients, element_size_t *cell_size);
-void solveVankaMatrix();
+solver_t *CFD_InitSolver();
 
 #endif

@@ -1,0 +1,41 @@
+{
+    "input": {
+        "uLid": 1.0,
+        "geometry": {
+            "x": 1,
+            "y": 1
+        },
+        "fluid": {
+            "mu": 1.0
+        }
+    },
+    "solver": {
+        "mesh": {
+            "type": "STAGGERED",
+            "nodes": {
+                "Nx": 10,
+                "Ny": 10
+            },
+            "elements": {
+                "type": "RECTANGULAR"
+            }
+        },
+        "method": {
+            "name": "SCGS",
+            "tolerance": 1e-4,
+            "maxIter": 1000,
+            "underRelaxation": {
+                "U": 0.5,
+                "V": 0.5,
+                "P": 0.3
+            }
+        },
+        "schemes": {
+            "convection": "UDS",
+            "diffusion": "SECOND_ORDER"
+        }
+    },
+    "output": {
+        "format": "JSON"
+    }
+}

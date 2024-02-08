@@ -1,7 +1,27 @@
 #ifndef CONVECTION_H
 #define CONVECTION_H
 
-#include "../../settings/settings.h"
+typedef struct state_t state_t;
+typedef struct element_size_t element_size_t;
+// typedef struct Ap_coefficients_t Ap_coefficients_t;
+
+#include "schemes.h"
+
+typedef Ap_coefficients_t (*convection_function_t)(state_t *state, element_size_t *element_size);
+
+typedef enum
+{
+    UDS,
+    HYBRID,
+    QUICK,
+} convection_enum_t;
+
+typedef struct
+{
+    char *name;
+    convection_enum_t type;
+    convection_function_t callable;
+} scheme_convection_t;
 
 /**
  * @brief Function to return 'Ap' coefficients for UDS convection scheme

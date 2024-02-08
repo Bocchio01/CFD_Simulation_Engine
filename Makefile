@@ -2,7 +2,8 @@
 
 CC = gcc
 # FLAGS = -Wall -Wextra -Werror -pedantic -std=c99 -O2
-SRCS = lib/*.c settings/*.c solver/schemes/*.c *.c
+SRCS = input/*.c solver/*.c output/*.c *.c
+# LIBS = utils/algebra/*.c vcpkg_installed/x86-windows/include/**
 BENCHDIR = utils
 BENCHTARGET = benchmark
 TARGET = main
@@ -18,7 +19,7 @@ run: compile
 	@echo Done runnig complete
 
 bench:
-	$(CC) $(FLAGS) $(SRCS) $(BENCHDIR)/*.c -o $(BENCHDIR)/$(BENCHTARGET)
+	$(CC) $(FLAGS) $(LIBS) $(SRCS) $(BENCHDIR)/*.c -o $(BENCHDIR)/$(BENCHTARGET)
 	@$(BENCHDIR)\$(BENCHTARGET).exe
 	@echo Benchmarking complete
 
