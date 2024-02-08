@@ -1,7 +1,7 @@
 #ifndef CFD_H
 #define CFD_H
 
-#include "input/input.h"
+#include "input/init.h"
 #include "solver/solver.h"
 #include "output/output.h"
 

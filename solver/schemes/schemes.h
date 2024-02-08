@@ -6,14 +6,8 @@
 
 typedef struct
 {
-    double u[2];
-    double v[2];
-} Ap_coefficients_t;
-
-typedef struct
-{
-    scheme_convection_t convection;
-    scheme_diffusion_t diffusion;
+    scheme_convection_t *convection;
+    scheme_diffusion_t *diffusion;
 } schemes_t;
 
 #endif

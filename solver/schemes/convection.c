@@ -1,8 +1,10 @@
 #include "convection.h"
 
-Ap_coefficients_t solverSchemeConvectionUDS(state_t *state, element_size_t *element_size)
+#include "../../CFD.h"
+
+A_coefficients_convection_t solverSchemeConvectionUDS(CFD_t *cfd)
 {
-    Ap_coefficients_t Ap;
+    A_coefficients_convection_t Ap;
     Ap.u[0] = 0.0;
     Ap.u[1] = 0.0;
     Ap.v[0] = 0.0;
@@ -10,9 +12,9 @@ Ap_coefficients_t solverSchemeConvectionUDS(state_t *state, element_size_t *elem
     return Ap;
 }
 
-Ap_coefficients_t solverSchemeConvectionHYBRID(state_t *state, element_size_t *element_size)
+A_coefficients_convection_t solverSchemeConvectionHYBRID(CFD_t *cfd)
 {
-    Ap_coefficients_t Ap;
+    A_coefficients_convection_t Ap;
     Ap.u[0] = 0.0;
     Ap.u[1] = 0.0;
     Ap.v[0] = 0.0;
@@ -20,9 +22,9 @@ Ap_coefficients_t solverSchemeConvectionHYBRID(state_t *state, element_size_t *e
     return Ap;
 }
 
-Ap_coefficients_t solverSchemeConvectionQUICK(state_t *state, element_size_t *element_size)
+A_coefficients_convection_t solverSchemeConvectionQUICK(CFD_t *cfd)
 {
-    Ap_coefficients_t Ap;
+    A_coefficients_convection_t Ap;
     Ap.u[0] = 0.0;
     Ap.u[1] = 0.0;
     Ap.v[0] = 0.0;

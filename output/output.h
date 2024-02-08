@@ -25,6 +25,6 @@ typedef struct
     output_file_t *file;
 } output_t;
 
-output_t *CFD_InitOutput();
+output_t *CFD_Output_Init();
 
 #endif

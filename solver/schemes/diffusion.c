@@ -1,8 +1,10 @@
 #include "diffusion.h"
 
-Ap_coefficients_t solverSchemeDiffusion2(state_t *state, element_size_t *element_size)
+#include "../../CFD.h"
+
+A_coefficients_diffusion_t solverSchemeDiffusion2(CFD_t *cfd)
 {
-    Ap_coefficients_t Ap;
+    A_coefficients_diffusion_t Ap;
     Ap.u[0] = 0.0;
     Ap.u[1] = 0.0;
     Ap.v[0] = 0.0;
@@ -10,9 +12,9 @@ Ap_coefficients_t solverSchemeDiffusion2(state_t *state, element_size_t *element
     return Ap;
 }
 
-Ap_coefficients_t solverSchemeDiffusion4(state_t *state, element_size_t *element_size)
+A_coefficients_diffusion_t solverSchemeDiffusion4(CFD_t *cfd)
 {
-    Ap_coefficients_t Ap;
+    A_coefficients_diffusion_t Ap;
     Ap.u[0] = 0.0;
     Ap.u[1] = 0.0;
     Ap.v[0] = 0.0;

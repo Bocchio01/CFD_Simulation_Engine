@@ -1,21 +1,28 @@
 #include <stdio.h>
 
-#include <cjson/cJSON.h>
+#include "utils/cJSON/cJSON.h"
 #include <getopt.h>
 
 #include "CFD.h"
 
 int main(int argc, char *argv[])
 {
+    printf("Starting\n");
+
     CFD_t *cfd = CFD_Init();
-    CFD_Config(cfd, argc, argv);
 
-    // CFD_Input(cfd, argc, argv);
-    // CFD_Solve(cfd);
-    // CFD_Output(cfd);
+    // Input
+    CFD_Input_Parse(cfd, argc, argv);
+    CFD_Input_Load(cfd);
 
-    // CFD_Solver_Solve(cfd);
-    // CFD_Results_Save(cfd);
+    // Solver
+    CFD_SolverMesh(cfd);
+    // CFD_SolverSolve(cfd);
+
+    // Output
+    // CFD_SaveResults(cfd);
+
+    printf("Finished\n");
 
     return 0;
 }

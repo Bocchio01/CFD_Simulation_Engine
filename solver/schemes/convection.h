@@ -1,56 +1,33 @@
 #ifndef CONVECTION_H
 #define CONVECTION_H
 
-typedef struct state_t state_t;
-typedef struct element_size_t element_size_t;
-// typedef struct Ap_coefficients_t Ap_coefficients_t;
+typedef struct CFD_t CFD_t;
 
-#include "schemes.h"
+typedef struct
+{
+    double u[2];
+    double v[2];
+} A_coefficients_convection_t;
 
-typedef Ap_coefficients_t (*convection_function_t)(state_t *state, element_size_t *element_size);
+typedef A_coefficients_convection_t (*convection_function_t)(CFD_t *cfd);
 
 typedef enum
 {
     UDS,
     HYBRID,
     QUICK,
-} convection_enum_t;
+} convection_type_t;
 
 typedef struct
 {
-    char *name;
-    convection_enum_t type;
+    convection_type_t type;
     convection_function_t callable;
 } scheme_convection_t;
 
-/**
- * @brief Function to return 'Ap' coefficients for UDS convection scheme
- *
- * @param state
- * @param cell_size
- *
- * @return Ap_coefficients_t
- */
-Ap_coefficients_t solverSchemeConvectionUDS(state_t *state, element_size_t *element_size);
+A_coefficients_convection_t solverSchemeConvectionUDS(CFD_t *cfd);
 
-/**
- * @brief Function to return 'Ap' coefficients for HYBRID convection scheme
- *
- * @param state
- * @param cell_size
- *
- * @return Ap_coefficients_t
- */
-Ap_coefficients_t solverSchemeConvectionHYBRID(state_t *state, element_size_t *element_size);
+A_coefficients_convection_t solverSchemeConvectionHYBRID(CFD_t *cfd);
 
-/**
- * @brief Function to return 'Ap' coefficients for QUICK convection scheme
- *
- * @param state
- * @param cell_size
- *
- * @return Ap_coefficients_t
- */
-Ap_coefficients_t solverSchemeConvectionQUICK(state_t *state, element_size_t *element_size);
+A_coefficients_convection_t solverSchemeConvectionQUICK(CFD_t *cfd);
 
 #endif

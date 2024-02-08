@@ -2,11 +2,11 @@
 #include <string.h>
 #include <getopt.h>
 
-#include "parser.h"
+#include "parse.h"
 
 #include "../CFD.h"
 
-void CFD_ParseCMD(CFD_t *cfd, int argc, char *argv[])
+void CFD_Input_Parse(CFD_t *cfd, int argc, char *argv[])
 {
     int c;
     int option_index = 0;
@@ -23,57 +23,30 @@ void CFD_ParseCMD(CFD_t *cfd, int argc, char *argv[])
         {
 
         case 'h':
-            CFD_PrintHelp();
+            CFD_Input_ParseHelp();
             exit(EXIT_SUCCESS);
             break;
 
         case 'v':
-            CFD_PrintVersion();
+            CFD_Input_ParseVersion();
             exit(EXIT_SUCCESS);
             break;
 
         case 'i':
-            if (sscanf(optarg, "%s", cfd->input->file->name) != 1)
-            {
-                fprintf(stderr, "Invalid argument for input file name\n");
-                exit(EXIT_FAILURE);
-            }
+            CFD_Input_ParseInput(cfd, optarg);
             break;
 
         case 'f':
-        {
-            char format[5];
-
-            if (sscanf(optarg, "%s", format) != 1 ||
-                (strcmp(format, "TXT") != 0 &&
-                 strcmp(format, "CSV") != 0 &&
-                 strcmp(format, "JSON") != 0))
-            {
-                fprintf(stderr, "Invalid argument for output file format\n");
-                exit(EXIT_FAILURE);
-            }
-            if (strcmp(format, "TXT") == 0)
-            {
-                cfd->output->file->format = TXT;
-            }
-            else if (strcmp(format, "CSV") == 0)
-            {
-                cfd->output->file->format = CSV;
-            }
-            else if (strcmp(format, "JSON") == 0)
-            {
-                cfd->output->file->format = JSON;
-            }
+            CFD_Input_ParseFormat(cfd, optarg);
             break;
-        }
         default:
-            CFD_PrintInvalidArgument(optarg);
+            CFD_Input_ParseInvalid(optarg);
             exit(EXIT_FAILURE);
         }
     }
 }
 
-void CFD_PrintHelp()
+void CFD_Input_ParseHelp()
 {
     printf("CFD Solver\n");
     printf("Author:\n\tTommaso Bocchietti\n");
@@ -88,17 +61,52 @@ void CFD_PrintHelp()
     printf("Options:\n");
     printf("\t-h, --help\tPrint this help message\n");
     printf("\t-v, --version\tPrint the version of the program\n");
-    printf("\t-i, --input\tInput file path (relative or absolute)\n");
-    printf("\t-f, --format\tOutput format (TXT | CSV | JSON)\n");
+    printf("\t-i, --input\tInput file path (relative or absolute). Default: -i data/input.json\n");
+    printf("\t-f, --format\tOutput format ( TXT | CSV | JSON ). Default: -f JSON\n");
     printf("\n");
 }
 
-void CFD_PrintVersion()
+void CFD_Input_ParseVersion()
 {
     printf("CFD Solver v0.1\n");
 }
 
-void CFD_PrintInvalidArgument(char *arg)
+void CFD_Input_ParseInput(CFD_t *cfd, char *arg)
+{
+    if (sscanf(arg, "%s", cfd->input->file->name) != 1)
+    {
+        fprintf(stderr, "Invalid argument for input file name\n");
+        exit(EXIT_FAILURE);
+    }
+}
+
+void CFD_Input_ParseFormat(CFD_t *cfd, char *arg)
+{
+    char format[5];
+
+    if (sscanf(arg, "%s", format) != 1 ||
+        (strcasecmp(format, "TXT") != 0 &&
+         strcasecmp(format, "CSV") != 0 &&
+         strcasecmp(format, "JSON") != 0))
+    {
+        fprintf(stderr, "Invalid argument for output file format\n");
+        exit(EXIT_FAILURE);
+    }
+    if (strcasecmp(format, "TXT") == 0)
+    {
+        cfd->output->file->format = TXT;
+    }
+    else if (strcasecmp(format, "CSV") == 0)
+    {
+        cfd->output->file->format = CSV;
+    }
+    else if (strcasecmp(format, "JSON") == 0)
+    {
+        cfd->output->file->format = JSON;
+    }
+}
+
+void CFD_Input_ParseInvalid(char *arg)
 {
     printf("Invalid argument: \"%s\"\n", arg);
     printf("Use -h or --help for more information\n");

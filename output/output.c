@@ -2,7 +2,7 @@
 
 #include "output.h"
 
-output_t *CFD_InitOutput()
+output_t *CFD_Output_Init()
 {
     output_t *output = (output_t *)malloc(sizeof(output_t));
     if (output != NULL)

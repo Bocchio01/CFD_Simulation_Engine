@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#include "../../utils/algebra/algebra.h"
+#include "../../utils/algebra/vector.h"
 
 typedef enum
 {
@@ -45,9 +45,9 @@ typedef struct
 {
     int n_ghosts;
     mesh_type_t type;
-    mesh_nodes_t nodes;
-    mesh_element_t element;
-    mesh_data_t data;
+    mesh_nodes_t *nodes;
+    mesh_element_t *element;
+    mesh_data_t *data;
 } mesh_t;
 
 #endif

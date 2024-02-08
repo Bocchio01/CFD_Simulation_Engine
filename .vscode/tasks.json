@@ -7,9 +7,13 @@
             "command": "gcc",
             "args": [
                 "-g",
+                "${workspaceFolder}/utils/cJSON/*.c",
                 "${workspaceFolder}/utils/algebra/*.c",
                 "${workspaceFolder}/input/*.c",
                 "${workspaceFolder}/solver/*.c",
+                "${workspaceFolder}/solver/mesh/*.c",
+                "${workspaceFolder}/solver/methods/*.c",
+                "${workspaceFolder}/solver/schemes/*.c",
                 "${workspaceFolder}/output/*.c",
                 "${workspaceFolder}/*.c",
                 "-o",

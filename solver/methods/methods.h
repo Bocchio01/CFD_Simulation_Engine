@@ -4,7 +4,13 @@
 #include "SCGS.h"
 #include "SIMPLE.h"
 
-#include "../../utils/algebra/algebra.h"
+#include "../../utils/algebra/matrices.h"
+
+typedef enum
+{
+    SCGS,
+    SIMPLE,
+} method_type_t;
 
 typedef struct
 {
@@ -22,9 +28,10 @@ typedef struct
 
 typedef struct
 {
-    int max_iterations;
+    method_type_t type;
     float tolerance;
-    under_relaxation_factors_t under_relaxation_factors;
+    int maxIter;
+    under_relaxation_factors_t *under_relaxation_factors;
 } method_t;
 
 #endif

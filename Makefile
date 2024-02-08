@@ -2,8 +2,9 @@
 
 CC = gcc
 # FLAGS = -Wall -Wextra -Werror -pedantic -std=c99 -O2
-SRCS = input/*.c solver/*.c output/*.c *.c
-# LIBS = utils/algebra/*.c vcpkg_installed/x86-windows/include/**
+SRCS = *.c input/*.c solver/*.c solver/mesh/*.c solver/methods/*.c solver/schemes/*.c output/*.c
+# SRCS = main.c
+LIBS = utils/algebra/*.c utils/cJSON/*.c
 BENCHDIR = utils
 BENCHTARGET = benchmark
 TARGET = main
@@ -11,7 +12,7 @@ TARGET = main
 all: run
 
 compile: $(SRCS)
-	$(CC) $(FLAGS) $(SRCS) -o $(TARGET)
+	$(CC) $(FLAGS) $(LIBS) $(SRCS) -o $(TARGET)
 	@echo Compilation complete
 
 run: compile
