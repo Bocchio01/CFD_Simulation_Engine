@@ -1,0 +1,321 @@
+\doxysection{vcpkg\+\_\+installed/x64-\/windows/include/getopt.h File Reference}
+\hypertarget{getopt_8h}{}\label{getopt_8h}\index{vcpkg\_installed/x64-\/windows/include/getopt.h@{vcpkg\_installed/x64-\/windows/include/getopt.h}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structoption__a}{option\+\_\+a}}
+\item 
+struct \mbox{\hyperlink{structoption__w}{option\+\_\+w}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}}~\+\_\+\+\_\+declspec(dllimport)
+\item 
+\#define \mbox{\hyperlink{getopt_8h_ac23021d419499aff4ab95a61fed6bd64}{\+\_\+\+GETOPT\+\_\+\+BEGIN\+\_\+\+EXTERN\+\_\+C}}
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a1eb9b171d9f822efdaa647401a758cf4}{\+\_\+\+GETOPT\+\_\+\+END\+\_\+\+EXTERN\+\_\+C}}
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a0e1f57718084987510b18a3ec12e9f39}{\+\_\+\+GETOPT\+\_\+\+THROW}}
+\item 
+\#define \mbox{\hyperlink{getopt_8h_aeb861628fc23c2215ebf9d931385172b}{null\+\_\+argument}}~0 /\texorpdfstring{$\ast$}{*}Argument Null\texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a3bc1d5f667b5b4ca4b4abb685dc874ce}{no\+\_\+argument}}~0 /\texorpdfstring{$\ast$}{*}Argument Switch Only\texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a6ece8d8dfa8378778f7290fdaba5b8bc}{required\+\_\+argument}}~1 /\texorpdfstring{$\ast$}{*}Argument Required\texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{getopt_8h_acca06c0a947656bd8b395bf1084ffb72}{optional\+\_\+argument}}~2 /\texorpdfstring{$\ast$}{*}Argument Optional\texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a1974c59c38e477a7347bf940ebdcb201}{ARG\+\_\+\+NULL}}~0 /\texorpdfstring{$\ast$}{*}Argument Null\texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a5b4ab91afec1ff35fd294e3ca007be49}{ARG\+\_\+\+NONE}}~0 /\texorpdfstring{$\ast$}{*}Argument Switch Only\texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a61f6db7b71879bce066d8f50b8a0722b}{ARG\+\_\+\+REQ}}~1 /\texorpdfstring{$\ast$}{*}Argument Required\texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a26d39736df762f9ad686fde7c7a9496a}{ARG\+\_\+\+OPT}}~2 /\texorpdfstring{$\ast$}{*}Argument Optional\texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a3d17dfdaa1d6335597978109de497b58}{getopt}}~\mbox{\hyperlink{getopt_8h_a9bab855b8a9ec784d3f6c4d5360b6267}{getopt\+\_\+a}}
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a2c03229beb12dd67716f3363c205a4d5}{getopt\+\_\+long}}~\mbox{\hyperlink{getopt_8h_a17136d7bf82fedf7ddecc9c3391b2c03}{getopt\+\_\+long\+\_\+a}}
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a6934ba1feac41a95541cb7ee63db6331}{getopt\+\_\+long\+\_\+only}}~\mbox{\hyperlink{getopt_8h_a0b59c11fb99ef5f909adfb62e7597326}{getopt\+\_\+long\+\_\+only\+\_\+a}}
+\item 
+\#define \mbox{\hyperlink{getopt_8h_adf33c342f1f93d3574188740b6d00a59}{option}}~\mbox{\hyperlink{structoption__a}{option\+\_\+a}}
+\item 
+\#define \mbox{\hyperlink{getopt_8h_a9227b18da5777b0578ef7376ad78b649}{optarg}}~\mbox{\hyperlink{getopt_8h_a43c2206167724436e7bd5bcc9dcfedea}{optarg\+\_\+a}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_a9bab855b8a9ec784d3f6c4d5360b6267}{getopt\+\_\+a}} (int argc, char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, const char \texorpdfstring{$\ast$}{*}optstring) \mbox{\hyperlink{getopt_8h_a0e1f57718084987510b18a3ec12e9f39}{\+\_\+\+GETOPT\+\_\+\+THROW}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_a17136d7bf82fedf7ddecc9c3391b2c03}{getopt\+\_\+long\+\_\+a}} (int argc, char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, const char \texorpdfstring{$\ast$}{*}options, const struct \mbox{\hyperlink{structoption__a}{option\+\_\+a}} \texorpdfstring{$\ast$}{*}long\+\_\+options, int \texorpdfstring{$\ast$}{*}opt\+\_\+index) \mbox{\hyperlink{getopt_8h_a0e1f57718084987510b18a3ec12e9f39}{\+\_\+\+GETOPT\+\_\+\+THROW}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_a0b59c11fb99ef5f909adfb62e7597326}{getopt\+\_\+long\+\_\+only\+\_\+a}} (int argc, char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, const char \texorpdfstring{$\ast$}{*}options, const struct \mbox{\hyperlink{structoption__a}{option\+\_\+a}} \texorpdfstring{$\ast$}{*}long\+\_\+options, int \texorpdfstring{$\ast$}{*}opt\+\_\+index) \mbox{\hyperlink{getopt_8h_a0e1f57718084987510b18a3ec12e9f39}{\+\_\+\+GETOPT\+\_\+\+THROW}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_a111e62a66482ef720756a22db63cd65a}{getopt\+\_\+w}} (int argc, wchar\+\_\+t \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, const wchar\+\_\+t \texorpdfstring{$\ast$}{*}optstring) \mbox{\hyperlink{getopt_8h_a0e1f57718084987510b18a3ec12e9f39}{\+\_\+\+GETOPT\+\_\+\+THROW}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_a3b9f216325a3d1469f19873232402a45}{getopt\+\_\+long\+\_\+w}} (int argc, wchar\+\_\+t \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, const wchar\+\_\+t \texorpdfstring{$\ast$}{*}options, const struct \mbox{\hyperlink{structoption__w}{option\+\_\+w}} \texorpdfstring{$\ast$}{*}long\+\_\+options, int \texorpdfstring{$\ast$}{*}opt\+\_\+index) \mbox{\hyperlink{getopt_8h_a0e1f57718084987510b18a3ec12e9f39}{\+\_\+\+GETOPT\+\_\+\+THROW}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_acc8f4b40e3361704fc1e73dfe3bc5074}{getopt\+\_\+long\+\_\+only\+\_\+w}} (int argc, wchar\+\_\+t \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}argv, const wchar\+\_\+t \texorpdfstring{$\ast$}{*}options, const struct \mbox{\hyperlink{structoption__w}{option\+\_\+w}} \texorpdfstring{$\ast$}{*}long\+\_\+options, int \texorpdfstring{$\ast$}{*}opt\+\_\+index) \mbox{\hyperlink{getopt_8h_a0e1f57718084987510b18a3ec12e9f39}{\+\_\+\+GETOPT\+\_\+\+THROW}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{getopt_8h_ac23021d419499aff4ab95a61fed6bd64}{\+\_\+\+GETOPT\+\_\+\+BEGIN\+\_\+\+EXTERN\+\_\+C}} \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_ad4bbbd41ea1dd48667b9b86ab42a5060}{optind}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_a8f1d84888f26f543a7b13569c4a5cbf1}{opterr}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int \mbox{\hyperlink{getopt_8h_a12f5ba4225a7144c90b604b7d166f631}{optopt}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{getopt_8h_a43c2206167724436e7bd5bcc9dcfedea}{optarg\+\_\+a}}
+\item 
+\mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} wchar\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{getopt_8h_a59c35258b5ad900319c71f9c5fa9dd49}{optarg\+\_\+w}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{getopt_8h_af98d974c2db4fe9027ced13671c7b261}\label{getopt_8h_af98d974c2db4fe9027ced13671c7b261} 
+\index{getopt.h@{getopt.h}!\_GETOPT\_API@{\_GETOPT\_API}}
+\index{\_GETOPT\_API@{\_GETOPT\_API}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{\_GETOPT\_API}{\_GETOPT\_API}}
+{\footnotesize\ttfamily \#define \+\_\+\+GETOPT\+\_\+\+API~\+\_\+\+\_\+declspec(dllimport)}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00057}{57}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_ac23021d419499aff4ab95a61fed6bd64}\label{getopt_8h_ac23021d419499aff4ab95a61fed6bd64} 
+\index{getopt.h@{getopt.h}!\_GETOPT\_BEGIN\_EXTERN\_C@{\_GETOPT\_BEGIN\_EXTERN\_C}}
+\index{\_GETOPT\_BEGIN\_EXTERN\_C@{\_GETOPT\_BEGIN\_EXTERN\_C}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{\_GETOPT\_BEGIN\_EXTERN\_C}{\_GETOPT\_BEGIN\_EXTERN\_C}}
+{\footnotesize\ttfamily \#define \+\_\+\+GETOPT\+\_\+\+BEGIN\+\_\+\+EXTERN\+\_\+C}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00066}{66}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a1eb9b171d9f822efdaa647401a758cf4}\label{getopt_8h_a1eb9b171d9f822efdaa647401a758cf4} 
+\index{getopt.h@{getopt.h}!\_GETOPT\_END\_EXTERN\_C@{\_GETOPT\_END\_EXTERN\_C}}
+\index{\_GETOPT\_END\_EXTERN\_C@{\_GETOPT\_END\_EXTERN\_C}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{\_GETOPT\_END\_EXTERN\_C}{\_GETOPT\_END\_EXTERN\_C}}
+{\footnotesize\ttfamily \#define \+\_\+\+GETOPT\+\_\+\+END\+\_\+\+EXTERN\+\_\+C}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00067}{67}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a0e1f57718084987510b18a3ec12e9f39}\label{getopt_8h_a0e1f57718084987510b18a3ec12e9f39} 
+\index{getopt.h@{getopt.h}!\_GETOPT\_THROW@{\_GETOPT\_THROW}}
+\index{\_GETOPT\_THROW@{\_GETOPT\_THROW}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{\_GETOPT\_THROW}{\_GETOPT\_THROW}}
+{\footnotesize\ttfamily \#define \+\_\+\+GETOPT\+\_\+\+THROW}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00068}{68}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a5b4ab91afec1ff35fd294e3ca007be49}\label{getopt_8h_a5b4ab91afec1ff35fd294e3ca007be49} 
+\index{getopt.h@{getopt.h}!ARG\_NONE@{ARG\_NONE}}
+\index{ARG\_NONE@{ARG\_NONE}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{ARG\_NONE}{ARG\_NONE}}
+{\footnotesize\ttfamily \#define ARG\+\_\+\+NONE~0 /\texorpdfstring{$\ast$}{*}Argument Switch Only\texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00079}{79}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a1974c59c38e477a7347bf940ebdcb201}\label{getopt_8h_a1974c59c38e477a7347bf940ebdcb201} 
+\index{getopt.h@{getopt.h}!ARG\_NULL@{ARG\_NULL}}
+\index{ARG\_NULL@{ARG\_NULL}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{ARG\_NULL}{ARG\_NULL}}
+{\footnotesize\ttfamily \#define ARG\+\_\+\+NULL~0 /\texorpdfstring{$\ast$}{*}Argument Null\texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00078}{78}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a26d39736df762f9ad686fde7c7a9496a}\label{getopt_8h_a26d39736df762f9ad686fde7c7a9496a} 
+\index{getopt.h@{getopt.h}!ARG\_OPT@{ARG\_OPT}}
+\index{ARG\_OPT@{ARG\_OPT}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{ARG\_OPT}{ARG\_OPT}}
+{\footnotesize\ttfamily \#define ARG\+\_\+\+OPT~2 /\texorpdfstring{$\ast$}{*}Argument Optional\texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00081}{81}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a61f6db7b71879bce066d8f50b8a0722b}\label{getopt_8h_a61f6db7b71879bce066d8f50b8a0722b} 
+\index{getopt.h@{getopt.h}!ARG\_REQ@{ARG\_REQ}}
+\index{ARG\_REQ@{ARG\_REQ}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{ARG\_REQ}{ARG\_REQ}}
+{\footnotesize\ttfamily \#define ARG\+\_\+\+REQ~1 /\texorpdfstring{$\ast$}{*}Argument Required\texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00080}{80}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a3d17dfdaa1d6335597978109de497b58}\label{getopt_8h_a3d17dfdaa1d6335597978109de497b58} 
+\index{getopt.h@{getopt.h}!getopt@{getopt}}
+\index{getopt@{getopt}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt}{getopt}}
+{\footnotesize\ttfamily \#define getopt~\mbox{\hyperlink{getopt_8h_a9bab855b8a9ec784d3f6c4d5360b6267}{getopt\+\_\+a}}}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00132}{132}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a2c03229beb12dd67716f3363c205a4d5}\label{getopt_8h_a2c03229beb12dd67716f3363c205a4d5} 
+\index{getopt.h@{getopt.h}!getopt\_long@{getopt\_long}}
+\index{getopt\_long@{getopt\_long}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt\_long}{getopt\_long}}
+{\footnotesize\ttfamily \#define getopt\+\_\+long~\mbox{\hyperlink{getopt_8h_a17136d7bf82fedf7ddecc9c3391b2c03}{getopt\+\_\+long\+\_\+a}}}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00133}{133}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a6934ba1feac41a95541cb7ee63db6331}\label{getopt_8h_a6934ba1feac41a95541cb7ee63db6331} 
+\index{getopt.h@{getopt.h}!getopt\_long\_only@{getopt\_long\_only}}
+\index{getopt\_long\_only@{getopt\_long\_only}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt\_long\_only}{getopt\_long\_only}}
+{\footnotesize\ttfamily \#define getopt\+\_\+long\+\_\+only~\mbox{\hyperlink{getopt_8h_a0b59c11fb99ef5f909adfb62e7597326}{getopt\+\_\+long\+\_\+only\+\_\+a}}}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00134}{134}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a3bc1d5f667b5b4ca4b4abb685dc874ce}\label{getopt_8h_a3bc1d5f667b5b4ca4b4abb685dc874ce} 
+\index{getopt.h@{getopt.h}!no\_argument@{no\_argument}}
+\index{no\_argument@{no\_argument}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{no\_argument}{no\_argument}}
+{\footnotesize\ttfamily \#define no\+\_\+argument~0 /\texorpdfstring{$\ast$}{*}Argument Switch Only\texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00073}{73}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_aeb861628fc23c2215ebf9d931385172b}\label{getopt_8h_aeb861628fc23c2215ebf9d931385172b} 
+\index{getopt.h@{getopt.h}!null\_argument@{null\_argument}}
+\index{null\_argument@{null\_argument}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{null\_argument}{null\_argument}}
+{\footnotesize\ttfamily \#define null\+\_\+argument~0 /\texorpdfstring{$\ast$}{*}Argument Null\texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00072}{72}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a9227b18da5777b0578ef7376ad78b649}\label{getopt_8h_a9227b18da5777b0578ef7376ad78b649} 
+\index{getopt.h@{getopt.h}!optarg@{optarg}}
+\index{optarg@{optarg}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{optarg}{optarg}}
+{\footnotesize\ttfamily \#define optarg~\mbox{\hyperlink{getopt_8h_a43c2206167724436e7bd5bcc9dcfedea}{optarg\+\_\+a}}}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00136}{136}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_adf33c342f1f93d3574188740b6d00a59}\label{getopt_8h_adf33c342f1f93d3574188740b6d00a59} 
+\index{getopt.h@{getopt.h}!option@{option}}
+\index{option@{option}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{option}{option}}
+{\footnotesize\ttfamily \#define option~\mbox{\hyperlink{structoption__a}{option\+\_\+a}}}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00135}{135}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_acca06c0a947656bd8b395bf1084ffb72}\label{getopt_8h_acca06c0a947656bd8b395bf1084ffb72} 
+\index{getopt.h@{getopt.h}!optional\_argument@{optional\_argument}}
+\index{optional\_argument@{optional\_argument}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{optional\_argument}{optional\_argument}}
+{\footnotesize\ttfamily \#define optional\+\_\+argument~2 /\texorpdfstring{$\ast$}{*}Argument Optional\texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00075}{75}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+\Hypertarget{getopt_8h_a6ece8d8dfa8378778f7290fdaba5b8bc}\label{getopt_8h_a6ece8d8dfa8378778f7290fdaba5b8bc} 
+\index{getopt.h@{getopt.h}!required\_argument@{required\_argument}}
+\index{required\_argument@{required\_argument}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{required\_argument}{required\_argument}}
+{\footnotesize\ttfamily \#define required\+\_\+argument~1 /\texorpdfstring{$\ast$}{*}Argument Required\texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{getopt_8h_source_l00074}{74}} of file \mbox{\hyperlink{getopt_8h_source}{getopt.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{getopt_8h_a9bab855b8a9ec784d3f6c4d5360b6267}\label{getopt_8h_a9bab855b8a9ec784d3f6c4d5360b6267} 
+\index{getopt.h@{getopt.h}!getopt\_a@{getopt\_a}}
+\index{getopt\_a@{getopt\_a}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt\_a()}{getopt\_a()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int getopt\+\_\+a (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{optstring }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_a17136d7bf82fedf7ddecc9c3391b2c03}\label{getopt_8h_a17136d7bf82fedf7ddecc9c3391b2c03} 
+\index{getopt.h@{getopt.h}!getopt\_long\_a@{getopt\_long\_a}}
+\index{getopt\_long\_a@{getopt\_long\_a}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt\_long\_a()}{getopt\_long\_a()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int getopt\+\_\+long\+\_\+a (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{options,  }\item[{const struct \mbox{\hyperlink{structoption__a}{option\+\_\+a}} \texorpdfstring{$\ast$}{*}}]{long\+\_\+options,  }\item[{int \texorpdfstring{$\ast$}{*}}]{opt\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_a0b59c11fb99ef5f909adfb62e7597326}\label{getopt_8h_a0b59c11fb99ef5f909adfb62e7597326} 
+\index{getopt.h@{getopt.h}!getopt\_long\_only\_a@{getopt\_long\_only\_a}}
+\index{getopt\_long\_only\_a@{getopt\_long\_only\_a}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt\_long\_only\_a()}{getopt\_long\_only\_a()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int getopt\+\_\+long\+\_\+only\+\_\+a (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{options,  }\item[{const struct \mbox{\hyperlink{structoption__a}{option\+\_\+a}} \texorpdfstring{$\ast$}{*}}]{long\+\_\+options,  }\item[{int \texorpdfstring{$\ast$}{*}}]{opt\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_acc8f4b40e3361704fc1e73dfe3bc5074}\label{getopt_8h_acc8f4b40e3361704fc1e73dfe3bc5074} 
+\index{getopt.h@{getopt.h}!getopt\_long\_only\_w@{getopt\_long\_only\_w}}
+\index{getopt\_long\_only\_w@{getopt\_long\_only\_w}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt\_long\_only\_w()}{getopt\_long\_only\_w()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int getopt\+\_\+long\+\_\+only\+\_\+w (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{wchar\+\_\+t \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{const wchar\+\_\+t \texorpdfstring{$\ast$}{*}}]{options,  }\item[{const struct \mbox{\hyperlink{structoption__w}{option\+\_\+w}} \texorpdfstring{$\ast$}{*}}]{long\+\_\+options,  }\item[{int \texorpdfstring{$\ast$}{*}}]{opt\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_a3b9f216325a3d1469f19873232402a45}\label{getopt_8h_a3b9f216325a3d1469f19873232402a45} 
+\index{getopt.h@{getopt.h}!getopt\_long\_w@{getopt\_long\_w}}
+\index{getopt\_long\_w@{getopt\_long\_w}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt\_long\_w()}{getopt\_long\_w()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int getopt\+\_\+long\+\_\+w (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{wchar\+\_\+t \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{const wchar\+\_\+t \texorpdfstring{$\ast$}{*}}]{options,  }\item[{const struct \mbox{\hyperlink{structoption__w}{option\+\_\+w}} \texorpdfstring{$\ast$}{*}}]{long\+\_\+options,  }\item[{int \texorpdfstring{$\ast$}{*}}]{opt\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_a111e62a66482ef720756a22db63cd65a}\label{getopt_8h_a111e62a66482ef720756a22db63cd65a} 
+\index{getopt.h@{getopt.h}!getopt\_w@{getopt\_w}}
+\index{getopt\_w@{getopt\_w}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{getopt\_w()}{getopt\_w()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int getopt\+\_\+w (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{wchar\+\_\+t \texorpdfstring{$\ast$}{*}const \texorpdfstring{$\ast$}{*}}]{argv,  }\item[{const wchar\+\_\+t \texorpdfstring{$\ast$}{*}}]{optstring }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{getopt_8h_a43c2206167724436e7bd5bcc9dcfedea}\label{getopt_8h_a43c2206167724436e7bd5bcc9dcfedea} 
+\index{getopt.h@{getopt.h}!optarg\_a@{optarg\_a}}
+\index{optarg\_a@{optarg\_a}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{optarg\_a}{optarg\_a}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} char\texorpdfstring{$\ast$}{*} optarg\+\_\+a\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_a59c35258b5ad900319c71f9c5fa9dd49}\label{getopt_8h_a59c35258b5ad900319c71f9c5fa9dd49} 
+\index{getopt.h@{getopt.h}!optarg\_w@{optarg\_w}}
+\index{optarg\_w@{optarg\_w}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{optarg\_w}{optarg\_w}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} wchar\+\_\+t\texorpdfstring{$\ast$}{*} optarg\+\_\+w\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_a8f1d84888f26f543a7b13569c4a5cbf1}\label{getopt_8h_a8f1d84888f26f543a7b13569c4a5cbf1} 
+\index{getopt.h@{getopt.h}!opterr@{opterr}}
+\index{opterr@{opterr}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{opterr}{opterr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int opterr\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_ad4bbbd41ea1dd48667b9b86ab42a5060}\label{getopt_8h_ad4bbbd41ea1dd48667b9b86ab42a5060} 
+\index{getopt.h@{getopt.h}!optind@{optind}}
+\index{optind@{optind}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{optind}{optind}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_ac23021d419499aff4ab95a61fed6bd64}{\+\_\+\+GETOPT\+\_\+\+BEGIN\+\_\+\+EXTERN\+\_\+C}} \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int optind\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{getopt_8h_a12f5ba4225a7144c90b604b7d166f631}\label{getopt_8h_a12f5ba4225a7144c90b604b7d166f631} 
+\index{getopt.h@{getopt.h}!optopt@{optopt}}
+\index{optopt@{optopt}!getopt.h@{getopt.h}}
+\doxysubsubsection{\texorpdfstring{optopt}{optopt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{getopt_8h_af98d974c2db4fe9027ced13671c7b261}{\+\_\+\+GETOPT\+\_\+\+API}} int optopt\hspace{0.3cm}{\ttfamily [extern]}}
+

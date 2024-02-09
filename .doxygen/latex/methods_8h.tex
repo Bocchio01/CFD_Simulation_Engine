@@ -1,0 +1,104 @@
+\doxysection{engine/methods/methods.h File Reference}
+\hypertarget{methods_8h}{}\label{methods_8h}\index{engine/methods/methods.h@{engine/methods/methods.h}}
+{\ttfamily \#include "{}SCGS.\+h"{}}\newline
+{\ttfamily \#include "{}SIMPLE.\+h"{}}\newline
+{\ttfamily \#include "{}../../utils/algebra/matrices.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmethod__state__t}{method\+\_\+state\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structunder__relaxation__factors__t}{under\+\_\+relaxation\+\_\+factors\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structmethod__t}{method\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \mbox{\hyperlink{methods_8h_a87428633d2aa9352ce0d27306f685824}{CFD\+\_\+t}}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{methods_8h_a0e1d7f0a1f6de83b49806d708b8cc333}{method\+\_\+function\+\_\+t}}) (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{methods_8h_a249a4b0176792693b424a56e30810f49}{method\+\_\+type\+\_\+t}} \{ \mbox{\hyperlink{methods_8h_a249a4b0176792693b424a56e30810f49ae977b0d715a209ccda50a40381adc8d5}{SCGS}}
+, \mbox{\hyperlink{methods_8h_a249a4b0176792693b424a56e30810f49a1a6b6e9893ec9e5d9710335b4c74d3f6}{SIMPLE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{methods_8h_abb575128de742f30f04a528c800aed74}{CFD\+\_\+\+Setup\+\_\+\+Method}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\item 
+void \mbox{\hyperlink{methods_8h_ab883f4ad3ebd707cc900503447974e53}{CFD\+\_\+\+Run\+\_\+\+Method}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{methods_8h_a87428633d2aa9352ce0d27306f685824}\label{methods_8h_a87428633d2aa9352ce0d27306f685824} 
+\index{methods.h@{methods.h}!CFD\_t@{CFD\_t}}
+\index{CFD\_t@{CFD\_t}!methods.h@{methods.h}}
+\doxysubsubsection{\texorpdfstring{CFD\_t}{CFD\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}}}
+
+
+
+Definition at line \mbox{\hyperlink{methods_8h_source_l00004}{4}} of file \mbox{\hyperlink{methods_8h_source}{methods.\+h}}.
+
+\Hypertarget{methods_8h_a0e1d7f0a1f6de83b49806d708b8cc333}\label{methods_8h_a0e1d7f0a1f6de83b49806d708b8cc333} 
+\index{methods.h@{methods.h}!method\_function\_t@{method\_function\_t}}
+\index{method\_function\_t@{method\_function\_t}!methods.h@{methods.h}}
+\doxysubsubsection{\texorpdfstring{method\_function\_t}{method\_function\_t}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} method\+\_\+function\+\_\+t) (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)}
+
+
+
+Definition at line \mbox{\hyperlink{methods_8h_source_l00011}{11}} of file \mbox{\hyperlink{methods_8h_source}{methods.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{methods_8h_a249a4b0176792693b424a56e30810f49}\label{methods_8h_a249a4b0176792693b424a56e30810f49} 
+\index{methods.h@{methods.h}!method\_type\_t@{method\_type\_t}}
+\index{method\_type\_t@{method\_type\_t}!methods.h@{methods.h}}
+\doxysubsubsection{\texorpdfstring{method\_type\_t}{method\_type\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{methods_8h_a249a4b0176792693b424a56e30810f49}{method\+\_\+type\+\_\+t}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SCGS@{SCGS}!methods.h@{methods.h}}\index{methods.h@{methods.h}!SCGS@{SCGS}}}\Hypertarget{methods_8h_a249a4b0176792693b424a56e30810f49ae977b0d715a209ccda50a40381adc8d5}\label{methods_8h_a249a4b0176792693b424a56e30810f49ae977b0d715a209ccda50a40381adc8d5} 
+SCGS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SIMPLE@{SIMPLE}!methods.h@{methods.h}}\index{methods.h@{methods.h}!SIMPLE@{SIMPLE}}}\Hypertarget{methods_8h_a249a4b0176792693b424a56e30810f49a1a6b6e9893ec9e5d9710335b4c74d3f6}\label{methods_8h_a249a4b0176792693b424a56e30810f49a1a6b6e9893ec9e5d9710335b4c74d3f6} 
+SIMPLE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{methods_8h_source_l00013}{13}} of file \mbox{\hyperlink{methods_8h_source}{methods.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{methods_8h_ab883f4ad3ebd707cc900503447974e53}\label{methods_8h_ab883f4ad3ebd707cc900503447974e53} 
+\index{methods.h@{methods.h}!CFD\_Run\_Method@{CFD\_Run\_Method}}
+\index{CFD\_Run\_Method@{CFD\_Run\_Method}!methods.h@{methods.h}}
+\doxysubsubsection{\texorpdfstring{CFD\_Run\_Method()}{CFD\_Run\_Method()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Run\+\_\+\+Method (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{methods_8c_source_l00047}{47}} of file \mbox{\hyperlink{methods_8c_source}{methods.\+c}}.
+
+\Hypertarget{methods_8h_abb575128de742f30f04a528c800aed74}\label{methods_8h_abb575128de742f30f04a528c800aed74} 
+\index{methods.h@{methods.h}!CFD\_Setup\_Method@{CFD\_Setup\_Method}}
+\index{CFD\_Setup\_Method@{CFD\_Setup\_Method}!methods.h@{methods.h}}
+\doxysubsubsection{\texorpdfstring{CFD\_Setup\_Method()}{CFD\_Setup\_Method()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Setup\+\_\+\+Method (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{methods_8c_source_l00009}{9}} of file \mbox{\hyperlink{methods_8c_source}{methods.\+c}}.
+

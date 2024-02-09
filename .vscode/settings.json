@@ -30,7 +30,8 @@
         "custom_file.h": "c",
         "cmd.h": "c",
         "matrices.h": "c",
-        "log.h": "c"
+        "log.h": "c",
+        "scgs_bc.h": "c"
     },
     "cmake.configureArgs": [
         "-DVCPKG_TARGET_TRIPLET=",

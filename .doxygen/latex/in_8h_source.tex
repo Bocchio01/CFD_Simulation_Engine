@@ -1,0 +1,58 @@
+\doxysection{in.\+h}
+\hypertarget{in_8h_source}{}\label{in_8h_source}\index{in/in.h@{in/in.h}}
+\mbox{\hyperlink{in_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ INIT\_H}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ INIT\_H}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ "{}../utils/custom\_file/custom\_file.h"{}}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{cmd_8h}{parsers/cmd.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{json_8h}{parsers/json.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00013}\mbox{\hyperlink{in_8h_a521d8a731020b738d3d2e9636a5ca7f3}{00013}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00015}\mbox{\hyperlink{in_8h_a521d8a731020b738d3d2e9636a5ca7f3a8ba45b0edc6c432bf5213910b6c0cd18}{00015}}\ \ \ \ \ \mbox{\hyperlink{in_8h_a521d8a731020b738d3d2e9636a5ca7f3a8ba45b0edc6c432bf5213910b6c0cd18}{EXTERNAL\_FLOW}},}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00016}00016\ \ \ \ \ \mbox{\hyperlink{in_8h_a521d8a731020b738d3d2e9636a5ca7f3ada8e431a668719bdf953a33e86a3b37f}{INTERNAL\_FLOW}}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00017}\mbox{\hyperlink{in_8h_a521d8a731020b738d3d2e9636a5ca7f3ada8e431a668719bdf953a33e86a3b37f}{00017}}\ \}\ \mbox{\hyperlink{in_8h_a521d8a731020b738d3d2e9636a5ca7f3}{problem\_t}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00019}\mbox{\hyperlink{structgeometry__t}{00019}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00020}00020\ \{}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00021}\mbox{\hyperlink{structgeometry__t_ad58c8a16c879df8aecd6946bc6387fee}{00021}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structgeometry__t_ad58c8a16c879df8aecd6946bc6387fee}{x}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00022}\mbox{\hyperlink{structgeometry__t_a6a81605d55e9c12703e360dcc45fe6ee}{00022}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structgeometry__t_a6a81605d55e9c12703e360dcc45fe6ee}{y}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00023}00023\ \}\ \mbox{\hyperlink{structgeometry__t}{geometry\_t}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00025}\mbox{\hyperlink{structfluid__t}{00025}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00026}00026\ \{}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00027}\mbox{\hyperlink{structfluid__t_a29b3cf84b66fb36e844332b993c9a8f4}{00027}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structfluid__t_a29b3cf84b66fb36e844332b993c9a8f4}{mu}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00028}\mbox{\hyperlink{structfluid__t_a8be49d988e80db410e3d7d0e3385059a}{00028}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structfluid__t_a8be49d988e80db410e3d7d0e3385059a}{Re}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00029}00029\ \}\ \mbox{\hyperlink{structfluid__t}{fluid\_t}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00031}\mbox{\hyperlink{structin__t}{00031}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00033}\mbox{\hyperlink{structin__t_a46c9ee36ec0bf7bb5180741735cc8a7c}{00033}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structin__t_a46c9ee36ec0bf7bb5180741735cc8a7c}{uLid}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ problem\_t\ problem;}}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00035}\mbox{\hyperlink{structin__t_af4c560206167e07b4778dfc7440e9aa2}{00035}}\ \ \ \ \ \mbox{\hyperlink{structgeometry__t}{geometry\_t}}\ *\mbox{\hyperlink{structin__t_af4c560206167e07b4778dfc7440e9aa2}{geometry}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00036}\mbox{\hyperlink{structin__t_a30fd710f6eb6ce8dfe0a2c54b35dbe7d}{00036}}\ \ \ \ \ \mbox{\hyperlink{structfluid__t}{fluid\_t}}\ *\mbox{\hyperlink{structin__t_a30fd710f6eb6ce8dfe0a2c54b35dbe7d}{fluid}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00037}\mbox{\hyperlink{structin__t_acf9e797f8327ee3d1a2d484c2cd25a52}{00037}}\ \ \ \ \ \mbox{\hyperlink{structcustom__file__t}{custom\_file\_t}}\ *\mbox{\hyperlink{structin__t_acf9e797f8327ee3d1a2d484c2cd25a52}{file}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00038}00038\ \}\ \mbox{\hyperlink{structin__t}{in\_t}};}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00040}00040\ \mbox{\hyperlink{structin__t}{in\_t}}\ *\mbox{\hyperlink{in_8h_a23307abc970177aa349ae6a1dfba14e5}{CFD\_Allocate\_In}}();}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00042}00042\ \mbox{\hyperlink{structgeometry__t}{geometry\_t}}\ *\mbox{\hyperlink{in_8h_a5bd8fa83d3e5c957bad775cf576970ae}{CFD\_Allocate\_In\_Geometry}}();}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00044}00044\ \mbox{\hyperlink{structfluid__t}{fluid\_t}}\ *\mbox{\hyperlink{in_8h_a9a654767abcb17e7b0816add55d55284}{CFD\_Allocate\_In\_Fluid}}();}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00046}00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{in_8h_ab28a3af26c54bcf93fb9109ccf83c466}{CFD\_Free\_In}}(\mbox{\hyperlink{structin__t}{in\_t}}\ *in);}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00048}00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{in_8h_af93da6085bb9a51e68665cac5bcc2d13}{CFD\_Free\_In\_Geometry}}(\mbox{\hyperlink{structgeometry__t}{geometry\_t}}\ *geometry);}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00050}00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{in_8h_a216b2256305b5a782512f7ce7e8de144}{CFD\_Free\_In\_Fluid}}(\mbox{\hyperlink{structfluid__t}{fluid\_t}}\ *fluid);}
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{in_8h_source_l00052}00052\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

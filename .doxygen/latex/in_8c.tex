@@ -1,0 +1,84 @@
+\doxysection{in/in.c File Reference}
+\hypertarget{in_8c}{}\label{in_8c}\index{in/in.c@{in/in.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}../utils/log/log.\+h"{}}\newline
+{\ttfamily \#include "{}../utils/custom\+\_\+file/custom\+\_\+file.\+h"{}}\newline
+{\ttfamily \#include "{}in.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structin__t}{in\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{in_8c_a23307abc970177aa349ae6a1dfba14e5}{CFD\+\_\+\+Allocate\+\_\+\+In}} ()
+\item 
+\mbox{\hyperlink{structgeometry__t}{geometry\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{in_8c_a5bd8fa83d3e5c957bad775cf576970ae}{CFD\+\_\+\+Allocate\+\_\+\+In\+\_\+\+Geometry}} ()
+\item 
+\mbox{\hyperlink{structfluid__t}{fluid\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{in_8c_a9a654767abcb17e7b0816add55d55284}{CFD\+\_\+\+Allocate\+\_\+\+In\+\_\+\+Fluid}} ()
+\item 
+void \mbox{\hyperlink{in_8c_ab28a3af26c54bcf93fb9109ccf83c466}{CFD\+\_\+\+Free\+\_\+\+In}} (\mbox{\hyperlink{structin__t}{in\+\_\+t}} \texorpdfstring{$\ast$}{*}in)
+\item 
+void \mbox{\hyperlink{in_8c_af93da6085bb9a51e68665cac5bcc2d13}{CFD\+\_\+\+Free\+\_\+\+In\+\_\+\+Geometry}} (\mbox{\hyperlink{structgeometry__t}{geometry\+\_\+t}} \texorpdfstring{$\ast$}{*}geometry)
+\item 
+void \mbox{\hyperlink{in_8c_a216b2256305b5a782512f7ce7e8de144}{CFD\+\_\+\+Free\+\_\+\+In\+\_\+\+Fluid}} (\mbox{\hyperlink{structfluid__t}{fluid\+\_\+t}} \texorpdfstring{$\ast$}{*}fluid)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{in_8c_a23307abc970177aa349ae6a1dfba14e5}\label{in_8c_a23307abc970177aa349ae6a1dfba14e5} 
+\index{in.c@{in.c}!CFD\_Allocate\_In@{CFD\_Allocate\_In}}
+\index{CFD\_Allocate\_In@{CFD\_Allocate\_In}!in.c@{in.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Allocate\_In()}{CFD\_Allocate\_In()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structin__t}{in\+\_\+t}} \texorpdfstring{$\ast$}{*} CFD\+\_\+\+Allocate\+\_\+\+In (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{in_8c_source_l00008}{8}} of file \mbox{\hyperlink{in_8c_source}{in.\+c}}.
+
+\Hypertarget{in_8c_a9a654767abcb17e7b0816add55d55284}\label{in_8c_a9a654767abcb17e7b0816add55d55284} 
+\index{in.c@{in.c}!CFD\_Allocate\_In\_Fluid@{CFD\_Allocate\_In\_Fluid}}
+\index{CFD\_Allocate\_In\_Fluid@{CFD\_Allocate\_In\_Fluid}!in.c@{in.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Allocate\_In\_Fluid()}{CFD\_Allocate\_In\_Fluid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structfluid__t}{fluid\+\_\+t}} \texorpdfstring{$\ast$}{*} CFD\+\_\+\+Allocate\+\_\+\+In\+\_\+\+Fluid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{in_8c_source_l00042}{42}} of file \mbox{\hyperlink{in_8c_source}{in.\+c}}.
+
+\Hypertarget{in_8c_a5bd8fa83d3e5c957bad775cf576970ae}\label{in_8c_a5bd8fa83d3e5c957bad775cf576970ae} 
+\index{in.c@{in.c}!CFD\_Allocate\_In\_Geometry@{CFD\_Allocate\_In\_Geometry}}
+\index{CFD\_Allocate\_In\_Geometry@{CFD\_Allocate\_In\_Geometry}!in.c@{in.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Allocate\_In\_Geometry()}{CFD\_Allocate\_In\_Geometry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structgeometry__t}{geometry\+\_\+t}} \texorpdfstring{$\ast$}{*} CFD\+\_\+\+Allocate\+\_\+\+In\+\_\+\+Geometry (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{in_8c_source_l00030}{30}} of file \mbox{\hyperlink{in_8c_source}{in.\+c}}.
+
+\Hypertarget{in_8c_ab28a3af26c54bcf93fb9109ccf83c466}\label{in_8c_ab28a3af26c54bcf93fb9109ccf83c466} 
+\index{in.c@{in.c}!CFD\_Free\_In@{CFD\_Free\_In}}
+\index{CFD\_Free\_In@{CFD\_Free\_In}!in.c@{in.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Free\_In()}{CFD\_Free\_In()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Free\+\_\+\+In (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structin__t}{in\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{in }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{in_8c_source_l00054}{54}} of file \mbox{\hyperlink{in_8c_source}{in.\+c}}.
+
+\Hypertarget{in_8c_a216b2256305b5a782512f7ce7e8de144}\label{in_8c_a216b2256305b5a782512f7ce7e8de144} 
+\index{in.c@{in.c}!CFD\_Free\_In\_Fluid@{CFD\_Free\_In\_Fluid}}
+\index{CFD\_Free\_In\_Fluid@{CFD\_Free\_In\_Fluid}!in.c@{in.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Free\_In\_Fluid()}{CFD\_Free\_In\_Fluid()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Free\+\_\+\+In\+\_\+\+Fluid (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfluid__t}{fluid\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{fluid }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{in_8c_source_l00073}{73}} of file \mbox{\hyperlink{in_8c_source}{in.\+c}}.
+
+\Hypertarget{in_8c_af93da6085bb9a51e68665cac5bcc2d13}\label{in_8c_af93da6085bb9a51e68665cac5bcc2d13} 
+\index{in.c@{in.c}!CFD\_Free\_In\_Geometry@{CFD\_Free\_In\_Geometry}}
+\index{CFD\_Free\_In\_Geometry@{CFD\_Free\_In\_Geometry}!in.c@{in.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Free\_In\_Geometry()}{CFD\_Free\_In\_Geometry()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Free\+\_\+\+In\+\_\+\+Geometry (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structgeometry__t}{geometry\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{geometry }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{in_8c_source_l00065}{65}} of file \mbox{\hyperlink{in_8c_source}{in.\+c}}.
+

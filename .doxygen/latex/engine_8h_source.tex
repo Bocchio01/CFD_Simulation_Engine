@@ -1,0 +1,78 @@
+\doxysection{engine.\+h}
+\hypertarget{engine_8h_source}{}\label{engine_8h_source}\index{engine/engine.h@{engine/engine.h}}
+\mbox{\hyperlink{engine_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ ENGINE\_H}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ ENGINE\_H}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00004}\mbox{\hyperlink{engine_8h_a87428633d2aa9352ce0d27306f685824}{00004}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_c_f_d__t}{CFD\_t}}\ \mbox{\hyperlink{struct_c_f_d__t}{CFD\_t}};}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mesh_8h}{mesh/mesh.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00010}00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{methods_8h}{methods/methods.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{schemes_8h}{schemes/schemes.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00013}\mbox{\hyperlink{structengine__t}{00013}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00014}00014\ \{}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00015}\mbox{\hyperlink{structengine__t_ac3a73b28bac87e46e02c75baac046850}{00015}}\ \ \ \ \ \mbox{\hyperlink{structmesh__t}{mesh\_t}}\ *\mbox{\hyperlink{structengine__t_ac3a73b28bac87e46e02c75baac046850}{mesh}};}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00016}\mbox{\hyperlink{structengine__t_a91db25367c20a77a882936635d06f95d}{00016}}\ \ \ \ \ \mbox{\hyperlink{structmethod__t}{method\_t}}\ *\mbox{\hyperlink{structengine__t_a91db25367c20a77a882936635d06f95d}{method}};}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00017}\mbox{\hyperlink{structengine__t_a12642fb9901900e9c70a3dfd6edd19a4}{00017}}\ \ \ \ \ \mbox{\hyperlink{structschemes__t}{schemes\_t}}\ *\mbox{\hyperlink{structengine__t_a12642fb9901900e9c70a3dfd6edd19a4}{schemes}};}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00018}00018\ \}\ \mbox{\hyperlink{structengine__t}{engine\_t}};}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00020}00020\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_ac95bd699083b08e968985310f1b499db}{CFD\_Setup\_Engine}}(\mbox{\hyperlink{struct_c_f_d__t}{CFD\_t}}\ *cfd);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00022}\mbox{\hyperlink{engine_8h_a08f155c502be70bdf94e2465365a4687}{00022}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a08f155c502be70bdf94e2465365a4687}{CFD\_Engine\_Solve}}(\mbox{\hyperlink{struct_c_f_d__t}{CFD\_t}}\ *cfd);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00024}00024\ \mbox{\hyperlink{structengine__t}{engine\_t}}\ *\mbox{\hyperlink{engine_8h_a3a454161941d47e120eefba686bd710a}{CFD\_Allocate\_Engine}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00026}00026\ \mbox{\hyperlink{structmesh__t}{mesh\_t}}\ *\mbox{\hyperlink{engine_8h_a45c41dcbe0cc5558b91b673d542d4399}{CFD\_Allocate\_Engine\_Mesh}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00028}00028\ \mbox{\hyperlink{structmesh__nodes__t}{mesh\_nodes\_t}}\ *\mbox{\hyperlink{engine_8h_a455cef0738e001d0a2fa951d7fbe1202}{CFD\_Allocate\_Engine\_Mesh\_Nodes}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00030}00030\ \mbox{\hyperlink{structmesh__element__t}{mesh\_element\_t}}\ *\mbox{\hyperlink{engine_8h_a72e2a791fad3285eb4211bec91c3c054}{CFD\_Allocate\_Engine\_Mesh\_Element}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00032}00032\ \mbox{\hyperlink{structmesh__data__t}{mesh\_data\_t}}\ *\mbox{\hyperlink{engine_8h_a7871154f5d75e107063fef242f27e3d4}{CFD\_Allocate\_Engine\_Mesh\_Data}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00034}00034\ \mbox{\hyperlink{structelement__size__t}{element\_size\_t}}\ *\mbox{\hyperlink{engine_8h_a7dd1bfc41f1be13b108f00ed29ae49a5}{CFD\_Allocate\_Engine\_Mesh\_Element\_Size}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00036}00036\ \mbox{\hyperlink{structmethod__t}{method\_t}}\ *\mbox{\hyperlink{engine_8h_ae3104cb09d064c5c89669a0c4106cdc5}{CFD\_Allocate\_Engine\_Method}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00038}00038\ \mbox{\hyperlink{structunder__relaxation__factors__t}{under\_relaxation\_factors\_t}}\ *\mbox{\hyperlink{engine_8h_a57a72d8c4b9dff6ad9aafd56397ad0bd}{CFD\_Allocate\_Engine\_Method\_UnderRelaxationFactors}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00040}00040\ \mbox{\hyperlink{structmethod__state__t}{method\_state\_t}}\ *\mbox{\hyperlink{engine_8h_a0515601fef8f3126ed63310a5bb54024}{CFD\_Allocate\_Engine\_Method\_State}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00042}00042\ \mbox{\hyperlink{structschemes__t}{schemes\_t}}\ *\mbox{\hyperlink{engine_8h_aca3616f15797f28a4e509a9d7c924d9e}{CFD\_Allocate\_Engine\_Schemes}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00044}00044\ \mbox{\hyperlink{structscheme__convection__t}{scheme\_convection\_t}}\ *\mbox{\hyperlink{engine_8h_ab59d36696065b0745d9bb8171d104ec3}{CFD\_Allocate\_Engine\_Schemes\_Convection}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00046}00046\ \mbox{\hyperlink{structscheme__diffusion__t}{scheme\_diffusion\_t}}\ *\mbox{\hyperlink{engine_8h_af3b09cb9692844f2d62f6b75bc16000a}{CFD\_Allocate\_Engine\_Schemes\_Diffusion}}();}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00048}00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_acee4f2799db9b8d741de6bbb5633213d}{CFD\_Free\_Engine}}(\mbox{\hyperlink{structengine__t}{engine\_t}}\ *\mbox{\hyperlink{struct_c_f_d__t_ae5c8ec8e7f81e23d9bac900d7352e1df}{engine}});}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00050}00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_ae1f63f79f63247a78c3a316c78446540}{CFD\_Free\_Engine\_Mesh}}(\mbox{\hyperlink{structmesh__t}{mesh\_t}}\ *mesh);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00052}00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a0cbfa9e3aa88e73ccb2bf36a6f2e1647}{CFD\_Free\_Engine\_Method}}(\mbox{\hyperlink{structmethod__t}{method\_t}}\ *method);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00054}00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a57ed00055c33c81aed39d961286c5d6c}{CFD\_Free\_Engine\_Schemes}}(\mbox{\hyperlink{structschemes__t}{schemes\_t}}\ *schemes);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00056}00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_aac22f08225d4d8774d4cd01611aebc51}{CFD\_Free\_Engine\_Mesh\_Nodes}}(\mbox{\hyperlink{structmesh__nodes__t}{mesh\_nodes\_t}}\ *nodes);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00058}00058\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a509e03b857fbb46ac716f6a280db3498}{CFD\_Free\_Engine\_Mesh\_Element}}(\mbox{\hyperlink{structmesh__element__t}{mesh\_element\_t}}\ *element);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00060}00060\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a21fab58b45bb00e6665ad8b90366d6ef}{CFD\_Free\_Engine\_Mesh\_Data}}(\mbox{\hyperlink{structmesh__data__t}{mesh\_data\_t}}\ *data);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00062}00062\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a49c5d06aa022615c8050a0c159b5204f}{CFD\_Free\_Engine\_Mesh\_Element\_Size}}(\mbox{\hyperlink{structelement__size__t}{element\_size\_t}}\ *size);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00064}00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a4c93b173b61030a471d332b168492b56}{CFD\_Free\_Engine\_Method\_UnderRelaxationFactors}}(\mbox{\hyperlink{structunder__relaxation__factors__t}{under\_relaxation\_factors\_t}}\ *under\_relaxation\_factors);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00066}00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_acc9213938c1b3b9d3464daf9a8d2e63f}{CFD\_Free\_Engine\_Method\_State}}(\mbox{\hyperlink{structmethod__state__t}{method\_state\_t}}\ *state);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00068}00068\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a3d54a5d8a0583e07f27f2eb063bd6edd}{CFD\_Free\_Engine\_Schemes\_Convection}}(\mbox{\hyperlink{structscheme__convection__t}{scheme\_convection\_t}}\ *convection);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00070}00070\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{engine_8h_a5973c99218d987f39b1db16c8fcd5d0f}{CFD\_Free\_Engine\_Schemes\_Diffusion}}(\mbox{\hyperlink{structscheme__diffusion__t}{scheme\_diffusion\_t}}\ *diffusion);}
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{engine_8h_source_l00072}00072\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

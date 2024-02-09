@@ -1,0 +1,55 @@
+\doxysection{convection.\+c}
+\hypertarget{convection_8c_source}{}\label{convection_8c_source}\index{engine/schemes/convection.c@{engine/schemes/convection.c}}
+\mbox{\hyperlink{convection_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00001}00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{convection_8h}{convection.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}../../CFD.h"{}}}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00005}\mbox{\hyperlink{convection_8c_a6136554896e8d8bf7a3bf6fcd19f1d93}{00005}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{convection_8c_a6136554896e8d8bf7a3bf6fcd19f1d93}{CFD\_Setup\_Convection}}(\mbox{\hyperlink{struct_c_f_d__t}{CFD\_t}}\ *cfd)}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00006}00006\ \{}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00007}00007\ \ \ \ \ \textcolor{keywordflow}{switch}\ (cfd-\/>\mbox{\hyperlink{struct_c_f_d__t_ae5c8ec8e7f81e23d9bac900d7352e1df}{engine}}-\/>\mbox{\hyperlink{structengine__t_a12642fb9901900e9c70a3dfd6edd19a4}{schemes}}-\/>\mbox{\hyperlink{structschemes__t_a807889bb3c7128af0e8a67b58c47fd7f}{convection}}-\/>\mbox{\hyperlink{structscheme__convection__t_a05a60d1cee237eec052804daaf55e5f1}{type}})}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00008}00008\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00009}00009\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{convection_8h_a79682c10fc8b6c022f93f5753d37ca0fa94e03cdcc2f95916c9eaf6ab486ed768}{UDS}}:}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00010}00010\ \ \ \ \ \ \ \ \ cfd-\/>\mbox{\hyperlink{struct_c_f_d__t_ae5c8ec8e7f81e23d9bac900d7352e1df}{engine}}-\/>\mbox{\hyperlink{structengine__t_a12642fb9901900e9c70a3dfd6edd19a4}{schemes}}-\/>\mbox{\hyperlink{structschemes__t_a807889bb3c7128af0e8a67b58c47fd7f}{convection}}-\/>\mbox{\hyperlink{structscheme__convection__t_a98887d1153a7e39d6cf149a1fa7bbc4a}{callable}}\ =\ \mbox{\hyperlink{convection_8c_a4486457ad0ac2fb704d215a5f0afb57e}{engineSchemeConvectionUDS}};}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00011}00011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00012}00012\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{convection_8h_a79682c10fc8b6c022f93f5753d37ca0fa2627fd8ae43c18ed2c7016c3dc23cea0}{HYBRID}}:}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00013}00013\ \ \ \ \ \ \ \ \ cfd-\/>\mbox{\hyperlink{struct_c_f_d__t_ae5c8ec8e7f81e23d9bac900d7352e1df}{engine}}-\/>\mbox{\hyperlink{structengine__t_a12642fb9901900e9c70a3dfd6edd19a4}{schemes}}-\/>\mbox{\hyperlink{structschemes__t_a807889bb3c7128af0e8a67b58c47fd7f}{convection}}-\/>\mbox{\hyperlink{structscheme__convection__t_a98887d1153a7e39d6cf149a1fa7bbc4a}{callable}}\ =\ \mbox{\hyperlink{convection_8c_aaec8516eab9f58e0099a4119c4f4afdb}{engineSchemeConvectionHYBRID}};}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00014}00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00015}00015\ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{convection_8h_a79682c10fc8b6c022f93f5753d37ca0faef079160a47f3cf267a177cc6400cf1d}{QUICK}}:}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00016}00016\ \ \ \ \ \ \ \ \ cfd-\/>\mbox{\hyperlink{struct_c_f_d__t_ae5c8ec8e7f81e23d9bac900d7352e1df}{engine}}-\/>\mbox{\hyperlink{structengine__t_a12642fb9901900e9c70a3dfd6edd19a4}{schemes}}-\/>\mbox{\hyperlink{structschemes__t_a807889bb3c7128af0e8a67b58c47fd7f}{convection}}-\/>\mbox{\hyperlink{structscheme__convection__t_a98887d1153a7e39d6cf149a1fa7bbc4a}{callable}}\ =\ \mbox{\hyperlink{convection_8c_a5725d58654173259b5b8f1e16fe0f011}{engineSchemeConvectionQUICK}};}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00017}00017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00018}00018\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00019}00019\ \}}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00021}\mbox{\hyperlink{convection_8c_a4486457ad0ac2fb704d215a5f0afb57e}{00021}}\ \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\_coefficients\_convection\_t}}\ \mbox{\hyperlink{convection_8c_a4486457ad0ac2fb704d215a5f0afb57e}{engineSchemeConvectionUDS}}(\mbox{\hyperlink{struct_c_f_d__t}{CFD\_t}}\ *cfd)}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00022}00022\ \{}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00023}00023\ \ \ \ \ \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\_coefficients\_convection\_t}}\ Ap;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00024}00024\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_ae81ee9c4c793ae3286791fa2908211d6}{u}}[0]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00025}00025\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_ae81ee9c4c793ae3286791fa2908211d6}{u}}[1]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00026}00026\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_a649b693664d96ae096516198fc9e2351}{v}}[0]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00027}00027\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_a649b693664d96ae096516198fc9e2351}{v}}[1]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{return}\ Ap;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00029}00029\ \}}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00031}\mbox{\hyperlink{convection_8c_aaec8516eab9f58e0099a4119c4f4afdb}{00031}}\ \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\_coefficients\_convection\_t}}\ \mbox{\hyperlink{convection_8c_aaec8516eab9f58e0099a4119c4f4afdb}{engineSchemeConvectionHYBRID}}(\mbox{\hyperlink{struct_c_f_d__t}{CFD\_t}}\ *cfd)}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00033}00033\ \ \ \ \ \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\_coefficients\_convection\_t}}\ Ap;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00034}00034\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_ae81ee9c4c793ae3286791fa2908211d6}{u}}[0]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00035}00035\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_ae81ee9c4c793ae3286791fa2908211d6}{u}}[1]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00036}00036\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_a649b693664d96ae096516198fc9e2351}{v}}[0]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00037}00037\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_a649b693664d96ae096516198fc9e2351}{v}}[1]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00038}00038\ \ \ \ \ \textcolor{keywordflow}{return}\ Ap;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00039}00039\ \}}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00041}\mbox{\hyperlink{convection_8c_a5725d58654173259b5b8f1e16fe0f011}{00041}}\ \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\_coefficients\_convection\_t}}\ \mbox{\hyperlink{convection_8c_a5725d58654173259b5b8f1e16fe0f011}{engineSchemeConvectionQUICK}}(\mbox{\hyperlink{struct_c_f_d__t}{CFD\_t}}\ *cfd)}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00042}00042\ \{}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\_coefficients\_convection\_t}}\ Ap;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00044}00044\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_ae81ee9c4c793ae3286791fa2908211d6}{u}}[0]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00045}00045\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_ae81ee9c4c793ae3286791fa2908211d6}{u}}[1]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00046}00046\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_a649b693664d96ae096516198fc9e2351}{v}}[0]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00047}00047\ \ \ \ \ Ap.\mbox{\hyperlink{struct_a__coefficients__convection__t_a649b693664d96ae096516198fc9e2351}{v}}[1]\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{return}\ Ap;}
+\DoxyCodeLine{\Hypertarget{convection_8c_source_l00049}00049\ \}}
+
+\end{DoxyCode}

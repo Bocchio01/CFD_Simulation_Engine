@@ -1,3 +1,4 @@
 **.exe
 .resources
+# .doxygen
 vcpkg_installed

@@ -11,7 +11,7 @@ void CFD_Setup_Method(CFD_t *cfd)
     switch (cfd->engine->method->type)
     {
     case SCGS:
-        cfd->engine->method->callable = methodSCGS;
+        cfd->engine->method->callable = CFD_SCGS;
         break;
     case SIMPLE:
         cfd->engine->method->callable = methodSIMPLE;

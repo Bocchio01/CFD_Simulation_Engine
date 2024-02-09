@@ -1,0 +1,41 @@
+\doxysection{matrices.\+h}
+\hypertarget{matrices_8h_source}{}\label{matrices_8h_source}\index{utils/algebra/matrices.h@{utils/algebra/matrices.h}}
+\mbox{\hyperlink{matrices_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00001}00001\ \textcolor{preprocessor}{\#ifndef\ MATRICES\_H}}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00002}00002\ \textcolor{preprocessor}{\#define\ MATRICES\_H}}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00004}\mbox{\hyperlink{structmatrix__t}{00004}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00005}00005\ \{}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00006}\mbox{\hyperlink{structmatrix__t_a6297431b7398d6c9ae8a8d7c45ed4f7f}{00006}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmatrix__t_a6297431b7398d6c9ae8a8d7c45ed4f7f}{rows}};}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00007}\mbox{\hyperlink{structmatrix__t_a4eccc231335940ad2768b63397ab4ff6}{00007}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmatrix__t_a4eccc231335940ad2768b63397ab4ff6}{cols}};}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00008}\mbox{\hyperlink{structmatrix__t_aea8549588f4a3003322ffe40b7076226}{00008}}\ \ \ \ \ \textcolor{keywordtype}{double}\ **\mbox{\hyperlink{structmatrix__t_aea8549588f4a3003322ffe40b7076226}{data}};}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00009}00009\ \}\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}};}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00018}00018\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_a56624654ea4b3455f3cf30b7da650189}{matAllocate}}(\textcolor{keywordtype}{int}\ rows,\ \textcolor{keywordtype}{int}\ cols);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00026}00026\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_afbf9bd4f9151b9bd197b23ec2361f4ff}{matTranspose}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00035}00035\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_aa90515500bc8361c064a8743c62fc29b}{matScalarMultiply}}(\textcolor{keywordtype}{double}\ scalar,\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00044}00044\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_a793c3e5539b22c4093535f40d3eb6287}{matSum}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A,\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ B);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00053}00053\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_ad7b4a1a76eff4188bd0dc031c36fd94d}{matMultiply}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A,\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ B);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00061}00061\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_a4532800b830708a6a814c8eac9a807fa}{matInverse}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00069}00069\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_a15fd7d0c1e45a7416703982dc3e6cc7f}{matComputePivot}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00077}00077\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{matrices_8h_a6ba77ed1e5f1701b6895cd529da13530}{matComputeDeterminant}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00085}00085\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_abb96a05b72f3261e756b84a1d5ffa255}{matComputeAdjugate}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00095}00095\ \mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ \mbox{\hyperlink{matrices_8h_a8354bbd6a81254e4f765985a3d560275}{matComputeMinor}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A,\ \textcolor{keywordtype}{int}\ row,\ \textcolor{keywordtype}{int}\ col);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00102}00102\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{matrices_8h_a0137d2f9c5d34bd25c450f7d5d1cce34}{matFree}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00109}00109\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{matrices_8h_ab76c366655c026d4135ad297d382c58c}{matPrint}}(\mbox{\hyperlink{structmatrix__t}{matrix\_t}}\ A);}
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{matrices_8h_source_l00111}00111\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

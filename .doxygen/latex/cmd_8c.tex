@@ -1,0 +1,85 @@
+\doxysection{in/parsers/cmd.c File Reference}
+\hypertarget{cmd_8c}{}\label{cmd_8c}\index{in/parsers/cmd.c@{in/parsers/cmd.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$getopt.\+h$>$}\newline
+{\ttfamily \#include "{}cmd.\+h"{}}\newline
+{\ttfamily \#include "{}../../\+CFD.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{cmd_8c_a45f317dfd53595ab630df7c4fcbfc72f}{CFD\+\_\+\+CMD\+\_\+\+Parse}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd, int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\item 
+void \mbox{\hyperlink{cmd_8c_acfd82b744844ed663dad908dab38b6df}{CFD\+\_\+\+CMD\+\_\+\+Print\+\_\+\+Help}} ()
+\item 
+void \mbox{\hyperlink{cmd_8c_a1d22385d05ae1b0384798c115d8d03bc}{CFD\+\_\+\+CMD\+\_\+\+Print\+\_\+\+Version}} ()
+\item 
+void \mbox{\hyperlink{cmd_8c_ae0be219cd605dd21cff101187d8f1d78}{CFD\+\_\+\+CMD\+\_\+\+Parse\+\_\+i}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd, char \texorpdfstring{$\ast$}{*}arg)
+\item 
+void \mbox{\hyperlink{cmd_8c_a48df93a43448eebfeb9f8b4eaa472c8c}{CFD\+\_\+\+CMD\+\_\+\+Parse\+\_\+o}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd, char \texorpdfstring{$\ast$}{*}arg)
+\item 
+void \mbox{\hyperlink{cmd_8c_af7936d5a4cf5018a3ce78e7dec05876d}{CFD\+\_\+\+CMD\+\_\+\+Parse\+\_\+\+Invalid}} (char \texorpdfstring{$\ast$}{*}arg)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{cmd_8c_a45f317dfd53595ab630df7c4fcbfc72f}\label{cmd_8c_a45f317dfd53595ab630df7c4fcbfc72f} 
+\index{cmd.c@{cmd.c}!CFD\_CMD\_Parse@{CFD\_CMD\_Parse}}
+\index{CFD\_CMD\_Parse@{CFD\_CMD\_Parse}!cmd.c@{cmd.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_CMD\_Parse()}{CFD\_CMD\_Parse()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+CMD\+\_\+\+Parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd,  }\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cmd_8c_source_l00009}{9}} of file \mbox{\hyperlink{cmd_8c_source}{cmd.\+c}}.
+
+\Hypertarget{cmd_8c_ae0be219cd605dd21cff101187d8f1d78}\label{cmd_8c_ae0be219cd605dd21cff101187d8f1d78} 
+\index{cmd.c@{cmd.c}!CFD\_CMD\_Parse\_i@{CFD\_CMD\_Parse\_i}}
+\index{CFD\_CMD\_Parse\_i@{CFD\_CMD\_Parse\_i}!cmd.c@{cmd.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_CMD\_Parse\_i()}{CFD\_CMD\_Parse\_i()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+CMD\+\_\+\+Parse\+\_\+i (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd,  }\item[{char \texorpdfstring{$\ast$}{*}}]{arg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cmd_8c_source_l00074}{74}} of file \mbox{\hyperlink{cmd_8c_source}{cmd.\+c}}.
+
+\Hypertarget{cmd_8c_af7936d5a4cf5018a3ce78e7dec05876d}\label{cmd_8c_af7936d5a4cf5018a3ce78e7dec05876d} 
+\index{cmd.c@{cmd.c}!CFD\_CMD\_Parse\_Invalid@{CFD\_CMD\_Parse\_Invalid}}
+\index{CFD\_CMD\_Parse\_Invalid@{CFD\_CMD\_Parse\_Invalid}!cmd.c@{cmd.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_CMD\_Parse\_Invalid()}{CFD\_CMD\_Parse\_Invalid()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+CMD\+\_\+\+Parse\+\_\+\+Invalid (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{arg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cmd_8c_source_l00130}{130}} of file \mbox{\hyperlink{cmd_8c_source}{cmd.\+c}}.
+
+\Hypertarget{cmd_8c_a48df93a43448eebfeb9f8b4eaa472c8c}\label{cmd_8c_a48df93a43448eebfeb9f8b4eaa472c8c} 
+\index{cmd.c@{cmd.c}!CFD\_CMD\_Parse\_o@{CFD\_CMD\_Parse\_o}}
+\index{CFD\_CMD\_Parse\_o@{CFD\_CMD\_Parse\_o}!cmd.c@{cmd.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_CMD\_Parse\_o()}{CFD\_CMD\_Parse\_o()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+CMD\+\_\+\+Parse\+\_\+o (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd,  }\item[{char \texorpdfstring{$\ast$}{*}}]{arg }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cmd_8c_source_l00102}{102}} of file \mbox{\hyperlink{cmd_8c_source}{cmd.\+c}}.
+
+\Hypertarget{cmd_8c_acfd82b744844ed663dad908dab38b6df}\label{cmd_8c_acfd82b744844ed663dad908dab38b6df} 
+\index{cmd.c@{cmd.c}!CFD\_CMD\_Print\_Help@{CFD\_CMD\_Print\_Help}}
+\index{CFD\_CMD\_Print\_Help@{CFD\_CMD\_Print\_Help}!cmd.c@{cmd.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_CMD\_Print\_Help()}{CFD\_CMD\_Print\_Help()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+CMD\+\_\+\+Print\+\_\+\+Help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cmd_8c_source_l00049}{49}} of file \mbox{\hyperlink{cmd_8c_source}{cmd.\+c}}.
+
+\Hypertarget{cmd_8c_a1d22385d05ae1b0384798c115d8d03bc}\label{cmd_8c_a1d22385d05ae1b0384798c115d8d03bc} 
+\index{cmd.c@{cmd.c}!CFD\_CMD\_Print\_Version@{CFD\_CMD\_Print\_Version}}
+\index{CFD\_CMD\_Print\_Version@{CFD\_CMD\_Print\_Version}!cmd.c@{cmd.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_CMD\_Print\_Version()}{CFD\_CMD\_Print\_Version()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+CMD\+\_\+\+Print\+\_\+\+Version (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{cmd_8c_source_l00069}{69}} of file \mbox{\hyperlink{cmd_8c_source}{cmd.\+c}}.
+

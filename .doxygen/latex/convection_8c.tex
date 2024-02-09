@@ -1,0 +1,58 @@
+\doxysection{engine/schemes/convection.c File Reference}
+\hypertarget{convection_8c}{}\label{convection_8c}\index{engine/schemes/convection.c@{engine/schemes/convection.c}}
+{\ttfamily \#include "{}convection.\+h"{}}\newline
+{\ttfamily \#include "{}../../\+CFD.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{convection_8c_a6136554896e8d8bf7a3bf6fcd19f1d93}{CFD\+\_\+\+Setup\+\_\+\+Convection}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\item 
+\mbox{\hyperlink{struct_a__coefficients__convection__t}{A\+\_\+coefficients\+\_\+convection\+\_\+t}} \mbox{\hyperlink{convection_8c_a4486457ad0ac2fb704d215a5f0afb57e}{engine\+Scheme\+Convection\+UDS}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\item 
+\mbox{\hyperlink{struct_a__coefficients__convection__t}{A\+\_\+coefficients\+\_\+convection\+\_\+t}} \mbox{\hyperlink{convection_8c_aaec8516eab9f58e0099a4119c4f4afdb}{engine\+Scheme\+Convection\+HYBRID}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\item 
+\mbox{\hyperlink{struct_a__coefficients__convection__t}{A\+\_\+coefficients\+\_\+convection\+\_\+t}} \mbox{\hyperlink{convection_8c_a5725d58654173259b5b8f1e16fe0f011}{engine\+Scheme\+Convection\+QUICK}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{convection_8c_a6136554896e8d8bf7a3bf6fcd19f1d93}\label{convection_8c_a6136554896e8d8bf7a3bf6fcd19f1d93} 
+\index{convection.c@{convection.c}!CFD\_Setup\_Convection@{CFD\_Setup\_Convection}}
+\index{CFD\_Setup\_Convection@{CFD\_Setup\_Convection}!convection.c@{convection.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Setup\_Convection()}{CFD\_Setup\_Convection()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Setup\+\_\+\+Convection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{convection_8c_source_l00005}{5}} of file \mbox{\hyperlink{convection_8c_source}{convection.\+c}}.
+
+\Hypertarget{convection_8c_aaec8516eab9f58e0099a4119c4f4afdb}\label{convection_8c_aaec8516eab9f58e0099a4119c4f4afdb} 
+\index{convection.c@{convection.c}!engineSchemeConvectionHYBRID@{engineSchemeConvectionHYBRID}}
+\index{engineSchemeConvectionHYBRID@{engineSchemeConvectionHYBRID}!convection.c@{convection.c}}
+\doxysubsubsection{\texorpdfstring{engineSchemeConvectionHYBRID()}{engineSchemeConvectionHYBRID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\+\_\+coefficients\+\_\+convection\+\_\+t}} engine\+Scheme\+Convection\+HYBRID (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{convection_8c_source_l00031}{31}} of file \mbox{\hyperlink{convection_8c_source}{convection.\+c}}.
+
+\Hypertarget{convection_8c_a5725d58654173259b5b8f1e16fe0f011}\label{convection_8c_a5725d58654173259b5b8f1e16fe0f011} 
+\index{convection.c@{convection.c}!engineSchemeConvectionQUICK@{engineSchemeConvectionQUICK}}
+\index{engineSchemeConvectionQUICK@{engineSchemeConvectionQUICK}!convection.c@{convection.c}}
+\doxysubsubsection{\texorpdfstring{engineSchemeConvectionQUICK()}{engineSchemeConvectionQUICK()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\+\_\+coefficients\+\_\+convection\+\_\+t}} engine\+Scheme\+Convection\+QUICK (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{convection_8c_source_l00041}{41}} of file \mbox{\hyperlink{convection_8c_source}{convection.\+c}}.
+
+\Hypertarget{convection_8c_a4486457ad0ac2fb704d215a5f0afb57e}\label{convection_8c_a4486457ad0ac2fb704d215a5f0afb57e} 
+\index{convection.c@{convection.c}!engineSchemeConvectionUDS@{engineSchemeConvectionUDS}}
+\index{engineSchemeConvectionUDS@{engineSchemeConvectionUDS}!convection.c@{convection.c}}
+\doxysubsubsection{\texorpdfstring{engineSchemeConvectionUDS()}{engineSchemeConvectionUDS()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_a__coefficients__convection__t}{A\+\_\+coefficients\+\_\+convection\+\_\+t}} engine\+Scheme\+Convection\+UDS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{convection_8c_source_l00021}{21}} of file \mbox{\hyperlink{convection_8c_source}{convection.\+c}}.
+

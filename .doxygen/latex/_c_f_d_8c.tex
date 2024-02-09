@@ -1,0 +1,76 @@
+\doxysection{CFD.\+c File Reference}
+\hypertarget{_c_f_d_8c}{}\label{_c_f_d_8c}\index{CFD.c@{CFD.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include "{}utils/log/log.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}CFD.\+h"{}}\newline
+{\ttfamily \#include "{}in/in.\+h"{}}\newline
+{\ttfamily \#include "{}engine/engine.\+h"{}}\newline
+{\ttfamily \#include "{}out/out.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_c_f_d_8c_a9de8ab95bf7aa039463c1bb72ea34e09}{CFD\+\_\+\+Allocate}} ()
+\item 
+void \mbox{\hyperlink{_c_f_d_8c_a3dc787f96cee580c2372ef153555de7a}{CFD\+\_\+\+Prepare}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd, int argc, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}argv)
+\item 
+void \mbox{\hyperlink{_c_f_d_8c_ae516fcf1ca8fe1726fd288fd373a9b7b}{CFD\+\_\+\+Solve}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\item 
+void \mbox{\hyperlink{_c_f_d_8c_a60e9fb93867998366c7b024497143019}{CFD\+\_\+\+Finalize}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\item 
+void \mbox{\hyperlink{_c_f_d_8c_a25d1edc10119fb1acb7a5739b895a444}{CFD\+\_\+\+Free}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_c_f_d_8c_a9de8ab95bf7aa039463c1bb72ea34e09}\label{_c_f_d_8c_a9de8ab95bf7aa039463c1bb72ea34e09} 
+\index{CFD.c@{CFD.c}!CFD\_Allocate@{CFD\_Allocate}}
+\index{CFD\_Allocate@{CFD\_Allocate}!CFD.c@{CFD.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Allocate()}{CFD\_Allocate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*} CFD\+\_\+\+Allocate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_f_d_8c_source_l00012}{12}} of file \mbox{\hyperlink{_c_f_d_8c_source}{CFD.\+c}}.
+
+\Hypertarget{_c_f_d_8c_a60e9fb93867998366c7b024497143019}\label{_c_f_d_8c_a60e9fb93867998366c7b024497143019} 
+\index{CFD.c@{CFD.c}!CFD\_Finalize@{CFD\_Finalize}}
+\index{CFD\_Finalize@{CFD\_Finalize}!CFD.c@{CFD.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Finalize()}{CFD\_Finalize()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Finalize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_f_d_8c_source_l00055}{55}} of file \mbox{\hyperlink{_c_f_d_8c_source}{CFD.\+c}}.
+
+\Hypertarget{_c_f_d_8c_a25d1edc10119fb1acb7a5739b895a444}\label{_c_f_d_8c_a25d1edc10119fb1acb7a5739b895a444} 
+\index{CFD.c@{CFD.c}!CFD\_Free@{CFD\_Free}}
+\index{CFD\_Free@{CFD\_Free}!CFD.c@{CFD.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Free()}{CFD\_Free()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_f_d_8c_source_l00060}{60}} of file \mbox{\hyperlink{_c_f_d_8c_source}{CFD.\+c}}.
+
+\Hypertarget{_c_f_d_8c_a3dc787f96cee580c2372ef153555de7a}\label{_c_f_d_8c_a3dc787f96cee580c2372ef153555de7a} 
+\index{CFD.c@{CFD.c}!CFD\_Prepare@{CFD\_Prepare}}
+\index{CFD\_Prepare@{CFD\_Prepare}!CFD.c@{CFD.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Prepare()}{CFD\_Prepare()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Prepare (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd,  }\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_f_d_8c_source_l00033}{33}} of file \mbox{\hyperlink{_c_f_d_8c_source}{CFD.\+c}}.
+
+\Hypertarget{_c_f_d_8c_ae516fcf1ca8fe1726fd288fd373a9b7b}\label{_c_f_d_8c_ae516fcf1ca8fe1726fd288fd373a9b7b} 
+\index{CFD.c@{CFD.c}!CFD\_Solve@{CFD\_Solve}}
+\index{CFD\_Solve@{CFD\_Solve}!CFD.c@{CFD.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_Solve()}{CFD\_Solve()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+Solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_c_f_d_8c_source_l00047}{47}} of file \mbox{\hyperlink{_c_f_d_8c_source}{CFD.\+c}}.
+

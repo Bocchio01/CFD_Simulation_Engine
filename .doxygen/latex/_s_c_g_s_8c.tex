@@ -1,0 +1,106 @@
+\doxysection{engine/methods/\+SCGS.c File Reference}
+\hypertarget{_s_c_g_s_8c}{}\label{_s_c_g_s_8c}\index{engine/methods/SCGS.c@{engine/methods/SCGS.c}}
+{\ttfamily \#include "{}SCGS.\+h"{}}\newline
+{\ttfamily \#include "{}../../\+CFD.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_s_c_g_s_8c_a4322047454744e4754e42e8f1bdb9c23}{CFD\+\_\+\+SCGS}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\item 
+\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_s_c_g_s_8c_a0bc85403d422998f8987c5b83acd1673}{CFD\+\_\+\+SCGS\+\_\+\+Allocate}} (\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}cfd)
+\item 
+void \mbox{\hyperlink{_s_c_g_s_8c_ac35061827833826db07f371b31620dfb}{CFD\+\_\+\+SCGS\+\_\+\+Free}} (\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}scgs)
+\item 
+void \mbox{\hyperlink{_s_c_g_s_8c_ae3e2220a6de3383666c1552c36668637}{CFD\+\_\+\+SCGS\+\_\+\+Reset}} (\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}scgs)
+\item 
+void \mbox{\hyperlink{_s_c_g_s_8c_ab924e64a67318fb85662a9dd9ae1216c}{CFD\+\_\+\+SCGS\+\_\+\+Compose\+Vanka\+Matrix}} (\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}scgs)
+\item 
+void \mbox{\hyperlink{_s_c_g_s_8c_a590d46301fc9f5700888d70e6528941c}{CFD\+\_\+\+SCGS\+\_\+\+Solve\+Vanka\+Matrix}} (\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}scgs)
+\item 
+void \mbox{\hyperlink{_s_c_g_s_8c_a0c2c0689487849185a1cda828b577817}{CFD\+\_\+\+SCGS\+\_\+\+Apply\+\_\+\+Correction}} (\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}scgs)
+\item 
+void \mbox{\hyperlink{_s_c_g_s_8c_a994479a45941344602ccc12d23ae0aed}{CFD\+\_\+\+SCGS\+\_\+\+Update\+\_\+\+Residual}} (\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}scgs)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{_s_c_g_s_8c_a4322047454744e4754e42e8f1bdb9c23}\label{_s_c_g_s_8c_a4322047454744e4754e42e8f1bdb9c23} 
+\index{SCGS.c@{SCGS.c}!CFD\_SCGS@{CFD\_SCGS}}
+\index{CFD\_SCGS@{CFD\_SCGS}!SCGS.c@{SCGS.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_SCGS()}{CFD\_SCGS()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+SCGS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_c_g_s_8c_source_l00005}{5}} of file \mbox{\hyperlink{_s_c_g_s_8c_source}{SCGS.\+c}}.
+
+\Hypertarget{_s_c_g_s_8c_a0bc85403d422998f8987c5b83acd1673}\label{_s_c_g_s_8c_a0bc85403d422998f8987c5b83acd1673} 
+\index{SCGS.c@{SCGS.c}!CFD\_SCGS\_Allocate@{CFD\_SCGS\_Allocate}}
+\index{CFD\_SCGS\_Allocate@{CFD\_SCGS\_Allocate}!SCGS.c@{SCGS.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_SCGS\_Allocate()}{CFD\_SCGS\_Allocate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*} CFD\+\_\+\+SCGS\+\_\+\+Allocate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_c_f_d__t}{CFD\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{cfd }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_c_g_s_8c_source_l00010}{10}} of file \mbox{\hyperlink{_s_c_g_s_8c_source}{SCGS.\+c}}.
+
+\Hypertarget{_s_c_g_s_8c_a0c2c0689487849185a1cda828b577817}\label{_s_c_g_s_8c_a0c2c0689487849185a1cda828b577817} 
+\index{SCGS.c@{SCGS.c}!CFD\_SCGS\_Apply\_Correction@{CFD\_SCGS\_Apply\_Correction}}
+\index{CFD\_SCGS\_Apply\_Correction@{CFD\_SCGS\_Apply\_Correction}!SCGS.c@{SCGS.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_SCGS\_Apply\_Correction()}{CFD\_SCGS\_Apply\_Correction()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+SCGS\+\_\+\+Apply\+\_\+\+Correction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{scgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_c_g_s_8c_source_l00030}{30}} of file \mbox{\hyperlink{_s_c_g_s_8c_source}{SCGS.\+c}}.
+
+\Hypertarget{_s_c_g_s_8c_ab924e64a67318fb85662a9dd9ae1216c}\label{_s_c_g_s_8c_ab924e64a67318fb85662a9dd9ae1216c} 
+\index{SCGS.c@{SCGS.c}!CFD\_SCGS\_ComposeVankaMatrix@{CFD\_SCGS\_ComposeVankaMatrix}}
+\index{CFD\_SCGS\_ComposeVankaMatrix@{CFD\_SCGS\_ComposeVankaMatrix}!SCGS.c@{SCGS.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_SCGS\_ComposeVankaMatrix()}{CFD\_SCGS\_ComposeVankaMatrix()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+SCGS\+\_\+\+Compose\+Vanka\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{scgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_c_g_s_8c_source_l00022}{22}} of file \mbox{\hyperlink{_s_c_g_s_8c_source}{SCGS.\+c}}.
+
+\Hypertarget{_s_c_g_s_8c_ac35061827833826db07f371b31620dfb}\label{_s_c_g_s_8c_ac35061827833826db07f371b31620dfb} 
+\index{SCGS.c@{SCGS.c}!CFD\_SCGS\_Free@{CFD\_SCGS\_Free}}
+\index{CFD\_SCGS\_Free@{CFD\_SCGS\_Free}!SCGS.c@{SCGS.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_SCGS\_Free()}{CFD\_SCGS\_Free()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+SCGS\+\_\+\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{scgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_c_g_s_8c_source_l00014}{14}} of file \mbox{\hyperlink{_s_c_g_s_8c_source}{SCGS.\+c}}.
+
+\Hypertarget{_s_c_g_s_8c_ae3e2220a6de3383666c1552c36668637}\label{_s_c_g_s_8c_ae3e2220a6de3383666c1552c36668637} 
+\index{SCGS.c@{SCGS.c}!CFD\_SCGS\_Reset@{CFD\_SCGS\_Reset}}
+\index{CFD\_SCGS\_Reset@{CFD\_SCGS\_Reset}!SCGS.c@{SCGS.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_SCGS\_Reset()}{CFD\_SCGS\_Reset()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+SCGS\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{scgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_c_g_s_8c_source_l00018}{18}} of file \mbox{\hyperlink{_s_c_g_s_8c_source}{SCGS.\+c}}.
+
+\Hypertarget{_s_c_g_s_8c_a590d46301fc9f5700888d70e6528941c}\label{_s_c_g_s_8c_a590d46301fc9f5700888d70e6528941c} 
+\index{SCGS.c@{SCGS.c}!CFD\_SCGS\_SolveVankaMatrix@{CFD\_SCGS\_SolveVankaMatrix}}
+\index{CFD\_SCGS\_SolveVankaMatrix@{CFD\_SCGS\_SolveVankaMatrix}!SCGS.c@{SCGS.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_SCGS\_SolveVankaMatrix()}{CFD\_SCGS\_SolveVankaMatrix()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+SCGS\+\_\+\+Solve\+Vanka\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{scgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_c_g_s_8c_source_l00026}{26}} of file \mbox{\hyperlink{_s_c_g_s_8c_source}{SCGS.\+c}}.
+
+\Hypertarget{_s_c_g_s_8c_a994479a45941344602ccc12d23ae0aed}\label{_s_c_g_s_8c_a994479a45941344602ccc12d23ae0aed} 
+\index{SCGS.c@{SCGS.c}!CFD\_SCGS\_Update\_Residual@{CFD\_SCGS\_Update\_Residual}}
+\index{CFD\_SCGS\_Update\_Residual@{CFD\_SCGS\_Update\_Residual}!SCGS.c@{SCGS.c}}
+\doxysubsubsection{\texorpdfstring{CFD\_SCGS\_Update\_Residual()}{CFD\_SCGS\_Update\_Residual()}}
+{\footnotesize\ttfamily void CFD\+\_\+\+SCGS\+\_\+\+Update\+\_\+\+Residual (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_s_c_g_s__t}{SCGS\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{scgs }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_s_c_g_s_8c_source_l00034}{34}} of file \mbox{\hyperlink{_s_c_g_s_8c_source}{SCGS.\+c}}.
+
