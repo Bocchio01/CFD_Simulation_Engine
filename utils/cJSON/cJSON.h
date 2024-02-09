@@ -141,7 +141,7 @@ typedef int cJSON_bool;
 CJSON_PUBLIC(const char*) cJSON_Version(void);
 
 /* Supply malloc, realloc and free functions to cJSON */
-CJSON_PUBLIC(void) cJSON_InitHooks(cJSON_Hooks* hooks);
+CJSON_PUBLIC(void) cJSON_AllocateHooks(cJSON_Hooks* hooks);
 
 /* Memory Management: the caller is always responsible to free the results from all variants of cJSON_Parse (with cJSON_Delete) and cJSON_Print (with stdlib free, cJSON_Hooks.free_fn, or cJSON_free as appropriate). The exception is cJSON_PrintPreallocated, where the caller has full responsibility of the buffer. */
 /* Supply a block of JSON, and this returns a cJSON object you can interrogate. */
@@ -255,7 +255,7 @@ CJSON_PUBLIC(cJSON *) cJSON_Duplicate(const cJSON *item, cJSON_bool recurse);
 CJSON_PUBLIC(cJSON_bool) cJSON_Compare(const cJSON * const a, const cJSON * const b, const cJSON_bool case_sensitive);
 
 /* Minify a strings, remove blank characters(such as ' ', '\t', '\r', '\n') from strings.
- * The input pointer json cannot point to a read-only address area, such as a string constant, 
+ * The in pointer json cannot point to a read-only address area, such as a string constant,
  * but should point to a readable and writable address area. */
 CJSON_PUBLIC(void) cJSON_Minify(char *json);
 
@@ -289,7 +289,7 @@ CJSON_PUBLIC(char*) cJSON_SetValuestring(cJSON *object, const char *valuestring)
 /* Macro for iterating over an array or object */
 #define cJSON_ArrayForEach(element, array) for(element = (array != NULL) ? (array)->child : NULL; element != NULL; element = element->next)
 
-/* malloc/free objects using the malloc/free functions that have been set with cJSON_InitHooks */
+/* malloc/free objects using the malloc/free functions that have been set with cJSON_AllocateHooks */
 CJSON_PUBLIC(void *) cJSON_malloc(size_t size);
 CJSON_PUBLIC(void) cJSON_free(void *object);
 

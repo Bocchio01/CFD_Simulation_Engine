@@ -9,13 +9,13 @@ typedef struct
 } matrix_t;
 
 /**
- * Initializes a matrix with the given number of rows and columns.
+ * Allocateializes a matrix with the given number of rows and columns.
  *
  * @param rows The number of rows in the matrix.
  * @param cols The number of columns in the matrix.
  * @return A matrix_t struct with the specified number of rows and columns and all elements initialized to 0.
  */
-matrix_t matInit(int rows, int cols);
+matrix_t matAllocate(int rows, int cols);
 
 /**
  * Transposes a given matrix.

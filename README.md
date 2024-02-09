@@ -1,23 +1,98 @@
 # Lid-driven cavity incompressible flow
 
-This assignment is about solving the well known **2D lid-driven cavity incompressible flow** problem using different convection schemes (UDS, Hybrid and QUICK).
+This assignment is about solving the well known **2D lid-driven cavity incompressible flow** problem using different algorithms and schemes.
 
 <div align=center>
 
 ![Lid-driven cavity incompressible flow](https://www.fifty2.eu/wp-content/uploads/2021/08/thumbnailupdate.png)
 
+Lid-driven cavity incompressible flow solution
+
 </div>
+
+## Problem statement
+
+The problem consists in a square cavity with a lid moving at a constant velocity. The flow is incompressible and the Reynolds number is low. **Navier-Stokes** equations and the **pressure-velocity coupling** are used to solve the problem.
+
+## Methods and schemes
+
+The code is able to solve the problem using various methods and schemes.
+In particular, we can choose the following options:
+
+- Methods:
+  - **Gauss-Siedel (SCGS)**
+  - **SIMPLE**
+- Schemes:
+  - **Convection schemes**:
+    - UDS
+    - Hybrid
+    - QUICK
+  - **Diffusion schemes**:
+    - Second order central difference
+    - Fourth order central difference
+
+## Data in
+
+The code is higly customizable and as an in it requires the following parameters:
+
+```json
+// Example of in file
+{
+    "in": {
+        "uLid": 1.0,
+        "geometry": {
+            "x": 1,
+            "y": 1
+        },
+        "fluid": {
+            "mu": 1.0
+        }
+    },
+    "engine": {
+        "mesh": {
+            "type": "STAGGERED",
+            "nodes": {
+                "Nx": 10,
+                "Ny": 10
+            },
+            "elements": {
+                "type": "RECTANGULAR"
+            }
+        },
+        "method": {
+            "type": "SCGS",
+            "tolerance": 1e-4,
+            "maxIter": 1000,
+            "underRelaxation": {
+                "u": 0.5,
+                "v": 0.5,
+                "p": 0.3
+            }
+        },
+        "schemes": {
+            "convection": "UDS",
+            "diffusion": "SECOND_ORDER"
+        }
+    },
+    "out": {
+        "format": "JSON"
+    }
+}
+```
+
+### CMD in
+
+From the command line, the possible in parameters are:
+
+- `-h` or `--help` to print the help
+- `-v` or `--version` to print the version
+- `-i` or `--in` to specify the in file relative or absolute. Default: `-i data/input.json`
+- `-f` or `--format` to specify the out file format. Default: `-f JSON`
 
 ## Output
 
-The code gives as output a `.txt` file with the following format:
-
-```bash
-x y u v p
-```
-
-Where `x` and `y` are the coordinates of the mesh, `u` and `v` are the velocity components and `p` is the pressure.
-All the data refers to the steady state solution.
+The out is a file containing the solution of the problem.
+The format of the out file can be specified in the in file.
 
 
 ## How to...
@@ -30,6 +105,7 @@ All the data refers to the steady state solution.
 You can compile the code by typing:
 
 ```bash
+# TODO fix the gcc SRCS
 gcc -Wall -Wextra -Werror -pedantic -std=c99 -O2 *.c -o main
 ```
 
@@ -47,34 +123,10 @@ The most straightforward way to run the code is by typing:
 ./main
 ```
 
-However, you can also give the code some arguments as:
-
-- `-h` or `--help` to get some help
-- `-s` or `--scheme` to choose the convection scheme (`UDS`, `Hybrid` or `QUICK`)
-- `-r` or `--relaxation` to choose the relaxation factor
-- `-i` or `--iterations` to choose the maximum number of iterations
-- `-t` or `--tolerance` to choose the tolerance for the residual
-- `-o` or `--output` to choose the output file name
-- `-p` or `--plot` to plot the results
-- `-v` or `--verbose` to print the residual at each iteration
-- `-d` or `--debug` to print some debug information
-- `-c` or `--clean` to clean the output files
-- `-f` or `--force` to force the execution of the code even if the output file already exists
-- `-q` or `--quiet` to suppress the output
-- `-a` or `--all` to run the code with all the convection schemes
-- `-e` or `--error` to compute the error between the analytical and numerical solution
-- `-n` or `--nodes` to choose the number of nodes in the x and y direction
-- `-x` or `--xlength` to choose the length of the domain in the x direction
-- `-y` or `--ylength` to choose the length of the domain in the y direction
-- `-u` or `--velocity` to choose the velocity of the lid
-- `-m` or `--mu` to choose the viscosity of the fluid
-<!-- - `-b` or `--beta` to choose the under-relaxation factor -->
-<!-- - `-l` or `--lambda` to choose the relaxation factor for the pressure -->
-
 Here is an example of how to run the code with the default parameters:
 
 ```bash
-./main -s QUICK -r 0.5 -i 10000 -t 1e-6 -o output.txt -p -v -d -c -f -q -a -e -n 100 -x 1 -y 1 -u 1 -m 0.01
+./main -i data/input.json -f JSON
 ```
 
 ### Usefull links

@@ -1,6 +1,6 @@
 {
-    "input": {
-        "uLid": 1.0,
+    "in": {
+        "uLid": 1,
         "geometry": {
             "x": 1,
             "y": 1
@@ -9,7 +9,7 @@
             "mu": 1.0
         }
     },
-    "solver": {
+    "engine": {
         "mesh": {
             "type": "STAGGERED",
             "nodes": {
@@ -35,7 +35,11 @@
             "diffusion": "SECOND_ORDER"
         }
     },
-    "output": {
-        "format": "JSON"
+    "out": {
+        "file": {
+            "path": "data",
+            "name": "output",
+            "format": "JSON"
+        }
     }
 }

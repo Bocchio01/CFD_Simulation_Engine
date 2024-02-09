@@ -10,7 +10,7 @@ typedef struct
     double *data;
 } vector_t;
 
-vector_t *vectorInit(uint8_t length);
+vector_t *vectorAllocate(uint8_t length);
 // void vector_destroy(vector_t *vector);
 // void vector_print(vector_t *vector);
 // void vector_set(vector_t *vector, int index, double value);

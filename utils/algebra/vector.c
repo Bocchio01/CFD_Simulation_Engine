@@ -2,7 +2,7 @@
 
 #include "vector.h"
 
-vector_t *vectorInit(uint8_t length)
+vector_t *vectorAllocate(uint8_t length)
 {
     vector_t *vector = (vector_t *)malloc(sizeof(vector_t));
     if (vector == NULL)

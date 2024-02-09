@@ -11,7 +11,7 @@
 
 #include "matrices.h"
 
-matrix_t matInit(int rows, int cols)
+matrix_t matAllocate(int rows, int cols)
 {
     matrix_t mat;
     mat.rows = rows;
@@ -40,7 +40,7 @@ matrix_t matInit(int rows, int cols)
 
 matrix_t matTranspose(matrix_t A)
 {
-    matrix_t result = matInit(A.cols, A.rows);
+    matrix_t result = matAllocate(A.cols, A.rows);
 
     for (int i = 0; i < A.rows; i++)
     {
@@ -55,7 +55,7 @@ matrix_t matTranspose(matrix_t A)
 
 matrix_t matScalarMultiply(double scalar, matrix_t A)
 {
-    matrix_t result = matInit(A.rows, A.cols);
+    matrix_t result = matAllocate(A.rows, A.cols);
 
     for (int i = 0; i < A.rows; i++)
     {
@@ -72,7 +72,7 @@ matrix_t matSum(matrix_t A, matrix_t B)
 {
     assert(A.rows == B.rows && A.cols == B.cols);
 
-    matrix_t result = matInit(A.rows, A.cols);
+    matrix_t result = matAllocate(A.rows, A.cols);
 
     for (int i = 0; i < A.rows; i++)
     {
@@ -89,7 +89,7 @@ matrix_t matMultiply(matrix_t A, matrix_t B)
 {
     assert(A.cols == B.rows);
 
-    matrix_t result = matInit(A.rows, B.cols);
+    matrix_t result = matAllocate(A.rows, B.cols);
 
     for (int i = 0; i < A.rows; i++)
     {
@@ -114,7 +114,7 @@ matrix_t matInverse(matrix_t A)
     double temp;
     matrix_t Pivoting = matComputePivot(A);
 
-    matrix_t I = matInit(A.rows, A.cols);
+    matrix_t I = matAllocate(A.rows, A.cols);
     for (int i = 0; i < A.rows; i++)
     {
         I.data[i][i] = 1;
@@ -158,7 +158,7 @@ matrix_t matComputePivot(matrix_t A)
     int maxRow;
     double maxVal;
 
-    matrix_t P = matInit(A.rows, A.cols);
+    matrix_t P = matAllocate(A.rows, A.cols);
     for (int i = 0; i < A.rows; i++)
     {
         P.data[i][i] = 1;
@@ -215,7 +215,7 @@ matrix_t matComputeAdjugate(matrix_t A)
 {
     assert(A.rows == A.cols);
 
-    matrix_t adj = matInit(A.rows, A.cols);
+    matrix_t adj = matAllocate(A.rows, A.cols);
 
     for (int i = 0; i < A.rows; i++)
     {
@@ -232,7 +232,7 @@ matrix_t matComputeAdjugate(matrix_t A)
 
 matrix_t matComputeMinor(matrix_t A, int row, int col)
 {
-    matrix_t minor = matInit(A.rows - 1, A.cols - 1);
+    matrix_t minor = matAllocate(A.rows - 1, A.cols - 1);
 
     int r = 0;
     for (int i = 0; i < A.rows; i++)
