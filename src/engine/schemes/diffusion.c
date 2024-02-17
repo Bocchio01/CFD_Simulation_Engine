@@ -1,6 +1,9 @@
 #include "diffusion.h"
 
 #include "../../CFD.h"
+#include "../../utils/cLOG/cLOG.h"
+#include "../../utils/cALGEBRA/cVEC.h"
+#include "schemes.h"
 
 void CFD_Setup_Diffusion(CFD_t *cfd)
 {
@@ -15,22 +18,76 @@ void CFD_Setup_Diffusion(CFD_t *cfd)
     }
 }
 
-A_coefficients_diffusion_t engineSchemeDiffusion2(CFD_t *cfd)
+cVEC_t *engineSchemeDiffusion2(CFD_t *cfd, uint8_t i, uint8_t j)
 {
-    A_coefficients_diffusion_t Ap;
-    Ap.u[0] = 0.0;
-    Ap.u[1] = 0.0;
-    Ap.v[0] = 0.0;
-    Ap.v[1] = 0.0;
+    cVEC_t *Ap = VEC_Init(EENN + 1);
+
+    double dx = cfd->engine->mesh->element->size->dx;
+    double dy = cfd->engine->mesh->element->size->dy;
+    double nu = cfd->in->fluid->nu;
+
+    Ap->data[WWSS] = 0.0;
+    Ap->data[WWS] = 0.0;
+    Ap->data[WWP] = 0.0;
+    Ap->data[WWN] = 0.0;
+    Ap->data[WWNN] = 0.0;
+    Ap->data[WSS] = 0.0;
+    Ap->data[WS] = 0.0;
+    Ap->data[WP] = (dy * nu) / (dx);
+    Ap->data[WN] = 0.0;
+    Ap->data[WNN] = 0.0;
+    Ap->data[PSS] = 0.0;
+    Ap->data[PS] = (dx * nu) / (dy);
+    Ap->data[PP] = -1.0 * dx * dy * nu * (-2.0 / (dx * dx) - 2.0 / (dy * dy));
+    Ap->data[PN] = (dx * nu) / (dy);
+    Ap->data[PNN] = 0.0;
+    Ap->data[ESS] = 0.0;
+    Ap->data[ES] = 0.0;
+    Ap->data[EP] = (dy * nu) / (dx);
+    Ap->data[EN] = 0.0;
+    Ap->data[ENN] = 0.0;
+    Ap->data[EESS] = 0.0;
+    Ap->data[EES] = 0.0;
+    Ap->data[EEP] = 0.0;
+    Ap->data[EEN] = 0.0;
+    Ap->data[EENN] = 0.0;
+
     return Ap;
 }
 
-A_coefficients_diffusion_t engineSchemeDiffusion4(CFD_t *cfd)
+cVEC_t *engineSchemeDiffusion4(CFD_t *cfd, uint8_t i, uint8_t j)
 {
-    A_coefficients_diffusion_t Ap;
-    Ap.u[0] = 0.0;
-    Ap.u[1] = 0.0;
-    Ap.v[0] = 0.0;
-    Ap.v[1] = 0.0;
+    cVEC_t *Ap = VEC_Init(EENN + 1);
+
+    double dx = cfd->engine->mesh->element->size->dx;
+    double dy = cfd->engine->mesh->element->size->dy;
+    double nu = cfd->in->fluid->nu;
+
+    Ap->data[WWSS] = 0.0;
+    Ap->data[WWS] = 0.0;
+    Ap->data[WWP] = -(dy * nu) / (12.0 * dx);
+    Ap->data[WWN] = 0.0;
+    Ap->data[WWNN] = 0.0;
+    Ap->data[WSS] = 0.0;
+    Ap->data[WS] = 0.0;
+    Ap->data[WP] = (4.0 * dy * nu) / (3.0 * dx);
+    Ap->data[WN] = 0.0;
+    Ap->data[WNN] = 0.0;
+    Ap->data[PSS] = -(dx * nu) / (12.0 * dy);
+    Ap->data[PS] = (4.0 * dx * nu) / (3.0 * dy);
+    Ap->data[PP] = -dx * dy * nu * (-5.0 / (2.0 * dx * dx) - 5.0 / (2.0 * dy * dy));
+    Ap->data[PN] = (4.0 * dx * nu) / (3.0 * dy);
+    Ap->data[PNN] = -(dx * nu) / (12.0 * dy);
+    Ap->data[ESS] = 0.0;
+    Ap->data[ES] = 0.0;
+    Ap->data[EP] = (4.0 * dy * nu) / (3.0 * dx);
+    Ap->data[EN] = 0.0;
+    Ap->data[ENN] = 0.0;
+    Ap->data[EESS] = 0.0;
+    Ap->data[EES] = 0.0;
+    Ap->data[EEP] = -(dy * nu) / (12.0 * dx);
+    Ap->data[EEN] = 0.0;
+    Ap->data[EENN] = 0.0;
+
     return Ap;
 }

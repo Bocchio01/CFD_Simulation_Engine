@@ -6,7 +6,7 @@ typedef struct CFD_t CFD_t;
 #include "SCGS.h"
 #include "SIMPLE.h"
 
-#include "../../utils/algebra/matrices.h"
+#include "../../utils/cALGEBRA/cMAT.h"
 
 typedef void (*method_function_t)(CFD_t *cfd);
 
@@ -18,9 +18,15 @@ typedef enum
 
 typedef struct
 {
-    matrix_t u;
-    matrix_t v;
-    matrix_t p;
+    uint8_t i;
+    uint8_t j;
+} method_index_t;
+
+typedef struct method_state_t
+{
+    cMAT_t *u;
+    cMAT_t *v;
+    cMAT_t *p;
 } method_state_t;
 
 typedef struct
@@ -36,7 +42,9 @@ typedef struct
     float tolerance;
     int maxIter;
     under_relaxation_factors_t *under_relaxation_factors;
+    method_index_t *index;
     method_state_t *state;
+    method_state_t *state_old;
     method_function_t callable;
 } method_t;
 

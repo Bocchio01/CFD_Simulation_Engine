@@ -45,7 +45,7 @@ The code is higly customizable and as an in it requires the following parameters
             "y": 1
         },
         "fluid": {
-            "mu": 1.0
+            "nu": 1.0
         }
     },
     "engine": {

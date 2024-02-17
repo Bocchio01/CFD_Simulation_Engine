@@ -1,9 +1,9 @@
 .PHONY: compile run bench doxy clean
 
 CC = gcc
-# FLAGS = -Wall -Wextra -Werror -pedantic -std=c99 -O2
+# FLAGS = -Wall -Wextra -Werror -std=c99 -O2 # -pedantic
 SRCS = src/*.c src/in/*.c src/in/parsers/*.c src/engine/*.c src/engine/mesh/*.c src/engine/methods/*.c src/engine/schemes/*.c src/out/*.c
-LIBS = src/utils/algebra/*.c src/utils/cJSON/*.c  src/utils/custom_file/*.c src/utils/log/*.c
+LIBS = src/utils/cALGEBRA/*.c src/utils/cJSON/*.c  src/utils/cFILE/*.c src/utils/cLOG/*.c
 DEFINES = -DLOG_USE_COLOR
 # BENCHDIR = utils
 # BENCHTARGET = benchmark

@@ -2,7 +2,7 @@
 
 #include "methods.h"
 
-#include "../../utils/algebra/matrices.h"
+#include "../../utils/cALGEBRA/cMAT.h"
 
 #include "../../CFD.h"
 
@@ -18,18 +18,30 @@ void CFD_Setup_Method(CFD_t *cfd)
         break;
     }
 
-    uint8_t grid_dimension_x = cfd->engine->mesh->data->x.rows;
-    uint8_t grid_dimension_y = cfd->engine->mesh->data->x.cols;
+    uint8_t grid_dimension_x = cfd->engine->mesh->data->x->rows;
+    uint8_t grid_dimension_y = cfd->engine->mesh->data->x->cols;
 
-    cfd->engine->method->state->u = matAllocate(
+    cfd->engine->method->state->u = MAT_Init(
         grid_dimension_x,
         grid_dimension_y);
 
-    cfd->engine->method->state->v = matAllocate(
+    cfd->engine->method->state->v = MAT_Init(
         grid_dimension_x,
         grid_dimension_y);
 
-    cfd->engine->method->state->p = matAllocate(
+    cfd->engine->method->state->p = MAT_Init(
+        grid_dimension_x,
+        grid_dimension_y);
+
+    cfd->engine->method->state_old->u = MAT_Init(
+        grid_dimension_x,
+        grid_dimension_y);
+
+    cfd->engine->method->state_old->v = MAT_Init(
+        grid_dimension_x,
+        grid_dimension_y);
+
+    cfd->engine->method->state_old->p = MAT_Init(
         grid_dimension_x,
         grid_dimension_y);
 
@@ -37,9 +49,13 @@ void CFD_Setup_Method(CFD_t *cfd)
     {
         for (uint8_t j = 0; j < grid_dimension_y; j++)
         {
-            cfd->engine->method->state->u.data[i][j] = 0.0;
-            cfd->engine->method->state->v.data[i][j] = 0.0;
-            cfd->engine->method->state->p.data[i][j] = 0.0;
+            cfd->engine->method->state->u->data[i][j] = 0.0;
+            cfd->engine->method->state->v->data[i][j] = 0.0;
+            cfd->engine->method->state->p->data[i][j] = 0.0;
+
+            cfd->engine->method->state_old->u->data[i][j] = 0.0;
+            cfd->engine->method->state_old->v->data[i][j] = 0.0;
+            cfd->engine->method->state_old->p->data[i][j] = 0.0;
         }
     }
 }

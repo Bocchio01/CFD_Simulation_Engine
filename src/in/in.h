@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../utils/custom_file/custom_file.h"
+#include "../utils/cFILE/cFILE.h"
 
 #include "parsers/cmd.h"
 #include "parsers/json.h"
@@ -18,23 +18,23 @@ typedef enum
 
 typedef struct
 {
-    float x;
-    float y;
+    double x;
+    double y;
 } geometry_t;
 
 typedef struct
 {
-    float mu;
-    float Re;
+    double nu;
+    double Re;
 } fluid_t;
 
 typedef struct
 {
-    float uLid;
+    double uLid;
     // problem_t problem;
     geometry_t *geometry;
     fluid_t *fluid;
-    custom_file_t *file;
+    cFILE_t *file;
 } in_t;
 
 in_t *CFD_Allocate_In();

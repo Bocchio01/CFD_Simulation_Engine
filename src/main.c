@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "utils/log/log.h"
+#include "utils/cLOG/cLOG.h"
 
 #include "main.h"
 
@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[])
 {
-    log_set_level(LOG_INFO);
+    log_set_level(LOG_DEBUG);
 
     CFD_t *cfd = CFD_Allocate();
 

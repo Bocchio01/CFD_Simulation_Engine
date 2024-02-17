@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "../utils/log/log.h"
+#include "../utils/cLOG/cLOG.h"
 
 #include "engine.h"
 
@@ -11,7 +11,7 @@ void CFD_Setup_Engine(CFD_t *cfd)
 {
     // if (isnan(cfd->in->fluid->Re))
     // {
-    //     cfd->in->fluid->Re = cfd->in->uLid * cfd->in->geometry->x / cfd->in->fluid->mu;
+    //     cfd->in->fluid->Re = cfd->in->uLid * cfd->in->geometry->x / cfd->in->fluid->nu;
     // }
     CFD_Setup_Mesh(cfd);
     CFD_Setup_Method(cfd);
@@ -98,6 +98,8 @@ mesh_data_t *CFD_Allocate_Engine_Mesh_Data()
     mesh_data_t *data = (mesh_data_t *)malloc(sizeof(mesh_data_t));
     if (data != NULL)
     {
+        // data->x = (cMAT_t *)malloc(sizeof(cMAT_t));
+        // data->y = (cMAT_t *)malloc(sizeof(cMAT_t));
         return data;
     }
 
@@ -124,8 +126,11 @@ method_t *CFD_Allocate_Engine_Method()
     {
         method->under_relaxation_factors = CFD_Allocate_Engine_Method_UnderRelaxationFactors();
         method->state = CFD_Allocate_Engine_Method_State();
+        method->state_old = CFD_Allocate_Engine_Method_State();
+        method->index = CFD_Allocate_Engine_Method_Index();
         if (method->under_relaxation_factors != NULL &&
-            method->state != NULL)
+            method->state != NULL &&
+            method->index != NULL)
         {
             return method;
         }
@@ -156,6 +161,18 @@ method_state_t *CFD_Allocate_Engine_Method_State()
     }
 
     log_fatal("Error: Could not allocate memory for engine->method->state");
+    exit(EXIT_FAILURE);
+}
+
+method_index_t *CFD_Allocate_Engine_Method_Index()
+{
+    method_index_t *index = (method_index_t *)malloc(sizeof(method_index_t));
+    if (index != NULL)
+    {
+        return index;
+    }
+
+    log_fatal("Error: Could not allocate memory for engine->method->index");
     exit(EXIT_FAILURE);
 }
 
@@ -229,6 +246,7 @@ void CFD_Free_Engine_Method(method_t *method)
     {
         CFD_Free_Engine_Method_UnderRelaxationFactors(method->under_relaxation_factors);
         CFD_Free_Engine_Method_State(method->state);
+        CFD_Free_Engine_Method_Index(method->index);
         free(method);
     }
 }
@@ -281,6 +299,14 @@ void CFD_Free_Engine_Method_State(method_state_t *state)
     if (state != NULL)
     {
         free(state);
+    }
+}
+
+void CFD_Free_Engine_Method_Index(method_index_t *index)
+{
+    if (index != NULL)
+    {
+        free(index);
     }
 }
 

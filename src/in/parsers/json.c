@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../../utils/cJSON/cJSON.h"
-#include "../../utils/log/log.h"
+#include "../../utils/cLOG/cLOG.h"
 
 #include "json.h"
 #include "../../main.h"
@@ -9,9 +9,9 @@
 
 void CFD_JSON_Parse(CFD_t *cfd)
 {
-    if (cfd->in->file->format != JSON)
+    if (cfd->in->file->extension != JSON)
     {
-        log_fatal("Error: Invalid in file format. Only JSON accepted.");
+        log_fatal("Error: Invalid in file extension. Only JSON accepted.");
         exit(EXIT_FAILURE);
     }
 
@@ -58,11 +58,11 @@ void CFD_JSON_Parse_In_Geometry(CFD_t *cfd, cJSON *geometry)
 
 void CFD_JSON_Parse_In_Fluid(CFD_t *cfd, cJSON *fluid)
 {
-    const cJSON *mu = NULL;
+    const cJSON *nu = NULL;
     const cJSON *Re = NULL;
 
-    mu = cJSON_GetObjectItemCaseSensitive(fluid, "mu");
-    cfd->in->fluid->mu = cJSON_IsNumber(mu) ? cJSON_GetNumberValue(mu) : DEFAULT_IN_FLUID_MU;
+    nu = cJSON_GetObjectItemCaseSensitive(fluid, "nu");
+    cfd->in->fluid->nu = cJSON_IsNumber(nu) ? cJSON_GetNumberValue(nu) : DEFAULT_IN_FLUID_MU;
 
     Re = cJSON_GetObjectItemCaseSensitive(fluid, "Re");
     cfd->in->fluid->Re = cJSON_IsNumber(Re) ? cJSON_GetNumberValue(Re) : DEFAULT_IN_FLUID_RE;
@@ -210,7 +210,7 @@ void CFD_JSON_Parse_Out_File(CFD_t *cfd, cJSON *file)
 {
     const cJSON *name = NULL;
     const cJSON *path = NULL;
-    const cJSON *format = NULL;
+    const cJSON *extension = NULL;
 
     path = cJSON_GetObjectItemCaseSensitive(file, "path");
     cfd->out->file->path = cJSON_IsString(path) ? path->valuestring : DEFAULT_OUT_FILE_PATH;
@@ -218,15 +218,15 @@ void CFD_JSON_Parse_Out_File(CFD_t *cfd, cJSON *file)
     name = cJSON_GetObjectItemCaseSensitive(file, "name");
     cfd->out->file->name = cJSON_IsString(name) ? name->valuestring : DEFAULT_OUT_FILE_NAME;
 
-    format = cJSON_GetObjectItemCaseSensitive(file, "format");
-    if (file_string_to_format(format->valuestring) != false)
+    extension = cJSON_GetObjectItemCaseSensitive(file, "format");
+    if (FILE_String_to_Extension(extension->valuestring) != false)
     {
-        cfd->out->file->format = file_string_to_format(format->valuestring);
+        cfd->out->file->extension = FILE_String_to_Extension(extension->valuestring);
     }
     else
     {
-        log_warn("Invalid output file format. Permitted values: CSV | TXT | JSON");
+        log_warn("Invalid output file extension. Permitted values: CSV | TXT | JSON");
         log_info("Choosing default JSON");
-        cfd->out->file->format = JSON;
+        cfd->out->file->extension = JSON;
     }
 }

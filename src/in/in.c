@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
-#include "../utils/log/log.h"
-#include "../utils/custom_file/custom_file.h"
+#include "../utils/cLOG/cLOG.h"
+#include "../utils/cFILE/cFILE.h"
 
 #include "in.h"
 
@@ -12,7 +12,7 @@ in_t *CFD_Allocate_In()
     {
         in->geometry = CFD_Allocate_In_Geometry();
         in->fluid = CFD_Allocate_In_Fluid();
-        in->file = file_allocate();
+        in->file = FILE_Init();
 
         if (in->geometry != NULL &&
             in->fluid != NULL &&
@@ -57,7 +57,7 @@ void CFD_Free_In(in_t *in)
     {
         CFD_Free_In_Geometry(in->geometry);
         CFD_Free_In_Fluid(in->fluid);
-        file_free(in->file);
+        FILE_Free(in->file);
         free(in);
     }
 }

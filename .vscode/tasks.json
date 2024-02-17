@@ -8,9 +8,9 @@
             "args": [
                 "-g",
                 "${workspaceFolder}/src/utils/cJSON/*.c",
-                "${workspaceFolder}/src/utils/algebra/*.c",
-                "${workspaceFolder}/src/utils/custom_file/*.c",
-                "${workspaceFolder}/src/utils/log/*.c",
+                "${workspaceFolder}/src/utils/cALGEBRA/*.c",
+                "${workspaceFolder}/src/utils/cFILE/*.c",
+                "${workspaceFolder}/src/utils/cLOG/*.c",
                 "${workspaceFolder}/src/*.c",
                 "${workspaceFolder}/src/in/*.c",
                 "${workspaceFolder}/src/in/parsers/*.c",

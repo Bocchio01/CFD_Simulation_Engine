@@ -1,29 +1,37 @@
+/**
+ * @file cFILE.c
+ * @brief cFILE_t operations module
+ * @details This module implements the basic file operations.
+ * @date 2024-02-13
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 
-#include <stdbool.h>
-#include "../log/log.h"
+#include "cFILE.h"
 
-#include "custom_file.h"
+#include "../cLOG/cLOG.h"
 
-custom_file_t *file_allocate()
+cFILE_t *FILE_Init()
 {
-    custom_file_t *file = (custom_file_t *)malloc(sizeof(custom_file_t));
+    cFILE_t *file = (cFILE_t *)malloc(sizeof(cFILE_t));
     if (file != NULL)
     {
         file->name = NULL;
         file->buffer = NULL;
         file->pointer = NULL;
         file->path = NULL;
+
         return file;
     }
 
-    log_fatal("Error: Could not allocate memory for file");
+    log_fatal("Error: Could not allocate memory for cFILE_t");
     exit(EXIT_FAILURE);
 }
 
-void file_free(custom_file_t *file)
+void FILE_Free(cFILE_t *file)
 {
     if (file->name != NULL)
     {
@@ -44,7 +52,7 @@ void file_free(custom_file_t *file)
     free(file);
 }
 
-bool file_read(custom_file_t *file)
+bool FILE_Read(cFILE_t *file)
 {
     char full_path[100] = {0};
 
@@ -52,7 +60,7 @@ bool file_read(custom_file_t *file)
     strcat(full_path, "/");
     strcat(full_path, file->name);
     strcat(full_path, ".");
-    strcat(full_path, file_format_to_string(file->format));
+    strcat(full_path, FILE_Extension_to_String(file->extension));
 
     file->pointer = fopen(full_path, "r");
     if (file->pointer == NULL)
@@ -75,7 +83,7 @@ bool file_read(custom_file_t *file)
     return true;
 }
 
-bool file_write(custom_file_t *file)
+bool FILE_Write(cFILE_t *file)
 {
     char full_path[100] = {0};
 
@@ -83,7 +91,7 @@ bool file_write(custom_file_t *file)
     strcat(full_path, "/");
     strcat(full_path, file->name);
     strcat(full_path, ".");
-    strcat(full_path, file_format_to_string(file->format));
+    strcat(full_path, FILE_Extension_to_String(file->extension));
 
     file->pointer = fopen(full_path, "w");
     if (file->pointer == NULL)
@@ -99,9 +107,9 @@ bool file_write(custom_file_t *file)
     return true;
 }
 
-char *file_format_to_string(format_t format)
+char *FILE_Extension_to_String(extension_t extension)
 {
-    switch (format)
+    switch (extension)
     {
     case CSV:
         return "csv";
@@ -114,17 +122,17 @@ char *file_format_to_string(format_t format)
     }
 }
 
-format_t file_string_to_format(char *format)
+extension_t FILE_String_to_Extension(char *extension)
 {
-    if (strcasecmp(format, "csv") == 0)
+    if (strcasecmp(extension, "csv") == 0)
     {
         return CSV;
     }
-    else if (strcasecmp(format, "txt") == 0)
+    else if (strcasecmp(extension, "txt") == 0)
     {
         return TXT;
     }
-    else if (strcasecmp(format, "json") == 0)
+    else if (strcasecmp(extension, "json") == 0)
     {
         return JSON;
     }
@@ -134,40 +142,39 @@ format_t file_string_to_format(char *format)
     }
 }
 
-partial_file_t *file_split_path(char *full_path)
+cFILE_t *FILE_Parse_Path(char *full_path)
 {
     char *token;
     char *name;
     char *path;
-    char *format;
-    partial_file_t *partial_file = (partial_file_t *)malloc(sizeof(partial_file_t));
-    if (partial_file != NULL)
-    {
-        token = strtok(full_path, "/");
-        while (token != NULL)
-        {
-            name = token;
-            token = strtok(NULL, "/");
-        }
-        token = strtok(name, ".");
-        while (token != NULL)
-        {
-            name = token;
-            token = strtok(NULL, ".");
-        }
-        token = strtok(full_path, name);
-        path = token;
-        token = strtok(name, ".");
-        name = token;
-        token = strtok(NULL, ".");
-        format = token;
+    char *extension;
 
-        partial_file->name = name;
-        partial_file->path = path;
-        partial_file->format = file_string_to_format(format);
-        return partial_file;
+    cFILE_t *file = FILE_Init();
+
+    token = strtok(full_path, "/");
+    while (token != NULL)
+    {
+        name = token;
+        token = strtok(NULL, "/");
     }
 
-    log_fatal("Error: Could not allocate memory for partial file");
-    exit(EXIT_FAILURE);
+    token = strtok(name, ".");
+    while (token != NULL)
+    {
+        name = token;
+        token = strtok(NULL, ".");
+    }
+
+    token = strtok(full_path, name);
+    path = token;
+    token = strtok(name, ".");
+    name = token;
+    token = strtok(NULL, ".");
+    extension = token;
+
+    file->name = name;
+    file->path = path;
+    file->extension = FILE_String_to_Extension(extension);
+
+    return file;
 }

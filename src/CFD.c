@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "utils/log/log.h"
+#include "utils/cLOG/cLOG.h"
 
 #include "main.h"
 #include "CFD.h"
@@ -37,9 +37,9 @@ void CFD_Prepare(CFD_t *cfd, int argc, char **argv)
     {
         cfd->in->file->path = DEFAULT_IN_FILE_PATH;
         cfd->in->file->name = DEFAULT_IN_FILE_NAME;
-        cfd->in->file->format = file_string_to_format(DEFAULT_IN_FILE_FORMAT);
+        cfd->in->file->extension = FILE_String_to_Extension(DEFAULT_IN_FILE_FORMAT);
     }
-    file_read(cfd->in->file);
+    FILE_Read(cfd->in->file);
 
     CFD_JSON_Parse(cfd);
 }

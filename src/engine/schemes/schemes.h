@@ -1,10 +1,56 @@
 #ifndef SCHEMES_H
 #define SCHEMES_H
 
+#define MAX_AP_COEFFICIENTS 5
+
 typedef struct CFD_t CFD_t;
 
 #include "convection.h"
 #include "diffusion.h"
+
+typedef enum Apu_index_t
+{
+    WWSS,
+    WWS,
+    WWP,
+    WWN,
+    WWNN,
+    WSS,
+    WS,
+    WP,
+    WN,
+    WNN,
+    PSS,
+    PS,
+    PP,
+    PN,
+    PNN,
+    ESS,
+    ES,
+    EP,
+    EN,
+    ENN,
+    EESS,
+    EES,
+    EEP,
+    EEN,
+    EENN,
+} Apu_index_t;
+
+typedef enum phi_t
+{
+    u,
+    v,
+    p
+} phi_t;
+
+typedef struct F_coefficients_t
+{
+    double w;
+    double e;
+    double s;
+    double n;
+} F_coefficients_t;
 
 typedef struct
 {

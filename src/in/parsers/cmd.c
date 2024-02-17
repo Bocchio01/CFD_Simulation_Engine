@@ -74,7 +74,7 @@ void CFD_CMD_Print_Version()
 void CFD_CMD_Parse_i(CFD_t *cfd, char *arg)
 {
     char full_path[100] = {0};
-    partial_file_t *partial_file;
+    cFILE_t *partial_file;
 
     if (sscanf(arg, "%s", full_path) != 1)
     {
@@ -82,27 +82,27 @@ void CFD_CMD_Parse_i(CFD_t *cfd, char *arg)
         exit(EXIT_FAILURE);
     }
 
-    partial_file = file_split_path(full_path);
+    partial_file = FILE_Parse_Path(full_path);
 
-    if (partial_file->format == false)
+    if (partial_file->extension == false)
     {
-        fprintf(stderr, "Invalid file format\n");
+        fprintf(stderr, "Invalid file extension\n");
         exit(EXIT_FAILURE);
     }
     else if (partial_file->name != NULL &&
              partial_file->path != NULL &&
-             partial_file->format != false)
+             partial_file->extension != false)
     {
         cfd->in->file->name = partial_file->name;
         cfd->in->file->path = partial_file->path;
-        cfd->in->file->format = partial_file->format;
+        cfd->in->file->extension = partial_file->extension;
     }
 }
 
 void CFD_CMD_Parse_o(CFD_t *cfd, char *arg)
 {
     char full_path[100] = {0};
-    partial_file_t *partial_file;
+    cFILE_t *partial_file;
 
     if (sscanf(arg, "%s", full_path) != 1)
     {
@@ -110,20 +110,20 @@ void CFD_CMD_Parse_o(CFD_t *cfd, char *arg)
         exit(EXIT_FAILURE);
     }
 
-    partial_file = file_split_path(full_path);
+    partial_file = FILE_Parse_Path(full_path);
 
-    if (partial_file->format == false)
+    if (partial_file->extension == false)
     {
-        fprintf(stderr, "Invalid file format\n");
+        fprintf(stderr, "Invalid file extension\n");
         exit(EXIT_FAILURE);
     }
     else if (partial_file->name != NULL &&
              partial_file->path != NULL &&
-             partial_file->format != false)
+             partial_file->extension != false)
     {
         cfd->in->file->name = partial_file->name;
         cfd->in->file->path = partial_file->path;
-        cfd->in->file->format = partial_file->format;
+        cfd->in->file->extension = partial_file->extension;
     }
 }
 

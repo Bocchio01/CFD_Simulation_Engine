@@ -7,8 +7,8 @@
 #define DEFAULT_IN_ULID 1.0       // Lid velocity
 #define DEFAULT_IN_GEOMETRY_X 1.0 // Geometry X
 #define DEFAULT_IN_GEOMETRY_Y 1.0 // Geometry Y
-#define DEFAULT_IN_FLUID_MU 1     // Fluid viscosity
-#define DEFAULT_IN_FLUID_RE 1     // Reynolds number
+#define DEFAULT_IN_FLUID_MU 1.0   // Fluid viscosity
+#define DEFAULT_IN_FLUID_RE 1.0   // Reynolds number
 
 #define DEFAULT_ENGINE_MESH_TYPE "STAGGERED"            // Mesh type
 #define DEFAULT_ENGINE_MESH_NODES_X 100                 // Mesh nodes X

@@ -5,7 +5,7 @@ typedef struct CFD_t CFD_t;
 
 #include <stdint.h>
 
-#include "../../utils/algebra/matrices.h"
+#include "../../utils/cALGEBRA/cMAT.h"
 
 typedef enum
 {
@@ -39,8 +39,8 @@ typedef struct
 
 typedef struct
 {
-    matrix_t x;
-    matrix_t y;
+    cMAT_t *x;
+    cMAT_t *y;
 } mesh_data_t;
 
 typedef struct

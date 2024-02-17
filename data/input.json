@@ -1,12 +1,13 @@
 {
     "in": {
-        "uLid": 1,
+        "uLid": 1.0,
         "geometry": {
             "x": 1,
             "y": 1
         },
         "fluid": {
-            "mu": 1.0
+            "nu": 1e-3,
+            "Re": 100
         }
     },
     "engine": {
