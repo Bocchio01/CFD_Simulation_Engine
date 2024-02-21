@@ -75,5 +75,6 @@ void MAT_Copy(cMAT_t *A, cMAT_t *B);
  * @param A The matrix to be printed.
  */
 void MAT_Print(cMAT_t *A);
+void MAT_Print_States(cMAT_t *state);
 
 #endif

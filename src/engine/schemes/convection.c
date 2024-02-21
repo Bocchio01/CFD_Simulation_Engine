@@ -26,19 +26,20 @@ void CFD_Setup_Convection(CFD_t *cfd)
 
 double getState(CFD_t *cfd, phi_t phi, int i, int j)
 {
-    int sx = cfd->engine->mesh->nodes->Nx + 2 * cfd->engine->mesh->n_ghosts;
-    int sy = cfd->engine->mesh->nodes->Ny + 2 * cfd->engine->mesh->n_ghosts;
+
+    uint8_t rows = cfd->engine->mesh->data->x->rows;
+    uint8_t cols = cfd->engine->mesh->data->x->cols;
 
     switch (phi)
     {
     case u:
-        return (i >= 0 && j >= 0 && i < sx && j < sy) ? cfd->engine->method->state_old->u->data[i][j] : 0.0;
+        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->u->data[j][i] : 0.0;
 
     case v:
-        return (i >= 0 && j >= 0 && i < sx && j < sy) ? cfd->engine->method->state_old->v->data[i][j] : 0.0;
+        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->v->data[j][i] : 0.0;
 
     case p:
-        return (i >= 0 && j >= 0 && i < sx && j < sy) ? cfd->engine->method->state_old->p->data[i][j] : 0.0;
+        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->p->data[j][i] : 0.0;
 
     default:
         log_fatal("Error: getState phi not found");

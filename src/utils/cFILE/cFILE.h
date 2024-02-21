@@ -11,6 +11,12 @@ typedef enum
     JSON,
 } extension_t;
 
+typedef enum
+{
+    WRITE = 'w',
+    APPEND = 'a'
+} mode_t;
+
 typedef struct
 {
     int size;
@@ -27,7 +33,7 @@ void FILE_Free(cFILE_t *file);
 
 bool FILE_Read(cFILE_t *file);
 
-bool FILE_Write(cFILE_t *file);
+bool FILE_Write(cFILE_t *file, mode_t mode);
 
 char *FILE_Extension_to_String(extension_t extension);
 

@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[])
 {
-    log_set_level(LOG_DEBUG);
+    log_set_level(LOG_INFO);
 
     CFD_t *cfd = CFD_Allocate();
 

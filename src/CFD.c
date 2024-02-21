@@ -54,7 +54,8 @@ void CFD_Solve(CFD_t *cfd)
 
 void CFD_Finalize(CFD_t *cfd)
 {
-    // CFD_SaveResults(cfd);
+    CFD_Collocate_Fields(cfd);
+    CFD_Save_Results(cfd);
 }
 
 void CFD_Free(CFD_t *cfd)

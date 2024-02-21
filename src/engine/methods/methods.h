@@ -44,7 +44,6 @@ typedef struct
     under_relaxation_factors_t *under_relaxation_factors;
     method_index_t *index;
     method_state_t *state;
-    method_state_t *state_old;
     method_function_t callable;
 } method_t;
 

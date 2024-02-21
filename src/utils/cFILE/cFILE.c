@@ -83,7 +83,7 @@ bool FILE_Read(cFILE_t *file)
     return true;
 }
 
-bool FILE_Write(cFILE_t *file)
+bool FILE_Write(cFILE_t *file, mode_t mode)
 {
     char full_path[100] = {0};
 
@@ -93,7 +93,20 @@ bool FILE_Write(cFILE_t *file)
     strcat(full_path, ".");
     strcat(full_path, FILE_Extension_to_String(file->extension));
 
-    file->pointer = fopen(full_path, "w");
+    switch (mode)
+    {
+    case WRITE:
+        file->pointer = fopen(full_path, "w");
+        break;
+
+    case APPEND:
+        file->pointer = fopen(full_path, "a");
+        break;
+
+    default:
+        break;
+    }
+
     if (file->pointer == NULL)
     {
         log_error("Error: Unable to open file %s", file->name);
@@ -138,7 +151,7 @@ extension_t FILE_String_to_Extension(char *extension)
     }
     else
     {
-        return false;
+        return -1;
     }
 }
 

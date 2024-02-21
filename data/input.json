@@ -6,7 +6,7 @@
             "y": 1
         },
         "fluid": {
-            "nu": 1e-3,
+            "nu": 1e-1,
             "Re": 100
         }
     },
@@ -14,8 +14,8 @@
         "mesh": {
             "type": "STAGGERED",
             "nodes": {
-                "Nx": 10,
-                "Ny": 10
+                "Nx": 80,
+                "Ny": 80
             },
             "elements": {
                 "type": "RECTANGULAR"
@@ -40,7 +40,7 @@
         "file": {
             "path": "data",
             "name": "output",
-            "format": "JSON"
+            "format": "CSV"
         }
     }
 }

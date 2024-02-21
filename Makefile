@@ -2,7 +2,7 @@
 
 CC = gcc
 # FLAGS = -Wall -Wextra -Werror -std=c99 -O2 # -pedantic
-SRCS = src/*.c src/in/*.c src/in/parsers/*.c src/engine/*.c src/engine/mesh/*.c src/engine/methods/*.c src/engine/schemes/*.c src/out/*.c
+SRCS = src/*.c src/in/*.c src/out/*.c src/in/parsers/*.c src/engine/*.c src/engine/mesh/*.c src/engine/methods/*.c src/engine/schemes/*.c
 LIBS = src/utils/cALGEBRA/*.c src/utils/cJSON/*.c  src/utils/cFILE/*.c src/utils/cLOG/*.c
 DEFINES = -DLOG_USE_COLOR
 # BENCHDIR = utils

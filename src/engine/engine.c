@@ -126,7 +126,6 @@ method_t *CFD_Allocate_Engine_Method()
     {
         method->under_relaxation_factors = CFD_Allocate_Engine_Method_UnderRelaxationFactors();
         method->state = CFD_Allocate_Engine_Method_State();
-        method->state_old = CFD_Allocate_Engine_Method_State();
         method->index = CFD_Allocate_Engine_Method_Index();
         if (method->under_relaxation_factors != NULL &&
             method->state != NULL &&

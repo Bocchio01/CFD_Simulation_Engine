@@ -48,7 +48,8 @@
         "ios": "c",
         "cstdlib": "c",
         "stdlib.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "main.h": "c"
     },
     "cmake.configureArgs": [
         "-DVCPKG_APPLOCAL_DEPS=ON",

@@ -219,7 +219,7 @@ void CFD_JSON_Parse_Out_File(CFD_t *cfd, cJSON *file)
     cfd->out->file->name = cJSON_IsString(name) ? name->valuestring : DEFAULT_OUT_FILE_NAME;
 
     extension = cJSON_GetObjectItemCaseSensitive(file, "format");
-    if (FILE_String_to_Extension(extension->valuestring) != false)
+    if (FILE_String_to_Extension(extension->valuestring) != -1)
     {
         cfd->out->file->extension = FILE_String_to_Extension(extension->valuestring);
     }

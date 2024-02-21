@@ -1,5 +1,7 @@
 #include "SCGS.h"
 
+#include <windows.h>
+
 typedef struct CFD_t CFD_t;
 
 #include <stdlib.h>
@@ -17,14 +19,6 @@ void CFD_SCGS(CFD_t *cfd)
     log_info("SCGS method\n");
 
     scgs = CFD_SCGS_Allocate(cfd);
-
-    // scgs->scgs_state->u = MAT_Init(cfd->engine->method->state->u->rows, cfd->engine->method->state->u->cols);
-    // scgs->scgs_state->v = MAT_Init(cfd->engine->method->state->v->rows, cfd->engine->method->state->v->cols);
-    // scgs->scgs_state->p = MAT_Init(cfd->engine->method->state->p->rows, cfd->engine->method->state->p->cols);
-
-    // MAT_Copy(cfd->engine->method->state->u, scgs->scgs_state->u);
-    // MAT_Copy(cfd->engine->method->state->v, scgs->scgs_state->v);
-    // MAT_Copy(cfd->engine->method->state->p, scgs->scgs_state->p);
 
     for (int iteration = 0; iteration < cfd->engine->method->maxIter; iteration++)
     {
@@ -53,21 +47,29 @@ void CFD_SCGS(CFD_t *cfd)
 
         CFD_SCGS_BC_NoSlip_Tangetial(cfd, scgs);
 
-        log_debug("\nIteration:\t%d\nResidual:\t%.10f", iteration + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
-        log_debug("Residuals: u = %f, v = %f, p = %f\n", scgs->residual->u, scgs->residual->v, scgs->residual->p);
-        log_debug("U matrix");
-        MAT_Print(cfd->engine->method->state->u);
-
-        MAT_Copy(cfd->engine->method->state->u, cfd->engine->method->state_old->u);
-        MAT_Copy(cfd->engine->method->state->v, cfd->engine->method->state_old->v);
-        MAT_Copy(cfd->engine->method->state->p, cfd->engine->method->state_old->p);
-
-        // MAT_Print(scgs->scgs_state->u);
+        if (iteration % 50 == 0)
+        {
+            log_info("\nIteration:\t%d\nResidual:\t%.10f", iteration + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
+            log_debug("Residuals: u = %f, v = %f, p = %f\n", scgs->residual->u, scgs->residual->v, scgs->residual->p);
+        }
 
         if (fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)) < cfd->engine->method->tolerance &&
             iteration > 1)
         {
             log_info("Algorithm converged in %d iterations", iteration);
+
+            log_info("\nIteration:\t%d\nResidual:\t%.10f", iteration + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
+            log_debug("Residuals: u = %f, v = %f, p = %f\n", scgs->residual->u, scgs->residual->v, scgs->residual->p);
+
+            log_debug("U matrix");
+            MAT_Print_States(cfd->engine->method->state->u);
+
+            log_debug("V matrix");
+            MAT_Print_States(cfd->engine->method->state->v);
+
+            log_debug("P matrix");
+            MAT_Print_States(cfd->engine->method->state->p);
+
             break;
         }
     }
@@ -152,10 +154,6 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
         Ap[el] = A_coefficients->data[PP];
         scgs->vanka->R->data[el] = 0.0;
 
-        // log_debug("Ap[%d] = %f", el, Ap[el]);
-        // log_debug("A_coefficients");
-        // VEC_Print(A_coefficients);
-
         for (uint8_t r = 0; r < A_coefficients->length; r++)
         {
             double phi = getState(cfd, positions[el].phi, i + positions[el].i + ((r / 5) % 5) - 2, j + positions[el].j + (r % 5) - 2);
@@ -185,12 +183,6 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
     scgs->vanka->A->data[1][4] = -1.0 * cfd->engine->mesh->element->size->dy;
     scgs->vanka->A->data[2][4] = +1.0 * cfd->engine->mesh->element->size->dx;
     scgs->vanka->A->data[3][4] = -1.0 * cfd->engine->mesh->element->size->dx;
-
-    // log_debug("R");
-    // VEC_Print(scgs->vanka->R);
-
-    // log_debug("A");
-    // MAT_Print(scgs->vanka->A);
 }
 
 void CFD_SCGS_System_Solve(SCGS_t *scgs)
@@ -229,14 +221,11 @@ void CFD_SCGS_Apply_Correction(CFD_t *cfd, SCGS_t *scgs)
     uint8_t i = cfd->engine->method->index->i;
     uint8_t j = cfd->engine->method->index->j;
 
-    // log_debug("Correction vector");
-    // VEC_Print(scgs->vanka->x);
-
-    cfd->engine->method->state->u->data[i - 1][j + 0] += scgs->vanka->x->data[0];
-    cfd->engine->method->state->u->data[i + 0][j + 0] += scgs->vanka->x->data[1];
-    cfd->engine->method->state->v->data[i + 0][j - 1] += scgs->vanka->x->data[2];
-    cfd->engine->method->state->v->data[i + 0][j + 0] += scgs->vanka->x->data[3];
-    cfd->engine->method->state->p->data[i + 0][j + 0] += scgs->vanka->x->data[4];
+    cfd->engine->method->state->u->data[j + 0][i - 1] += scgs->vanka->x->data[0];
+    cfd->engine->method->state->u->data[j + 0][i + 0] += scgs->vanka->x->data[1];
+    cfd->engine->method->state->v->data[j - 1][i + 0] += scgs->vanka->x->data[2];
+    cfd->engine->method->state->v->data[j + 0][i + 0] += scgs->vanka->x->data[3];
+    cfd->engine->method->state->p->data[j + 0][i + 0] += scgs->vanka->x->data[4];
 }
 
 void CFD_SCGS_Update_Residual(SCGS_t *scgs)

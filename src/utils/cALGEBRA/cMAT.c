@@ -147,24 +147,30 @@ void MAT_Print(cMAT_t *A)
     printf("cMAT_t %dx%d:\n", A->rows, A->cols);
     printf("[\n");
 
-    for (int j = A->rows - 1; j >= 0; j--)
-    {
-        printf("\t");
-        for (int i = 0; i < A->cols; i++)
-        {
-            printf("%.1f ", A->data[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\n");
-
     for (int i = 0; i < A->rows; i++)
     {
         printf("\t");
         for (int j = 0; j < A->cols; j++)
         {
             printf("%.1f ", A->data[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("]\n");
+}
+
+void MAT_Print_States(cMAT_t *state)
+{
+    printf("cMAT_t %dx%d:\n", state->rows, state->cols);
+    printf("[\n");
+
+    for (int j = state->rows - 1; j >= 0; j--)
+    {
+        printf("\t");
+        for (int i = 0; i < state->cols; i++)
+        {
+            printf("%.1f ", state->data[j][i]);
         }
         printf("\n");
     }

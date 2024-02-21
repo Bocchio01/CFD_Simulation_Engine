@@ -18,44 +18,28 @@ void CFD_Setup_Method(CFD_t *cfd)
         break;
     }
 
-    uint8_t grid_dimension_x = cfd->engine->mesh->data->x->rows;
-    uint8_t grid_dimension_y = cfd->engine->mesh->data->x->cols;
+    uint8_t rows = cfd->engine->mesh->data->x->rows;
+    uint8_t cols = cfd->engine->mesh->data->x->cols;
 
     cfd->engine->method->state->u = MAT_Init(
-        grid_dimension_x,
-        grid_dimension_y);
+        rows,
+        cols);
 
     cfd->engine->method->state->v = MAT_Init(
-        grid_dimension_x,
-        grid_dimension_y);
+        rows,
+        cols);
 
     cfd->engine->method->state->p = MAT_Init(
-        grid_dimension_x,
-        grid_dimension_y);
+        rows,
+        cols);
 
-    cfd->engine->method->state_old->u = MAT_Init(
-        grid_dimension_x,
-        grid_dimension_y);
-
-    cfd->engine->method->state_old->v = MAT_Init(
-        grid_dimension_x,
-        grid_dimension_y);
-
-    cfd->engine->method->state_old->p = MAT_Init(
-        grid_dimension_x,
-        grid_dimension_y);
-
-    for (uint8_t i = 0; i < grid_dimension_x; i++)
+    for (uint8_t j = 0; j < rows; j++)
     {
-        for (uint8_t j = 0; j < grid_dimension_y; j++)
+        for (uint8_t i = 0; i < cols; i++)
         {
-            cfd->engine->method->state->u->data[i][j] = 0.0;
-            cfd->engine->method->state->v->data[i][j] = 0.0;
-            cfd->engine->method->state->p->data[i][j] = 0.0;
-
-            cfd->engine->method->state_old->u->data[i][j] = 0.0;
-            cfd->engine->method->state_old->v->data[i][j] = 0.0;
-            cfd->engine->method->state_old->p->data[i][j] = 0.0;
+            cfd->engine->method->state->u->data[j][i] = 0.0;
+            cfd->engine->method->state->v->data[j][i] = 0.0;
+            cfd->engine->method->state->p->data[j][i] = 0.0;
         }
     }
 }
