@@ -43,6 +43,8 @@ schemes_t *CFD_Allocate_Engine_Schemes();
 
 scheme_convection_t *CFD_Allocate_Engine_Schemes_Convection();
 
+F_coefficients_t *CFD_Allocate_Engine_Schemes_Convection_F();
+
 scheme_diffusion_t *CFD_Allocate_Engine_Schemes_Diffusion();
 
 void CFD_Free_Engine(engine_t *engine);
@@ -68,6 +70,8 @@ void CFD_Free_Engine_Method_State(method_state_t *state);
 void CFD_Free_Engine_Method_Index(method_index_t *index);
 
 void CFD_Free_Engine_Schemes_Convection(scheme_convection_t *convection);
+
+void CFD_Free_Engine_Schemes_Convection_F(F_coefficients_t *F);
 
 void CFD_Free_Engine_Schemes_Diffusion(scheme_diffusion_t *diffusion);
 

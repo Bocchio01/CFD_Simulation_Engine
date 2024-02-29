@@ -31,6 +31,7 @@ typedef struct SCGS_t
 {
     residual_t *residual;
     Vanka_t *vanka;
+    cVEC_t *A_coefficients;
 } SCGS_t;
 
 void CFD_SCGS(CFD_t *cfd);

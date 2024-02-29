@@ -1,8 +1,6 @@
 #ifndef SCHEMES_H
 #define SCHEMES_H
 
-#define MAX_AP_COEFFICIENTS 5
-
 typedef struct CFD_t CFD_t;
 
 #include "convection.h"
@@ -43,14 +41,6 @@ typedef enum phi_t
     v,
     p
 } phi_t;
-
-typedef struct F_coefficients_t
-{
-    double w;
-    double e;
-    double s;
-    double n;
-} F_coefficients_t;
 
 typedef struct
 {

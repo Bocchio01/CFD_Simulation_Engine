@@ -9,13 +9,25 @@
 
 void CFD_Setup_Engine(CFD_t *cfd)
 {
-    // if (isnan(cfd->in->fluid->Re))
-    // {
-    //     cfd->in->fluid->Re = cfd->in->uLid * cfd->in->geometry->x / cfd->in->fluid->nu;
-    // }
+    if (!isnan(cfd->in->fluid->Re))
+    {
+        cfd->in->fluid->nu = cfd->in->uLid * cfd->in->geometry->x / cfd->in->fluid->Re;
+    }
+
     CFD_Setup_Mesh(cfd);
     CFD_Setup_Method(cfd);
     CFD_Setup_Schemes(cfd);
+
+    log_info("Engine setup complete");
+    log_info("Input file:\t%s", cfd->in->file->name);
+    log_info("Solver method:\t%s", cfd->engine->method->type == SCGS ? "SCGS" : "SIMPLE");
+    log_info("Solver tolerance:\t%f", cfd->engine->method->tolerance);
+    log_info("Solver max iterations:\t%d", cfd->engine->method->maxIter);
+    log_info("Scheme convection :\t%s", cfd->engine->schemes->convection->type == QUICK ? "QUICK" : "UDS");
+    log_info("Scheme diffusion:\t%s", cfd->engine->schemes->diffusion->type == SECOND_ORDER ? "SECOND_ORDER" : "FOURTH_ORDER");
+    log_info("Mesh grid elements:\t%d x %d", cfd->engine->mesh->nodes->Nx, cfd->engine->mesh->nodes->Ny);
+    log_info("Fluid viscosity:\t%f", cfd->in->fluid->nu);
+    log_info("Fluid Reynolds:\t%f", cfd->in->fluid->Re);
 }
 
 engine_t *CFD_Allocate_Engine()
@@ -198,10 +210,28 @@ scheme_convection_t *CFD_Allocate_Engine_Schemes_Convection()
     scheme_convection_t *convection = (scheme_convection_t *)malloc(sizeof(scheme_convection_t));
     if (convection != NULL)
     {
-        return convection;
+        convection->coefficients = VEC_Init(EENN + 1);
+        convection->F = CFD_Allocate_Engine_Schemes_Convection_F();
+        if (convection->coefficients != NULL &&
+            convection->F != NULL)
+        {
+            return convection;
+        }
     }
 
     log_fatal("Error: Could not allocate memory for engine->schemes->convection");
+    exit(EXIT_FAILURE);
+}
+
+F_coefficients_t *CFD_Allocate_Engine_Schemes_Convection_F()
+{
+    F_coefficients_t *F = (F_coefficients_t *)malloc(sizeof(F_coefficients_t));
+    if (F != NULL)
+    {
+        return F;
+    }
+
+    log_fatal("Error: Could not allocate memory for engine->schemes->convection->F");
     exit(EXIT_FAILURE);
 }
 
@@ -210,6 +240,7 @@ scheme_diffusion_t *CFD_Allocate_Engine_Schemes_Diffusion()
     scheme_diffusion_t *diffusion = (scheme_diffusion_t *)malloc(sizeof(scheme_diffusion_t));
     if (diffusion != NULL)
     {
+        diffusion->coefficients = VEC_Init(EENN + 1);
         return diffusion;
     }
 
@@ -321,7 +352,16 @@ void CFD_Free_Engine_Schemes_Convection(scheme_convection_t *convection)
 {
     if (convection != NULL)
     {
+        CFD_Free_Engine_Schemes_Convection_F(convection->F);
         free(convection);
+    }
+}
+
+void CFD_Free_Engine_Schemes_Convection_F(F_coefficients_t *F)
+{
+    if (F != NULL)
+    {
+        free(F);
     }
 }
 

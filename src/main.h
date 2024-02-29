@@ -1,8 +1,8 @@
 // String values are not used as default but hard written in the code. Must be fixed
 
-#define DEFAULT_IN_FILE_PATH "data"   // Input file path
-#define DEFAULT_IN_FILE_NAME "input"  // Input file name
-#define DEFAULT_IN_FILE_FORMAT "JSON" // Input file format
+#define DEFAULT_IN_FILE_PATH "datasets" // Input file path
+#define DEFAULT_IN_FILE_NAME "input"    // Input file name
+#define DEFAULT_IN_FILE_FORMAT "JSON"   // Input file format
 
 #define DEFAULT_IN_ULID 1.0       // Lid velocity
 #define DEFAULT_IN_GEOMETRY_X 1.0 // Geometry X
@@ -25,6 +25,6 @@
 #define DEFAULT_ENGINE_SCHEMES_CONVECTION "UDS"         // Schemes convection
 #define DEFAULT_ENGINE_SCHEMES_DIFFUSION "SECOND_ORDER" // Schemes diffusion
 
-#define DEFAULT_OUT_FILE_PATH "data"   // Output file path
-#define DEFAULT_OUT_FILE_NAME "output" // Output file name
-#define DEFAULT_OUT_FILE_FORMAT "JSON" // Output file format
+#define DEFAULT_OUT_FILE_PATH "results" // Output file path
+#define DEFAULT_OUT_FILE_NAME "output"  // Output file name
+#define DEFAULT_OUT_FILE_FORMAT "DAT"   // Output file format

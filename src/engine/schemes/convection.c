@@ -13,71 +13,46 @@ void CFD_Setup_Convection(CFD_t *cfd)
     switch (cfd->engine->schemes->convection->type)
     {
     case UDS:
-        cfd->engine->schemes->convection->callable = engineSchemeConvectionUDS;
+        cfd->engine->schemes->convection->callable = CFD_Scheme_Convection_UDS;
         break;
     case HYBRID:
-        cfd->engine->schemes->convection->callable = engineSchemeConvectionHYBRID;
+        cfd->engine->schemes->convection->callable = CFD_Scheme_Convection_HYBRID;
         break;
     case QUICK:
-        cfd->engine->schemes->convection->callable = engineSchemeConvectionQUICK;
+        cfd->engine->schemes->convection->callable = CFD_Scheme_Convection_QUICK;
         break;
     }
 }
 
-double getState(CFD_t *cfd, phi_t phi, int i, int j)
+void CFD_Scheme_Get_Flux(CFD_t *cfd, int i, int j, phi_t phi)
 {
 
-    uint8_t rows = cfd->engine->mesh->data->x->rows;
-    uint8_t cols = cfd->engine->mesh->data->x->cols;
+    double uPP = CFD_Get_State(cfd, u, i + 0, j + 0);
+    double vPP = CFD_Get_State(cfd, v, i + 0, j + 0);
 
-    switch (phi)
-    {
-    case u:
-        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->u->data[j][i] : 0.0;
+    double uPN = CFD_Get_State(cfd, u, i + 0, j + 1);
+    double vPN = CFD_Get_State(cfd, v, i + 0, j + 1);
 
-    case v:
-        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->v->data[j][i] : 0.0;
+    double uEN = CFD_Get_State(cfd, u, i + 1, j + 1);
+    double vEN = CFD_Get_State(cfd, v, i + 1, j + 1);
 
-    case p:
-        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->p->data[j][i] : 0.0;
+    double uEP = CFD_Get_State(cfd, u, i + 1, j + 0);
+    double vEP = CFD_Get_State(cfd, v, i + 1, j + 0);
 
-    default:
-        log_fatal("Error: getState phi not found");
-        exit(EXIT_FAILURE);
-        break;
-    }
-}
+    double uES = CFD_Get_State(cfd, u, i + 1, j - 1);
+    double vES = CFD_Get_State(cfd, v, i + 1, j - 1);
 
-F_coefficients_t engineSchemeConvectionF(CFD_t *cfd, int i, int j, phi_t phi)
-{
-    F_coefficients_t F;
+    double uPS = CFD_Get_State(cfd, u, i + 0, j - 1);
+    double vPS = CFD_Get_State(cfd, v, i + 0, j - 1);
 
-    double uPP = getState(cfd, u, i + 0, j + 0);
-    double vPP = getState(cfd, v, i + 0, j + 0);
+    double uWS = CFD_Get_State(cfd, u, i - 1, j - 1);
+    double vWS = CFD_Get_State(cfd, v, i - 1, j - 1);
 
-    double uPN = getState(cfd, u, i + 0, j + 1);
-    double vPN = getState(cfd, v, i + 0, j + 1);
+    double uWP = CFD_Get_State(cfd, u, i - 1, j + 0);
+    double vWP = CFD_Get_State(cfd, v, i - 1, j + 0);
 
-    double uEN = getState(cfd, u, i + 1, j + 1);
-    double vEN = getState(cfd, v, i + 1, j + 1);
-
-    double uEP = getState(cfd, u, i + 1, j + 0);
-    double vEP = getState(cfd, v, i + 1, j + 0);
-
-    double uES = getState(cfd, u, i + 1, j - 1);
-    double vES = getState(cfd, v, i + 1, j - 1);
-
-    double uPS = getState(cfd, u, i + 0, j - 1);
-    double vPS = getState(cfd, v, i + 0, j - 1);
-
-    double uWS = getState(cfd, u, i - 1, j - 1);
-    double vWS = getState(cfd, v, i - 1, j - 1);
-
-    double uWP = getState(cfd, u, i - 1, j + 0);
-    double vWP = getState(cfd, v, i - 1, j + 0);
-
-    double uWN = getState(cfd, u, i - 1, j + 1);
-    double vWN = getState(cfd, v, i - 1, j + 1);
+    double uWN = CFD_Get_State(cfd, u, i - 1, j + 1);
+    double vWN = CFD_Get_State(cfd, v, i - 1, j + 1);
 
     double dx = cfd->engine->mesh->element->size->dx;
     double dy = cfd->engine->mesh->element->size->dy;
@@ -86,36 +61,36 @@ F_coefficients_t engineSchemeConvectionF(CFD_t *cfd, int i, int j, phi_t phi)
     {
     case u:
 
-        F.w = 1.0 / 2.0 * (uWP + uPP) * dy;
-        F.e = 1.0 / 2.0 * (uPP + uEP) * dy;
-        F.s = 1.0 / 2.0 * (vPS + vES) * dx;
-        F.n = 1.0 / 2.0 * (vPP + vEP) * dx;
+        cfd->engine->schemes->convection->F->w = 1.0 / 2.0 * (uWP + uPP) * dy;
+        cfd->engine->schemes->convection->F->e = 1.0 / 2.0 * (uPP + uEP) * dy;
+        cfd->engine->schemes->convection->F->s = 1.0 / 2.0 * (vPS + vES) * dx;
+        cfd->engine->schemes->convection->F->n = 1.0 / 2.0 * (vPP + vEP) * dx;
 
         break;
 
     case v:
 
-        F.w = 1.0 / 2.0 * (uWP + uWN) * dy;
-        F.e = 1.0 / 2.0 * (uPP + uPN) * dy;
-        F.s = 1.0 / 2.0 * (vPS + vPP) * dx;
-        F.n = 1.0 / 2.0 * (vPP + vPN) * dx;
+        cfd->engine->schemes->convection->F->w = 1.0 / 2.0 * (uWP + uWN) * dy;
+        cfd->engine->schemes->convection->F->e = 1.0 / 2.0 * (uPP + uPN) * dy;
+        cfd->engine->schemes->convection->F->s = 1.0 / 2.0 * (vPS + vPP) * dx;
+        cfd->engine->schemes->convection->F->n = 1.0 / 2.0 * (vPP + vPN) * dx;
 
         break;
 
     default:
-        log_fatal("Error: engineSchemeConvectionF phi not found");
+        log_fatal("Error: CFD_Scheme_Get_Flux phi not found");
         exit(EXIT_FAILURE);
         break;
     }
-
-    return F;
 }
 
-cVEC_t *engineSchemeConvectionUDS(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
+void CFD_Scheme_Convection_UDS(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
 {
 
-    F_coefficients_t F = engineSchemeConvectionF(cfd, i, j, phi);
-    cVEC_t *Ap = VEC_Init(EENN + 1);
+    CFD_Scheme_Get_Flux(cfd, i, j, phi);
+
+    F_coefficients_t F = *cfd->engine->schemes->convection->F;
+    cVEC_t *Ap = cfd->engine->schemes->convection->coefficients;
 
     Ap->data[WWSS] = 0.0;
     Ap->data[WWS] = 0.0;
@@ -142,25 +117,25 @@ cVEC_t *engineSchemeConvectionUDS(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
     Ap->data[EEP] = 0.0;
     Ap->data[EEN] = 0.0;
     Ap->data[EENN] = 0.0;
-
-    return Ap;
 }
 
-cVEC_t *engineSchemeConvectionCDS(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
+void CFD_Scheme_Convection_CDS(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
 {
-    F_coefficients_t F = engineSchemeConvectionF(cfd, i, j, phi);
-    cVEC_t *Ap = VEC_Init(EENN + 1);
+    CFD_Scheme_Get_Flux(cfd, i, j, phi);
+
+    F_coefficients_t F = *cfd->engine->schemes->convection->F;
+    cVEC_t *Ap = cfd->engine->schemes->convection->coefficients;
 
     log_fatal("CDS not implemented yet");
     exit(EXIT_FAILURE);
-
-    return Ap;
 }
 
-cVEC_t *engineSchemeConvectionQUICK(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
+void CFD_Scheme_Convection_QUICK(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
 {
-    F_coefficients_t F = engineSchemeConvectionF(cfd, i, j, phi);
-    cVEC_t *Ap = VEC_Init(EENN + 1);
+    CFD_Scheme_Get_Flux(cfd, i, j, phi);
+
+    F_coefficients_t F = *cfd->engine->schemes->convection->F;
+    cVEC_t *Ap = cfd->engine->schemes->convection->coefficients;
 
     Ap->data[WWSS] = 0.0;
     Ap->data[WWS] = 0.0;
@@ -187,17 +162,15 @@ cVEC_t *engineSchemeConvectionQUICK(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
     Ap->data[EEP] = 1.0 / 8.0 * fmin(0.0, F.e);
     Ap->data[EEN] = 0.0;
     Ap->data[EENN] = 0.0;
-
-    return Ap;
 }
 
-cVEC_t *engineSchemeConvectionHYBRID(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
+void CFD_Scheme_Convection_HYBRID(CFD_t *cfd, uint8_t i, uint8_t j, phi_t phi)
 {
-    F_coefficients_t F = engineSchemeConvectionF(cfd, i, j, phi);
-    cVEC_t *Ap = VEC_Init(EENN + 1);
+    CFD_Scheme_Get_Flux(cfd, i, j, phi);
+
+    F_coefficients_t F = *cfd->engine->schemes->convection->F;
+    cVEC_t *Ap = cfd->engine->schemes->convection->coefficients;
 
     log_fatal("HYBRID not implemented yet");
     exit(EXIT_FAILURE);
-
-    return Ap;
 }

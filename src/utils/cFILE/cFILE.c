@@ -19,10 +19,10 @@ cFILE_t *FILE_Init()
     cFILE_t *file = (cFILE_t *)malloc(sizeof(cFILE_t));
     if (file != NULL)
     {
-        file->name = NULL;
+        file->name = malloc(30 * sizeof(char));
         file->buffer = NULL;
         file->pointer = NULL;
-        file->path = NULL;
+        file->path = malloc(30 * sizeof(char));
 
         return file;
     }
@@ -124,8 +124,8 @@ char *FILE_Extension_to_String(extension_t extension)
 {
     switch (extension)
     {
-    case CSV:
-        return "csv";
+    case DAT:
+        return "dat";
     case TXT:
         return "txt";
     case JSON:
@@ -137,9 +137,9 @@ char *FILE_Extension_to_String(extension_t extension)
 
 extension_t FILE_String_to_Extension(char *extension)
 {
-    if (strcasecmp(extension, "csv") == 0)
+    if (strcasecmp(extension, "dat") == 0)
     {
-        return CSV;
+        return DAT;
     }
     else if (strcasecmp(extension, "txt") == 0)
     {

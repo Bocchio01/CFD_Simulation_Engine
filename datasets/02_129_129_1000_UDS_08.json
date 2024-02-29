@@ -6,16 +6,15 @@
             "y": 1
         },
         "fluid": {
-            "nu": 1e-1,
-            "Re": 100
+            "Re": 1000
         }
     },
     "engine": {
         "mesh": {
             "type": "STAGGERED",
             "nodes": {
-                "Nx": 80,
-                "Ny": 80
+                "Nx": 129,
+                "Ny": 129
             },
             "elements": {
                 "type": "RECTANGULAR"
@@ -24,10 +23,10 @@
         "method": {
             "type": "SCGS",
             "tolerance": 1e-4,
-            "maxIter": 1000,
+            "maxIter": 3000,
             "underRelaxation": {
-                "u": 0.5,
-                "v": 0.5,
+                "u": 0.8,
+                "v": 0.8,
                 "p": 0.3
             }
         },
@@ -38,9 +37,9 @@
     },
     "out": {
         "file": {
-            "path": "data",
-            "name": "output",
-            "format": "CSV"
+            "path": "results",
+            "name": "02_129_129_1000_UDS_08",
+            "format": "DAT"
         }
     }
 }

@@ -56,10 +56,21 @@ void CFD_Collocate_Fields(CFD_t *cfd)
 
 void CFD_Save_Results(CFD_t *cfd)
 {
-
     cfd->out->file->buffer = (char *)malloc(100 * sizeof(char));
-    sprintf(cfd->out->file->buffer, "X,Y,U,V,P\n");
+    sprintf(cfd->out->file->buffer, "%s\n", cfd->in->file->name);
     FILE_Write(cfd->out->file, WRITE);
+
+    sprintf(cfd->out->file->buffer, "RE: %f\n", cfd->in->fluid->Re);
+    FILE_Write(cfd->out->file, APPEND);
+
+    sprintf(cfd->out->file->buffer, "ITERACTIONS: %d\n", cfd->engine->method->iteractions);
+    FILE_Write(cfd->out->file, APPEND);
+
+    sprintf(cfd->out->file->buffer, "VARIABLES = \"X\", \"Y\", \"U\", \"V\", \"P\"\n");
+    FILE_Write(cfd->out->file, APPEND);
+
+    sprintf(cfd->out->file->buffer, "ZONE F=POINT, I=%d, J=%d\n", cfd->engine->mesh->nodes->Nx, cfd->engine->mesh->nodes->Ny);
+    FILE_Write(cfd->out->file, APPEND);
 
     uint8_t rows = cfd->engine->mesh->data->x->rows;
     uint8_t cols = cfd->engine->mesh->data->x->cols;

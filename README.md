@@ -1,6 +1,10 @@
-# Lid-driven cavity incompressible flow
+> [!CAUTION]
+> Unfortunately, the code still doesn't work properly. Looks like Reynolds number doesn't affect the solution and the bottom vortices are not created. I really have no idea why. I'm still working on it.
 
-This assignment is about solving the well known **2D lid-driven cavity incompressible flow** problem using different algorithms and schemes.
+
+# Lid-driven cavity incompressible flow (steady state)
+
+This assignment is about solving the well known **2D lid-driven cavity incompressible flow (steady state)** problem using different algorithms and schemes.
 
 <div align=center>
 
@@ -12,7 +16,9 @@ Lid-driven cavity incompressible flow solution
 
 ## Problem statement
 
-The problem consists in a square cavity with a lid moving at a constant velocity. The flow is incompressible and the Reynolds number is low. **Navier-Stokes** equations and the **pressure-velocity coupling** are used to solve the problem.
+The problem consists in a square cavity with a lid moving at a constant velocity.
+The flow is incompressible and Reynolds number is low (Re < 1000).
+**Navier-Stokes** equations and the **pressure-velocity coupling** are used to solve the problem.
 
 ## Methods and schemes
 
@@ -21,19 +27,20 @@ In particular, we can choose the following options:
 
 - Methods:
   - **Gauss-Siedel (SCGS)**
-  - **SIMPLE**
+  - **SIMPLE** (still not implemented)
 - Schemes:
   - **Convection schemes**:
     - UDS
-    - Hybrid
+    - CDS (still not implemented)
+    - Hybrid (still not implemented)
     - QUICK
   - **Diffusion schemes**:
     - Second order central difference
     - Fourth order central difference
 
-## Data in
+## Data input
 
-The code is higly customizable and as an in it requires the following parameters:
+The code reads the input from a file in JSON format.
 
 ```json
 // Example of in file
@@ -41,19 +48,19 @@ The code is higly customizable and as an in it requires the following parameters
     "in": {
         "uLid": 1.0,
         "geometry": {
-            "x": 1,
-            "y": 1
+            "x": 1.0,
+            "y": 1.0
         },
         "fluid": {
-            "nu": 1.0
+            "Re": 1000
         }
     },
     "engine": {
         "mesh": {
             "type": "STAGGERED",
             "nodes": {
-                "Nx": 10,
-                "Ny": 10
+                "Nx": 40,
+                "Ny": 40
             },
             "elements": {
                 "type": "RECTANGULAR"
@@ -62,7 +69,7 @@ The code is higly customizable and as an in it requires the following parameters
         "method": {
             "type": "SCGS",
             "tolerance": 1e-4,
-            "maxIter": 1000,
+            "maxIter": 5000,
             "underRelaxation": {
                 "u": 0.5,
                 "v": 0.5,
@@ -75,25 +82,27 @@ The code is higly customizable and as an in it requires the following parameters
         }
     },
     "out": {
-        "format": "JSON"
+        "file": {
+            "path": "results",
+            "name": "04_40_40_1000_UDS_05",
+            "format": "DAT"
+        }
     }
 }
 ```
 
-### CMD in
+### CMD input
 
 From the command line, the possible in parameters are:
 
 - `-h` or `--help` to print the help
 - `-v` or `--version` to print the version
 - `-i` or `--in` to specify the in file relative or absolute. Default: `-i data/input.json`
-- `-f` or `--format` to specify the out file format. Default: `-f JSON`
+- `-f` or `--format` to specify the out file format. Default: `-f DAT`
 
 ## Output
 
-The out is a file containing the solution of the problem.
-The format of the out file can be specified in the in file.
-
+The output is saved in a `DAT` file and it is possible to visualize it using the `MATLAB` script provided in the `results/plotting` folder.
 
 ## How to...
 
@@ -105,8 +114,7 @@ The format of the out file can be specified in the in file.
 You can compile the code by typing:
 
 ```bash
-# TODO fix the gcc SRCS
-gcc -Wall -Wextra -Werror -pedantic -std=c99 -O2 *.c -o main
+gcc -DLOG_USE_COLOR  src/utils/cALGEBRA/*.c src/utils/cJSON/*.c  src/utils/cFILE/*.c src/utils/cLOG/*.c src/*.c src/in/*.c src/out/*.c src/in/parsers/*.c src/engine/*.c src/engine/mesh/*.c src/engine/methods/*.c src/engine/schemes/*.c -o main
 ```
 
 Or, alternatively, you can use the `Makefile` included in the repository by typing:
@@ -126,11 +134,5 @@ The most straightforward way to run the code is by typing:
 Here is an example of how to run the code with the default parameters:
 
 ```bash
-./main -i data/input.json -f JSON
+./main -i data/input.json -f DAT
 ```
-
-### Usefull links
-
-- [MIT education](https://web.mit.edu/calculix_v2.7/CalculiX/ccx_2.7/doc/ccx/node14.html)
-- [Fifty2](https://www.fifty2.eu/innovation/lid-driven-cavity-2d-in-preonlab/)
-- [Java plots](https://stackoverflow.com/questions/1740830/java-3d-plot-library)

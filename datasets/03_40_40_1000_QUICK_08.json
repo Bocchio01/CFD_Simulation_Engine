@@ -1,0 +1,45 @@
+{
+    "in": {
+        "uLid": 1.0,
+        "geometry": {
+            "x": 1,
+            "y": 1
+        },
+        "fluid": {
+            "Re": 1000
+        }
+    },
+    "engine": {
+        "mesh": {
+            "type": "STAGGERED",
+            "nodes": {
+                "Nx": 40,
+                "Ny": 40
+            },
+            "elements": {
+                "type": "RECTANGULAR"
+            }
+        },
+        "method": {
+            "type": "SCGS",
+            "tolerance": 1e-4,
+            "maxIter": 3000,
+            "underRelaxation": {
+                "u": 0.8,
+                "v": 0.8,
+                "p": 0.3
+            }
+        },
+        "schemes": {
+            "convection": "QUICK",
+            "diffusion": "FOURTH_ORDER"
+        }
+    },
+    "out": {
+        "file": {
+            "path": "results",
+            "name": "03_40_40_1000_QUICK_08",
+            "format": "DAT"
+        }
+    }
+}

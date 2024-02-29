@@ -35,8 +35,8 @@ void CFD_Prepare(CFD_t *cfd, int argc, char **argv)
     CFD_CMD_Parse(cfd, argc, argv);
     if (cfd->in->file->path == NULL)
     {
-        cfd->in->file->path = DEFAULT_IN_FILE_PATH;
-        cfd->in->file->name = DEFAULT_IN_FILE_NAME;
+        sprintf(cfd->in->file->path, "%s", DEFAULT_IN_FILE_PATH);
+        sprintf(cfd->in->file->name, "%s", DEFAULT_IN_FILE_NAME);
         cfd->in->file->extension = FILE_String_to_Extension(DEFAULT_IN_FILE_FORMAT);
     }
     FILE_Read(cfd->in->file);

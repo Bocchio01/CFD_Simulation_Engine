@@ -41,6 +41,7 @@ typedef struct
     method_type_t type;
     float tolerance;
     int maxIter;
+    int iteractions;
     under_relaxation_factors_t *under_relaxation_factors;
     method_index_t *index;
     method_state_t *state;
@@ -50,5 +51,7 @@ typedef struct
 void CFD_Setup_Method(CFD_t *cfd);
 
 void CFD_Run_Method(CFD_t *cfd);
+
+double CFD_Get_State(CFD_t *cfd, phi_t phi, int i, int j);
 
 #endif

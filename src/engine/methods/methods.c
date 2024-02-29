@@ -2,6 +2,7 @@
 
 #include "methods.h"
 
+#include "../../utils/cLOG/cLOG.h"
 #include "../../utils/cALGEBRA/cMAT.h"
 
 #include "../../CFD.h"
@@ -47,4 +48,28 @@ void CFD_Setup_Method(CFD_t *cfd)
 void CFD_Run_Method(CFD_t *cfd)
 {
     cfd->engine->method->callable(cfd);
+}
+
+double CFD_Get_State(CFD_t *cfd, phi_t phi, int i, int j)
+{
+
+    uint8_t rows = cfd->engine->mesh->data->x->rows;
+    uint8_t cols = cfd->engine->mesh->data->x->cols;
+
+    switch (phi)
+    {
+    case u:
+        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->u->data[j][i] : 0.0;
+
+    case v:
+        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->v->data[j][i] : 0.0;
+
+    case p:
+        return (i >= 0 && j >= 0 && i < cols && j < rows) ? cfd->engine->method->state->p->data[j][i] : 0.0;
+
+    default:
+        log_fatal("Error: CFD_Get_State phi not found");
+        exit(EXIT_FAILURE);
+        break;
+    }
 }

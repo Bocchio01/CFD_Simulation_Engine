@@ -6,7 +6,7 @@
 
 typedef enum
 {
-    CSV,
+    DAT,
     TXT,
     JSON,
 } extension_t;

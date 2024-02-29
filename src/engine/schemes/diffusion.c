@@ -10,17 +10,17 @@ void CFD_Setup_Diffusion(CFD_t *cfd)
     switch (cfd->engine->schemes->diffusion->type)
     {
     case SECOND_ORDER:
-        cfd->engine->schemes->diffusion->callable = engineSchemeDiffusion2;
+        cfd->engine->schemes->diffusion->callable = CFD_Scheme_Diffusion_Second;
         break;
     case FOURTH_ORDER:
-        cfd->engine->schemes->diffusion->callable = engineSchemeDiffusion4;
+        cfd->engine->schemes->diffusion->callable = CFD_Scheme_Diffusion_Fourth;
         break;
     }
 }
 
-cVEC_t *engineSchemeDiffusion2(CFD_t *cfd, uint8_t i, uint8_t j)
+void CFD_Scheme_Diffusion_Second(CFD_t *cfd, uint8_t i, uint8_t j)
 {
-    cVEC_t *Ap = VEC_Init(EENN + 1);
+    cVEC_t *Ap = cfd->engine->schemes->convection->coefficients;
 
     double dx = cfd->engine->mesh->element->size->dx;
     double dy = cfd->engine->mesh->element->size->dy;
@@ -52,12 +52,13 @@ cVEC_t *engineSchemeDiffusion2(CFD_t *cfd, uint8_t i, uint8_t j)
     Ap->data[EEN] = 0.0;
     Ap->data[EENN] = 0.0;
 
-    return Ap;
+    // printf("Ap->data[WP]: %f\n", Ap->data[WP]);
+    // printf("Ap->data[PP]: %f\n", Ap->data[PP]);
 }
 
-cVEC_t *engineSchemeDiffusion4(CFD_t *cfd, uint8_t i, uint8_t j)
+void CFD_Scheme_Diffusion_Fourth(CFD_t *cfd, uint8_t i, uint8_t j)
 {
-    cVEC_t *Ap = VEC_Init(EENN + 1);
+    cVEC_t *Ap = cfd->engine->schemes->convection->coefficients;
 
     double dx = cfd->engine->mesh->element->size->dx;
     double dy = cfd->engine->mesh->element->size->dy;
@@ -88,6 +89,4 @@ cVEC_t *engineSchemeDiffusion4(CFD_t *cfd, uint8_t i, uint8_t j)
     Ap->data[EEP] = -(dy * nu) / (12.0 * dx);
     Ap->data[EEN] = 0.0;
     Ap->data[EENN] = 0.0;
-
-    return Ap;
 }

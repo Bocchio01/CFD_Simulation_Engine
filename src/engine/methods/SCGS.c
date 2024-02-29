@@ -6,6 +6,7 @@ typedef struct CFD_t CFD_t;
 
 #include <stdlib.h>
 #include <math.h>
+#include "methods.h"
 #include "../../CFD.h"
 #include "../schemes/schemes.h"
 #include "../../utils/cALGEBRA/cMAT.h"
@@ -16,11 +17,11 @@ void CFD_SCGS(CFD_t *cfd)
 {
     SCGS_t *scgs;
 
-    log_info("SCGS method\n");
-
     scgs = CFD_SCGS_Allocate(cfd);
 
-    for (int iteration = 0; iteration < cfd->engine->method->maxIter; iteration++)
+    for (cfd->engine->method->iteractions = 0;
+         cfd->engine->method->iteractions < cfd->engine->method->maxIter;
+         cfd->engine->method->iteractions++)
     {
         CFD_SCGS_Reset(scgs);
 
@@ -47,32 +48,31 @@ void CFD_SCGS(CFD_t *cfd)
 
         CFD_SCGS_BC_NoSlip_Tangetial(cfd, scgs);
 
-        if (iteration % 50 == 0)
-        {
-            log_info("\nIteration:\t%d\nResidual:\t%.10f", iteration + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
-            log_debug("Residuals: u = %f, v = %f, p = %f\n", scgs->residual->u, scgs->residual->v, scgs->residual->p);
-        }
-
         if (fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)) < cfd->engine->method->tolerance &&
-            iteration > 1)
+            cfd->engine->method->iteractions > 1)
         {
-            log_info("Algorithm converged in %d iterations", iteration);
+            log_info("Algorithm converged in %d iterations", cfd->engine->method->iteractions + 1);
 
-            log_info("\nIteration:\t%d\nResidual:\t%.10f", iteration + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
+            log_info("\nIteration:\t%d\nResidual:\t%.10f", cfd->engine->method->iteractions + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
             log_debug("Residuals: u = %f, v = %f, p = %f\n", scgs->residual->u, scgs->residual->v, scgs->residual->p);
 
-            log_debug("U matrix");
-            MAT_Print_States(cfd->engine->method->state->u);
-
-            log_debug("V matrix");
-            MAT_Print_States(cfd->engine->method->state->v);
-
-            log_debug("P matrix");
-            MAT_Print_States(cfd->engine->method->state->p);
+            CFD_SCGS_Free(scgs);
 
             break;
         }
+
+        if (cfd->engine->method->iteractions % 50 == 0)
+        {
+            log_info("\nIteration:\t%d\nResidual:\t%.10f", cfd->engine->method->iteractions + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
+            log_debug("Residuals: u = %f, v = %f, p = %f\n", scgs->residual->u, scgs->residual->v, scgs->residual->p);
+        }
     }
+
+    // log_debug("u\n");
+    // MAT_Print_States(cfd->engine->method->state->u);
+    // log_debug("v\n");
+    // MAT_Print_States(cfd->engine->method->state->v);
+    // MAT_Print_States(cfd->engine->method->state->p);
 }
 
 SCGS_t *CFD_SCGS_Allocate(CFD_t *cfd)
@@ -85,9 +85,11 @@ SCGS_t *CFD_SCGS_Allocate(CFD_t *cfd)
     {
         scgs->vanka = (Vanka_t *)malloc(sizeof(Vanka_t));
         scgs->residual = (residual_t *)malloc(sizeof(residual_t));
+        scgs->A_coefficients = VEC_Init(EENN + 1);
 
         if (scgs->vanka != NULL &&
-            scgs->residual != NULL)
+            scgs->residual != NULL &&
+            scgs->A_coefficients != NULL)
         {
             scgs->vanka->A = MAT_Init(5, 5);
             scgs->vanka->R = VEC_Init(5);
@@ -95,8 +97,7 @@ SCGS_t *CFD_SCGS_Allocate(CFD_t *cfd)
 
             if (scgs->vanka->A != NULL &&
                 scgs->vanka->R != NULL &&
-                scgs->vanka->x != NULL &&
-                scgs->residual != NULL)
+                scgs->vanka->x != NULL)
             {
                 return scgs;
             }
@@ -114,6 +115,7 @@ void CFD_SCGS_Free(SCGS_t *scgs)
     VEC_Free(scgs->vanka->x);
     free(scgs->residual);
     free(scgs->vanka);
+    free(scgs->A_coefficients);
     free(scgs);
 }
 
@@ -126,7 +128,6 @@ void CFD_SCGS_Reset(SCGS_t *scgs)
 
 void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
 {
-    cVEC_t *A_coefficients;
     double Ap[4];
 
     uint8_t i = cfd->engine->method->index->i;
@@ -147,27 +148,45 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
 
     for (int el = 0; el < 4; el++)
     {
-        A_coefficients = VEC_Sum(
-            cfd->engine->schemes->convection->callable(cfd, i + positions[el].i, j + positions[el].j, positions[el].phi),
-            cfd->engine->schemes->diffusion->callable(cfd, i + positions[el].i, j + positions[el].j));
-
-        Ap[el] = A_coefficients->data[PP];
         scgs->vanka->R->data[el] = 0.0;
 
-        for (uint8_t r = 0; r < A_coefficients->length; r++)
+        if (i == cfd->engine->mesh->n_ghosts ||
+            j == cfd->engine->mesh->n_ghosts ||
+            i == cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts - 1 ||
+            j == cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts - 1)
         {
-            double phi = getState(cfd, positions[el].phi, i + positions[el].i + ((r / 5) % 5) - 2, j + positions[el].j + (r % 5) - 2);
+            CFD_Scheme_Convection_UDS(cfd, i + positions[el].i, j + positions[el].j, positions[el].phi);
+            CFD_Scheme_Diffusion_Second(cfd, i + positions[el].i, j + positions[el].j);
+        }
+        else
+        {
+            cfd->engine->schemes->convection->callable(cfd, i + positions[el].i, j + positions[el].j, positions[el].phi);
+            cfd->engine->schemes->diffusion->callable(cfd, i + positions[el].i, j + positions[el].j);
+        }
 
-            scgs->vanka->R->data[el] += ((r == PP) ? -1.0 : +1.0) * (A_coefficients->data[r]) * phi;
+        for (uint8_t k = 0; k < scgs->A_coefficients->length; k++)
+        {
+            double phi = CFD_Get_State(cfd, positions[el].phi, i + positions[el].i + ((k / 5) % 5) - 2, j + positions[el].j + (k % 5) - 2);
+            scgs->A_coefficients->data[k] = cfd->engine->schemes->convection->coefficients->data[k] + cfd->engine->schemes->diffusion->coefficients->data[k];
+
+            if (k == PP)
+            {
+                Ap[el] = scgs->A_coefficients->data[k];
+                scgs->vanka->R->data[el] -= (scgs->A_coefficients->data[k]) * phi;
+            }
+            else
+            {
+                scgs->vanka->R->data[el] += (scgs->A_coefficients->data[k]) * phi;
+            }
         }
     }
 
-    scgs->vanka->R->data[0] += (getState(cfd, p, i - 1, j + 0) - getState(cfd, p, i + 0, j + 0)) * cfd->engine->mesh->element->size->dy;
-    scgs->vanka->R->data[1] += (getState(cfd, p, i + 0, j + 0) - getState(cfd, p, i + 1, j + 0)) * cfd->engine->mesh->element->size->dy;
-    scgs->vanka->R->data[2] += (getState(cfd, p, i + 0, j - 1) - getState(cfd, p, i + 0, j + 0)) * cfd->engine->mesh->element->size->dx;
-    scgs->vanka->R->data[3] += (getState(cfd, p, i + 0, j + 0) - getState(cfd, p, i + 0, j + 1)) * cfd->engine->mesh->element->size->dx;
-    scgs->vanka->R->data[4] = -((getState(cfd, u, i + 0, j + 0) - getState(cfd, u, i - 1, j + 0)) * cfd->engine->mesh->element->size->dy +
-                                (getState(cfd, v, i + 0, j + 0) - getState(cfd, v, i + 0, j - 1)) * cfd->engine->mesh->element->size->dx);
+    scgs->vanka->R->data[0] += (CFD_Get_State(cfd, p, i - 1, j + 0) - CFD_Get_State(cfd, p, i + 0, j + 0)) * cfd->engine->mesh->element->size->dy;
+    scgs->vanka->R->data[1] += (CFD_Get_State(cfd, p, i + 0, j + 0) - CFD_Get_State(cfd, p, i + 1, j + 0)) * cfd->engine->mesh->element->size->dy;
+    scgs->vanka->R->data[2] += (CFD_Get_State(cfd, p, i + 0, j - 1) - CFD_Get_State(cfd, p, i + 0, j + 0)) * cfd->engine->mesh->element->size->dx;
+    scgs->vanka->R->data[3] += (CFD_Get_State(cfd, p, i + 0, j + 0) - CFD_Get_State(cfd, p, i + 0, j + 1)) * cfd->engine->mesh->element->size->dx;
+    scgs->vanka->R->data[4] = -((CFD_Get_State(cfd, u, i + 0, j + 0) - CFD_Get_State(cfd, u, i - 1, j + 0)) * cfd->engine->mesh->element->size->dy +
+                                (CFD_Get_State(cfd, v, i + 0, j + 0) - CFD_Get_State(cfd, v, i + 0, j - 1)) * cfd->engine->mesh->element->size->dx);
 
     scgs->vanka->A->data[0][0] = Ap[0] / cfd->engine->method->under_relaxation_factors->u;
     scgs->vanka->A->data[1][1] = Ap[1] / cfd->engine->method->under_relaxation_factors->u;

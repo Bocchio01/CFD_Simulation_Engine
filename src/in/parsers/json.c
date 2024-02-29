@@ -213,10 +213,10 @@ void CFD_JSON_Parse_Out_File(CFD_t *cfd, cJSON *file)
     const cJSON *extension = NULL;
 
     path = cJSON_GetObjectItemCaseSensitive(file, "path");
-    cfd->out->file->path = cJSON_IsString(path) ? path->valuestring : DEFAULT_OUT_FILE_PATH;
+    sprintf(cfd->out->file->path, "%s", cJSON_IsString(path) ? path->valuestring : DEFAULT_OUT_FILE_PATH);
 
     name = cJSON_GetObjectItemCaseSensitive(file, "name");
-    cfd->out->file->name = cJSON_IsString(name) ? name->valuestring : DEFAULT_OUT_FILE_NAME;
+    sprintf(cfd->out->file->name, "%s", cJSON_IsString(name) ? name->valuestring : DEFAULT_OUT_FILE_NAME);
 
     extension = cJSON_GetObjectItemCaseSensitive(file, "format");
     if (FILE_String_to_Extension(extension->valuestring) != -1)
@@ -225,8 +225,8 @@ void CFD_JSON_Parse_Out_File(CFD_t *cfd, cJSON *file)
     }
     else
     {
-        log_warn("Invalid output file extension. Permitted values: CSV | TXT | JSON");
-        log_info("Choosing default JSON");
-        cfd->out->file->extension = JSON;
+        log_warn("Invalid output file extension. Permitted values: DAT | TXT | JSON");
+        log_info("Choosing default DAT");
+        cfd->out->file->extension = DAT;
     }
 }
