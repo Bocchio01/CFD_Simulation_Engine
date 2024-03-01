@@ -13,7 +13,7 @@
 #include "cMAT.h"
 #include "../cLOG/cLOG.h"
 
-cMAT_t *MAT_Init(uint8_t rows, uint8_t cols)
+cMAT_t *MAT_Init(uint16_t rows, uint16_t cols)
 {
     cMAT_t *mat = (cMAT_t *)malloc(sizeof(cMAT_t));
     if (mat == NULL)
@@ -31,7 +31,7 @@ cMAT_t *MAT_Init(uint8_t rows, uint8_t cols)
         exit(EXIT_FAILURE);
     }
 
-    for (uint8_t i = 0; i < rows; i++)
+    for (uint16_t i = 0; i < rows; i++)
     {
         mat->data[i] = (double *)malloc(cols * sizeof(double));
         if (mat->data[i] == NULL)
@@ -41,7 +41,7 @@ cMAT_t *MAT_Init(uint8_t rows, uint8_t cols)
         }
     }
 
-    for (uint8_t i = 0; i < rows; i++)
+    for (uint16_t i = 0; i < rows; i++)
     {
         for (int j = 0; j < cols; j++)
         {
@@ -56,7 +56,7 @@ cMAT_t *MAT_Transpose(cMAT_t *A)
 {
     cMAT_t *result = MAT_Init(A->cols, A->rows);
 
-    for (uint8_t i = 0; i < A->rows; i++)
+    for (uint16_t i = 0; i < A->rows; i++)
     {
         for (int j = 0; j < A->cols; j++)
         {
@@ -71,7 +71,7 @@ cMAT_t *MAT_MultiplyScalar(double scalar, cMAT_t *A)
 {
     cMAT_t *result = MAT_Init(A->rows, A->cols);
 
-    for (uint8_t i = 0; i < A->rows; i++)
+    for (uint16_t i = 0; i < A->rows; i++)
     {
         for (int j = 0; j < A->cols; j++)
         {
@@ -88,7 +88,7 @@ cMAT_t *MAT_Sum(cMAT_t *A, cMAT_t *B)
 
     cMAT_t *result = MAT_Init(A->rows, A->cols);
 
-    for (uint8_t i = 0; i < A->rows; i++)
+    for (uint16_t i = 0; i < A->rows; i++)
     {
         for (int j = 0; j < A->cols; j++)
         {
@@ -105,7 +105,7 @@ cMAT_t *MAT_Multiply(cMAT_t *A, cMAT_t *B)
 
     cMAT_t *result = MAT_Init(A->rows, B->cols);
 
-    for (uint8_t i = 0; i < A->rows; i++)
+    for (uint16_t i = 0; i < A->rows; i++)
     {
         for (int j = 0; j < B->cols; j++)
         {
@@ -122,7 +122,7 @@ cMAT_t *MAT_Multiply(cMAT_t *A, cMAT_t *B)
 
 void MAT_Free(cMAT_t *A)
 {
-    for (uint8_t i = 0; i < A->rows; i++)
+    for (uint16_t i = 0; i < A->rows; i++)
     {
         free(A->data[i]);
     }
@@ -152,7 +152,7 @@ void MAT_Print(cMAT_t *A)
         printf("\t");
         for (int j = 0; j < A->cols; j++)
         {
-            printf("%.1f ", A->data[i][j]);
+            printf("%+.3f ", A->data[i][j]);
         }
         printf("\n");
     }
@@ -170,7 +170,7 @@ void MAT_Print_States(cMAT_t *state)
         printf("\t");
         for (int i = 0; i < state->cols; i++)
         {
-            printf("%.1f ", state->data[j][i]);
+            printf("%+.1f ", state->data[j][i]);
         }
         printf("\n");
     }

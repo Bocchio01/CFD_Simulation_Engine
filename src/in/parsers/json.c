@@ -4,7 +4,6 @@
 #include "../../utils/cLOG/cLOG.h"
 
 #include "json.h"
-#include "../../main.h"
 #include "../../CFD.h"
 
 void CFD_JSON_Parse(CFD_t *cfd)
@@ -62,7 +61,7 @@ void CFD_JSON_Parse_In_Fluid(CFD_t *cfd, cJSON *fluid)
     const cJSON *Re = NULL;
 
     nu = cJSON_GetObjectItemCaseSensitive(fluid, "nu");
-    cfd->in->fluid->nu = cJSON_IsNumber(nu) ? cJSON_GetNumberValue(nu) : DEFAULT_IN_FLUID_MU;
+    cfd->in->fluid->nu = cJSON_IsNumber(nu) ? cJSON_GetNumberValue(nu) : DEFAULT_IN_FLUID_NU;
 
     Re = cJSON_GetObjectItemCaseSensitive(fluid, "Re");
     cfd->in->fluid->Re = cJSON_IsNumber(Re) ? cJSON_GetNumberValue(Re) : DEFAULT_IN_FLUID_RE;
@@ -82,7 +81,7 @@ void CFD_JSON_Parse_Engine_Mesh(CFD_t *cfd, cJSON *mesh)
     const cJSON *elements = NULL;
 
     type = cJSON_GetObjectItemCaseSensitive(mesh, "type");
-    if (strcasecmp(type->valuestring, "STAGGERED") == 0)
+    if (strcasecmp(cJSON_IsString(type) ? type->valuestring : DEFAULT_ENGINE_MESH_TYPE, "STAGGERED") == 0)
     {
         cfd->engine->mesh->type = STAGGERED;
     }
@@ -105,7 +104,7 @@ void CFD_JSON_Parse_Engine_Mesh(CFD_t *cfd, cJSON *mesh)
 
     elements = cJSON_GetObjectItemCaseSensitive(mesh, "elements");
     const cJSON *element_type = cJSON_GetObjectItemCaseSensitive(elements, "type");
-    if (strcasecmp(element_type->valuestring, "RECTANGULAR") == 0)
+    if (strcasecmp(cJSON_IsString(element_type) ? element_type->valuestring : DEFAULT_ENGINE_MESH_ELEMENTS_TYPE, "RECTANGULAR") == 0)
     {
         cfd->engine->mesh->element->type = RECTANGULAR;
     }
@@ -129,7 +128,7 @@ void CFD_JSON_Parse_Engine_Method(CFD_t *cfd, cJSON *method)
     const cJSON *underRelaxation = NULL;
 
     type = cJSON_GetObjectItemCaseSensitive(method, "type");
-    if (strcasecmp(type->valuestring, "SCGS") == 0)
+    if (strcasecmp(cJSON_IsString(type) ? type->valuestring : DEFAULT_ENGINE_METHOD_TYPE, "SCGS") == 0)
     {
         cfd->engine->method->type = SCGS;
     }
@@ -165,39 +164,43 @@ void CFD_JSON_Parse_Engine_Schemes(CFD_t *cfd, cJSON *schemes)
     const cJSON *diffusion = NULL;
 
     convection = cJSON_GetObjectItemCaseSensitive(schemes, "convection");
-    if (strcasecmp(convection->valuestring, "UDS") == 0)
+    if (strcasecmp(cJSON_IsString(convection) ? convection->valuestring : DEFAULT_ENGINE_SCHEMES_CONVECTION, "UDS") == 0)
     {
         cfd->engine->schemes->convection->type = UDS;
     }
-    else if (strcasecmp(convection->valuestring, "HYBRID") == 0)
+    else if (strcasecmp(convection->valuestring, "CDS") == 0)
     {
-        cfd->engine->schemes->convection->type = HYBRID;
+        cfd->engine->schemes->convection->type = CDS;
     }
     else if (strcasecmp(convection->valuestring, "QUICK") == 0)
     {
         cfd->engine->schemes->convection->type = QUICK;
     }
+    else if (strcasecmp(convection->valuestring, "HYBRID") == 0)
+    {
+        cfd->engine->schemes->convection->type = HYBRID;
+    }
     else
     {
-        log_warn("Invalid convection scheme. Permitted values: UDS | HYBRID | QUICK");
+        log_warn("Invalid convection scheme. Permitted values: UDS | UDS | QUICK | HYBRID");
         log_info("Choosing default UDS");
         cfd->engine->schemes->convection->type = UDS;
     }
 
     diffusion = cJSON_GetObjectItemCaseSensitive(schemes, "diffusion");
-    if (strcasecmp(diffusion->valuestring, "SECOND_ORDER") == 0)
+    if (strcasecmp(cJSON_IsString(diffusion) ? diffusion->valuestring : DEFAULT_ENGINE_SCHEMES_DIFFUSION, "SECOND") == 0)
     {
-        cfd->engine->schemes->diffusion->type = SECOND_ORDER;
+        cfd->engine->schemes->diffusion->type = SECOND;
     }
-    else if (strcasecmp(diffusion->valuestring, "FOURTH_ORDER") == 0)
+    else if (strcasecmp(diffusion->valuestring, "FOURTH") == 0)
     {
-        cfd->engine->schemes->diffusion->type = FOURTH_ORDER;
+        cfd->engine->schemes->diffusion->type = FOURTH;
     }
     else
     {
-        log_warn("Invalid diffusion scheme. Permitted values: SECOND_ORDER | FOURTH_ORDER");
-        log_info("Choosing default SECOND_ORDER");
-        cfd->engine->schemes->diffusion->type = SECOND_ORDER;
+        log_warn("Invalid diffusion scheme. Permitted values: SECOND | FOURTH");
+        log_info("Choosing default SECOND");
+        cfd->engine->schemes->diffusion->type = SECOND;
     }
 }
 
@@ -216,12 +219,13 @@ void CFD_JSON_Parse_Out_File(CFD_t *cfd, cJSON *file)
     sprintf(cfd->out->file->path, "%s", cJSON_IsString(path) ? path->valuestring : DEFAULT_OUT_FILE_PATH);
 
     name = cJSON_GetObjectItemCaseSensitive(file, "name");
-    sprintf(cfd->out->file->name, "%s", cJSON_IsString(name) ? name->valuestring : DEFAULT_OUT_FILE_NAME);
+    // sprintf(cfd->out->file->name, "%s", cJSON_IsString(name) ? name->valuestring : DEFAULT_OUT_FILE_NAME);
+    sprintf(cfd->out->file->name, "%s", cJSON_IsString(name) ? name->valuestring : cfd->in->file->name);
 
     extension = cJSON_GetObjectItemCaseSensitive(file, "format");
-    if (FILE_String_to_Extension(extension->valuestring) != -1)
+    if (FILE_String_to_Extension(cJSON_IsString(extension) ? extension->valuestring : DEFAULT_OUT_FILE_FORMAT) != -1)
     {
-        cfd->out->file->extension = FILE_String_to_Extension(extension->valuestring);
+        cfd->out->file->extension = FILE_String_to_Extension(cJSON_IsString(extension) ? extension->valuestring : DEFAULT_OUT_FILE_FORMAT);
     }
     else
     {

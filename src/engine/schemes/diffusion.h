@@ -8,12 +8,12 @@ typedef struct CFD_t CFD_t;
 typedef struct F_coefficients_t F_coefficients_t;
 typedef enum phi_t phi_t;
 
-typedef void (*diffusion_function_t)(CFD_t *cfd, uint8_t i, uint8_t j);
+typedef void (*diffusion_function_t)(CFD_t *cfd);
 
 typedef enum
 {
-    SECOND_ORDER,
-    FOURTH_ORDER,
+    SECOND,
+    FOURTH,
 } diffusion_type_t;
 
 typedef struct
@@ -25,8 +25,8 @@ typedef struct
 
 void CFD_Setup_Diffusion(CFD_t *cfd);
 
-void CFD_Scheme_Diffusion_Second(CFD_t *cfd, uint8_t i, uint8_t j);
+void CFD_Scheme_Diffusion_SECOND(CFD_t *cfd);
 
-void CFD_Scheme_Diffusion_Fourth(CFD_t *cfd, uint8_t i, uint8_t j);
+void CFD_Scheme_Diffusion_FOURTH(CFD_t *cfd);
 
 #endif

@@ -18,8 +18,8 @@ typedef enum
 
 typedef struct
 {
-    uint8_t i;
-    uint8_t j;
+    uint16_t i;
+    uint16_t j;
 } method_index_t;
 
 typedef struct method_state_t
@@ -42,6 +42,7 @@ typedef struct
     float tolerance;
     int maxIter;
     int iteractions;
+    cVEC_t *residual;
     under_relaxation_factors_t *under_relaxation_factors;
     method_index_t *index;
     method_state_t *state;

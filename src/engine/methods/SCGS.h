@@ -36,18 +36,18 @@ typedef struct SCGS_t
 
 void CFD_SCGS(CFD_t *cfd);
 
-SCGS_t *CFD_SCGS_Allocate(CFD_t *cfd); // Mallocs for everything
+SCGS_t *CFD_SCGS_Allocate();
 
-void CFD_SCGS_Free(SCGS_t *scgs); // Frees everything
+void CFD_SCGS_Free(SCGS_t *scgs);
 
-void CFD_SCGS_Reset(SCGS_t *scgs); // Resets everything (sets to 0 probably)
+void CFD_SCGS_Reset(SCGS_t *scgs);
 
-void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs); // Composes the Vanka matrix -> Inside here we call our schemes
+void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs);
 
-void CFD_SCGS_System_Solve(SCGS_t *scgs); // Solves the Vanka matrix
+void CFD_SCGS_System_Solve(SCGS_t *scgs);
 
-void CFD_SCGS_Apply_Correction(CFD_t *cfd, SCGS_t *scgs); // Applies the correction to the Uprime
+void CFD_SCGS_Apply_Correction(CFD_t *cfd, SCGS_t *scgs);
 
-void CFD_SCGS_Update_Residual(SCGS_t *scgs); // Updates the residual
+void CFD_SCGS_Update_Residual(SCGS_t *scgs);
 
 #endif

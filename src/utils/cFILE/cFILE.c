@@ -24,6 +24,9 @@ cFILE_t *FILE_Init()
         file->pointer = NULL;
         file->path = malloc(30 * sizeof(char));
 
+        file->name[0] = '\0';
+        file->path[0] = '\0';
+
         return file;
     }
 
@@ -151,16 +154,16 @@ extension_t FILE_String_to_Extension(char *extension)
     }
     else
     {
-        return -1;
+        return UNKNOWN;
     }
 }
 
 cFILE_t *FILE_Parse_Path(char *full_path)
 {
     char *token;
-    char *name;
-    char *path;
-    char *extension;
+    char *name = NULL;
+    char *path = NULL;
+    char *extension = NULL;
 
     cFILE_t *file = FILE_Init();
 

@@ -43,10 +43,10 @@ void CFD_SCGS_BC_NoSlip_Normal(CFD_t *cfd, SCGS_t *scgs)
     }
 }
 
-void CFD_SCGS_BC_NoSlip_Tangetial(CFD_t *cfd, SCGS_t *scgs)
+void CFD_SCGS_BC_NoSlip_Tangetial(CFD_t *cfd)
 {
     // Horizontal walls
-    for (uint8_t i = 0;
+    for (uint16_t i = 0;
          i < cfd->engine->mesh->nodes->Nx + 2 * cfd->engine->mesh->n_ghosts;
          i++)
     {
@@ -55,11 +55,11 @@ void CFD_SCGS_BC_NoSlip_Tangetial(CFD_t *cfd, SCGS_t *scgs)
     }
 
     // Vertical walls
-    for (uint8_t j = 0;
+    for (uint16_t j = 0;
          j < cfd->engine->mesh->nodes->Ny + 2 * cfd->engine->mesh->n_ghosts;
          j++)
     {
-        cfd->engine->method->state->v->data[j][cfd->engine->mesh->n_ghosts - 1] = 2.0 * 0.0 - cfd->engine->method->state->v->data[cfd->engine->mesh->n_ghosts][j];
-        cfd->engine->method->state->v->data[j][cfd->engine->mesh->n_ghosts + cfd->engine->mesh->nodes->Nx] = 2.0 * 0.0 - cfd->engine->method->state->v->data[cfd->engine->mesh->n_ghosts + cfd->engine->mesh->nodes->Nx - 1][j];
+        cfd->engine->method->state->v->data[j][cfd->engine->mesh->n_ghosts - 1] = 2.0 * 0.0 - cfd->engine->method->state->v->data[j][cfd->engine->mesh->n_ghosts];
+        cfd->engine->method->state->v->data[j][cfd->engine->mesh->n_ghosts + cfd->engine->mesh->nodes->Nx] = 2.0 * 0.0 - cfd->engine->method->state->v->data[j][cfd->engine->mesh->n_ghosts + cfd->engine->mesh->nodes->Nx - 1];
     }
 }

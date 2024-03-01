@@ -11,7 +11,7 @@ void CFD_Setup_Engine(CFD_t *cfd)
 {
     if (!isnan(cfd->in->fluid->Re))
     {
-        cfd->in->fluid->nu = cfd->in->uLid * cfd->in->geometry->x / cfd->in->fluid->Re;
+        cfd->in->fluid->nu = abs(cfd->in->uLid) * cfd->in->geometry->x / cfd->in->fluid->Re;
     }
 
     CFD_Setup_Mesh(cfd);
@@ -20,11 +20,47 @@ void CFD_Setup_Engine(CFD_t *cfd)
 
     log_info("Engine setup complete");
     log_info("Input file:\t%s", cfd->in->file->name);
-    log_info("Solver method:\t%s", cfd->engine->method->type == SCGS ? "SCGS" : "SIMPLE");
+
+    switch (cfd->engine->method->type)
+    {
+    case SCGS:
+        log_info("Solver method:\tSCGS");
+        break;
+    case SIMPLE:
+        log_info("Solver method:\tSIMPLE");
+        break;
+    }
+
     log_info("Solver tolerance:\t%f", cfd->engine->method->tolerance);
     log_info("Solver max iterations:\t%d", cfd->engine->method->maxIter);
-    log_info("Scheme convection :\t%s", cfd->engine->schemes->convection->type == QUICK ? "QUICK" : "UDS");
-    log_info("Scheme diffusion:\t%s", cfd->engine->schemes->diffusion->type == SECOND_ORDER ? "SECOND_ORDER" : "FOURTH_ORDER");
+    log_info("Solver under-relaxation-factors:\t%.3f, %.3f, %.3f", cfd->engine->method->under_relaxation_factors->u, cfd->engine->method->under_relaxation_factors->v, cfd->engine->method->under_relaxation_factors->p);
+
+    switch (cfd->engine->schemes->convection->type)
+    {
+    case UDS:
+        log_info("Scheme convection :\tUDS");
+        break;
+    case CDS:
+        log_info("Scheme convection :\tCDS");
+        break;
+    case QUICK:
+        log_info("Scheme convection :\tQUICK");
+        break;
+    case HYBRID:
+        log_info("Scheme convection :\tHYBRID");
+        break;
+    }
+
+    switch (cfd->engine->schemes->diffusion->type)
+    {
+    case SECOND:
+        log_info("Scheme diffusion:\tSECOND");
+        break;
+    case FOURTH:
+        log_info("Scheme diffusion:\tFOURTH");
+        break;
+    }
+
     log_info("Mesh grid elements:\t%d x %d", cfd->engine->mesh->nodes->Nx, cfd->engine->mesh->nodes->Ny);
     log_info("Fluid viscosity:\t%f", cfd->in->fluid->nu);
     log_info("Fluid Reynolds:\t%f", cfd->in->fluid->Re);

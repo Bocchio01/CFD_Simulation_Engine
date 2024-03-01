@@ -5,8 +5,8 @@
 
 typedef struct
 {
-    uint8_t rows;
-    uint8_t cols;
+    uint16_t rows;
+    uint16_t cols;
     double **data;
 } cMAT_t;
 
@@ -17,7 +17,7 @@ typedef struct
  * @param cols The number of columns in the matrix.
  * @return A cMAT_t struct with the specified number of rows and columns and all elements initialized to 0.
  */
-cMAT_t *MAT_Init(uint8_t rows, uint8_t cols);
+cMAT_t *MAT_Init(uint16_t rows, uint16_t cols);
 
 /**
  * Transposes a given matrix.

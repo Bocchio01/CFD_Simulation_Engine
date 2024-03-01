@@ -50,7 +50,9 @@
         "stdlib.h": "c",
         "math.h": "c",
         "main.h": "c",
-        "simple.h": "c"
+        "simple.h": "c",
+        "atomic": "c",
+        "cstdint": "c"
     },
     "cmake.configureArgs": [
         "-DVCPKG_APPLOCAL_DEPS=ON",

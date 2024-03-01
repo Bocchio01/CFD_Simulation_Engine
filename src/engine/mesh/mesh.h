@@ -27,8 +27,8 @@ typedef enum
 
 typedef struct
 {
-    uint8_t Nx;
-    uint8_t Ny;
+    uint16_t Nx;
+    uint16_t Ny;
 } mesh_nodes_t;
 
 typedef struct
@@ -45,7 +45,7 @@ typedef struct
 
 typedef struct
 {
-    uint8_t n_ghosts;
+    uint16_t n_ghosts;
     mesh_type_t type;
     mesh_nodes_t *nodes;
     mesh_element_t *element;

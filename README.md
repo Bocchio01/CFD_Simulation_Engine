@@ -78,7 +78,7 @@ The code reads the input from a file in JSON format.
         },
         "schemes": {
             "convection": "UDS",
-            "diffusion": "SECOND_ORDER"
+            "diffusion": "SECOND"
         }
     },
     "out": {
@@ -136,3 +136,17 @@ Here is an example of how to run the code with the default parameters:
 ```bash
 ./main -i data/input.json -f DAT
 ```
+
+### Input files
+
+NN_NX_NY_RE_CONV_DIFF_URU_URV
+
+
+
+
+
+
+
+
+
+

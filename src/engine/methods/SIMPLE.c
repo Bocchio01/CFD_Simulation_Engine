@@ -2,7 +2,7 @@
 
 #include "../../CFD.h"
 
-void methodSIMPLE(CFD_t *cfd)
+void CFD_SIMPLE()
 {
     printf("SIMPLE method\n");
 }

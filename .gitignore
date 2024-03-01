@@ -1,5 +1,7 @@
 .resources
-.asv
+**/*.asv
+**/*_*.json
+**/*.dat
 
 #doxygen
 html

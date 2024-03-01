@@ -7,11 +7,11 @@
 
 typedef struct
 {
-    uint8_t length;
+    uint16_t length;
     double *data;
 } cVEC_t;
 
-cVEC_t *VEC_Init(uint8_t length);
+cVEC_t *VEC_Init(uint16_t length);
 
 cVEC_t *VEC_Sum(cVEC_t *V1, cVEC_t *V2);
 

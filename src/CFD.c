@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "utils/cLOG/cLOG.h"
 
-#include "main.h"
 #include "CFD.h"
 #include "in/in.h"
 #include "engine/engine.h"
@@ -33,15 +33,22 @@ CFD_t *CFD_Allocate()
 void CFD_Prepare(CFD_t *cfd, int argc, char **argv)
 {
     CFD_CMD_Parse(cfd, argc, argv);
-    if (cfd->in->file->path == NULL)
+    if (strcasecmp(cfd->in->file->name, "") == 0)
     {
         sprintf(cfd->in->file->path, "%s", DEFAULT_IN_FILE_PATH);
         sprintf(cfd->in->file->name, "%s", DEFAULT_IN_FILE_NAME);
         cfd->in->file->extension = FILE_String_to_Extension(DEFAULT_IN_FILE_FORMAT);
     }
-    FILE_Read(cfd->in->file);
 
-    CFD_JSON_Parse(cfd);
+    if (FILE_Read(cfd->in->file))
+    {
+        CFD_JSON_Parse(cfd);
+    }
+    else
+    {
+        log_fatal("Error: Could not read file");
+        exit(EXIT_FAILURE);
+    }
 }
 
 void CFD_Solve(CFD_t *cfd)

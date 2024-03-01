@@ -1,7 +1,5 @@
 #include "SCGS.h"
 
-#include <windows.h>
-
 typedef struct CFD_t CFD_t;
 
 #include <stdlib.h>
@@ -17,7 +15,7 @@ void CFD_SCGS(CFD_t *cfd)
 {
     SCGS_t *scgs;
 
-    scgs = CFD_SCGS_Allocate(cfd);
+    scgs = CFD_SCGS_Allocate();
 
     for (cfd->engine->method->iteractions = 0;
          cfd->engine->method->iteractions < cfd->engine->method->maxIter;
@@ -46,36 +44,37 @@ void CFD_SCGS(CFD_t *cfd)
             }
         }
 
-        CFD_SCGS_BC_NoSlip_Tangetial(cfd, scgs);
+        CFD_SCGS_BC_NoSlip_Tangetial(cfd);
 
-        if (fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)) < cfd->engine->method->tolerance &&
+        cfd->engine->method->residual->data[cfd->engine->method->iteractions] = fmax(fmax(scgs->residual->u, scgs->residual->v), scgs->residual->p);
+
+        if (isnan(cfd->engine->method->residual->data[cfd->engine->method->iteractions]) ||
+            isinf(cfd->engine->method->residual->data[cfd->engine->method->iteractions]))
+        {
+            log_fatal("Algorithm diverged at iteration %d", cfd->engine->method->iteractions);
+            CFD_SCGS_Free(scgs);
+            exit(EXIT_FAILURE);
+        }
+
+        if (cfd->engine->method->iteractions % 100 == 0 ||
+            cfd->engine->method->residual->data[cfd->engine->method->iteractions] < cfd->engine->method->tolerance)
+        {
+            log_info("\nIteration:\t%d\nResidual:\t%.10f",
+                     cfd->engine->method->iteractions,
+                     cfd->engine->method->residual->data[cfd->engine->method->iteractions]);
+        }
+
+        if (cfd->engine->method->residual->data[cfd->engine->method->iteractions] < cfd->engine->method->tolerance &&
             cfd->engine->method->iteractions > 1)
         {
-            log_info("Algorithm converged in %d iterations", cfd->engine->method->iteractions + 1);
-
-            log_info("\nIteration:\t%d\nResidual:\t%.10f", cfd->engine->method->iteractions + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
-            log_debug("Residuals: u = %f, v = %f, p = %f\n", scgs->residual->u, scgs->residual->v, scgs->residual->p);
-
+            log_info("Algorithm converged in %d iterations", cfd->engine->method->iteractions);
             CFD_SCGS_Free(scgs);
-
             break;
         }
-
-        if (cfd->engine->method->iteractions % 50 == 0)
-        {
-            log_info("\nIteration:\t%d\nResidual:\t%.10f", cfd->engine->method->iteractions + 1, fmax(scgs->residual->u, fmax(scgs->residual->v, scgs->residual->p)));
-            log_debug("Residuals: u = %f, v = %f, p = %f\n", scgs->residual->u, scgs->residual->v, scgs->residual->p);
-        }
     }
-
-    // log_debug("u\n");
-    // MAT_Print_States(cfd->engine->method->state->u);
-    // log_debug("v\n");
-    // MAT_Print_States(cfd->engine->method->state->v);
-    // MAT_Print_States(cfd->engine->method->state->p);
 }
 
-SCGS_t *CFD_SCGS_Allocate(CFD_t *cfd)
+SCGS_t *CFD_SCGS_Allocate()
 {
     SCGS_t *scgs;
 
@@ -130,8 +129,8 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
 {
     double Ap[4];
 
-    uint8_t i = cfd->engine->method->index->i;
-    uint8_t j = cfd->engine->method->index->j;
+    uint16_t i = cfd->engine->method->index->i;
+    uint16_t j = cfd->engine->method->index->j;
 
     typedef struct
     {
@@ -141,10 +140,10 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
     } position;
 
     position positions[] = {
-        {-1, 0, u},
-        {0, 0, u},
-        {0, -1, v},
-        {0, 0, v}};
+        {-1, +0, u},
+        {+0, +0, u},
+        {+0, -1, v},
+        {+0, +0, v}};
 
     for (int el = 0; el < 4; el++)
     {
@@ -156,15 +155,15 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
             j == cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts - 1)
         {
             CFD_Scheme_Convection_UDS(cfd, i + positions[el].i, j + positions[el].j, positions[el].phi);
-            CFD_Scheme_Diffusion_Second(cfd, i + positions[el].i, j + positions[el].j);
+            CFD_Scheme_Diffusion_SECOND(cfd);
         }
         else
         {
             cfd->engine->schemes->convection->callable(cfd, i + positions[el].i, j + positions[el].j, positions[el].phi);
-            cfd->engine->schemes->diffusion->callable(cfd, i + positions[el].i, j + positions[el].j);
+            cfd->engine->schemes->diffusion->callable(cfd);
         }
 
-        for (uint8_t k = 0; k < scgs->A_coefficients->length; k++)
+        for (uint16_t k = 0; k < scgs->A_coefficients->length; k++)
         {
             double phi = CFD_Get_State(cfd, positions[el].phi, i + positions[el].i + ((k / 5) % 5) - 2, j + positions[el].j + (k % 5) - 2);
             scgs->A_coefficients->data[k] = cfd->engine->schemes->convection->coefficients->data[k] + cfd->engine->schemes->diffusion->coefficients->data[k];
@@ -202,6 +201,14 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
     scgs->vanka->A->data[1][4] = -1.0 * cfd->engine->mesh->element->size->dy;
     scgs->vanka->A->data[2][4] = +1.0 * cfd->engine->mesh->element->size->dx;
     scgs->vanka->A->data[3][4] = -1.0 * cfd->engine->mesh->element->size->dx;
+
+    if (abs(scgs->vanka->A->data[0][0]) < abs(scgs->vanka->A->data[4][0]) ||
+        abs(scgs->vanka->A->data[1][1]) < abs(scgs->vanka->A->data[4][1]) ||
+        abs(scgs->vanka->A->data[2][2]) < abs(scgs->vanka->A->data[4][2]) ||
+        abs(scgs->vanka->A->data[3][3]) < abs(scgs->vanka->A->data[4][3]))
+    {
+        log_info("Matrix A is not diagonally dominant @ (it=%d, i=%d, j=%d)", cfd->engine->method->iteractions, i, j);
+    }
 }
 
 void CFD_SCGS_System_Solve(SCGS_t *scgs)
@@ -237,8 +244,8 @@ void CFD_SCGS_System_Solve(SCGS_t *scgs)
 
 void CFD_SCGS_Apply_Correction(CFD_t *cfd, SCGS_t *scgs)
 {
-    uint8_t i = cfd->engine->method->index->i;
-    uint8_t j = cfd->engine->method->index->j;
+    uint16_t i = cfd->engine->method->index->i;
+    uint16_t j = cfd->engine->method->index->j;
 
     cfd->engine->method->state->u->data[j + 0][i - 1] += scgs->vanka->x->data[0];
     cfd->engine->method->state->u->data[j + 0][i + 0] += scgs->vanka->x->data[1];
