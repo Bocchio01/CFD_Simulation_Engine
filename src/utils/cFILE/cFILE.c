@@ -160,37 +160,26 @@ extension_t FILE_String_to_Extension(char *extension)
 
 cFILE_t *FILE_Parse_Path(char *full_path)
 {
-    char *token;
-    char *name = NULL;
-    char *path = NULL;
-    char *extension = NULL;
+    char *lastSlash = strrchr(full_path, '/');
+    char *lastDot = strrchr(full_path, '.');
+
+    if (lastDot == NULL || (lastSlash != NULL && lastSlash > lastDot))
+    {
+        log_error("Error: Invalid file path");
+        return NULL;
+    }
 
     cFILE_t *file = FILE_Init();
 
-    token = strtok(full_path, "/");
-    while (token != NULL)
-    {
-        name = token;
-        token = strtok(NULL, "/");
-    }
+    *lastSlash = '\0';
+    file->path = strdup(full_path);
+    *lastSlash = '/';
 
-    token = strtok(name, ".");
-    while (token != NULL)
-    {
-        name = token;
-        token = strtok(NULL, ".");
-    }
+    *lastDot = '\0';
+    file->name = strdup(lastSlash + 1);
+    *lastDot = '.';
 
-    token = strtok(full_path, name);
-    path = token;
-    token = strtok(name, ".");
-    name = token;
-    token = strtok(NULL, ".");
-    extension = token;
-
-    file->name = name;
-    file->path = path;
-    file->extension = FILE_String_to_Extension(extension);
+    file->extension = FILE_String_to_Extension(lastDot + 1);
 
     return file;
 }

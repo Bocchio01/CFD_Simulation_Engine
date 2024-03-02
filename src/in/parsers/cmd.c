@@ -49,9 +49,9 @@ void CFD_CMD_Parse(CFD_t *cfd, int argc, char *argv[])
 void CFD_CMD_Print_Help()
 {
     printf("CFD Engine\n");
-    printf("Author:\n\tTommaso Bocchietti\n");
-    printf("Date:\n\t2024\n");
-    printf("Version:\n\t0.1\n");
+    printf("Author:\tTommaso Bocchietti\n");
+    printf("Date:\t2024\n");
+    printf("Version:\t0.1\n");
     printf("Description:\n");
     printf("\tThis program is a engine for the Navier-Stokes equations for compressible flow.\n");
     printf("\tDeveloped as a project for the course \"ME663 - Computational Fluid Dynamics\"\n");
@@ -61,8 +61,8 @@ void CFD_CMD_Print_Help()
     printf("Options:\n");
     printf("\t-h, --help\tPrint this help message\n");
     printf("\t-v, --version\tPrint the version of the program\n");
-    printf("\t-i, --input\tInput file path (relative or absolute). Default: -i data/input.json\n");
-    printf("\t-o, --output\tOutput file path (relative or absolute). Default: -i data/output.json\n");
+    printf("\t-i, --input\tInput file path (relative or absolute). Default: -i datasets/input.json\n");
+    printf("\t-o, --output\tOutput file path (relative or absolute). Default: -i datasets/output.json\n");
     printf("\n");
 }
 

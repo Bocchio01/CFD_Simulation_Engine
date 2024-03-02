@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "utils/cLOG/cLOG.h"
 
@@ -53,10 +54,16 @@ void CFD_Prepare(CFD_t *cfd, int argc, char **argv)
 
 void CFD_Solve(CFD_t *cfd)
 {
+    time(NULL);
+
     CFD_Setup_Engine(cfd);
     CFD_Generate_Mesh(cfd);
 
+    clock_t tic = clock();
     CFD_Run_Method(cfd);
+    clock_t toc = clock();
+
+    cfd->engine->method->CPU_time = (double)(toc - tic) / CLOCKS_PER_SEC;
 }
 
 void CFD_Finalize(CFD_t *cfd)

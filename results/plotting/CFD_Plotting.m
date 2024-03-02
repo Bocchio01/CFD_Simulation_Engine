@@ -3,19 +3,25 @@ clear variables
 close all
 
 fileNames = {
-    '01_test'
-    '02_40_40_100_UDS_SECOND_08_08'
-    '03_40_40_400_UDS_SECOND_008_008'
-    '04_40_40_1000_UDS_SECOND_008_008'
-    '05_40_40_1000_CDS_SECOND_008_008'
-    '06_40_40_1000_QUICK_SECOND_008_008'
-    '07_80_80_1000_UDS_SECOND_008_008'
-    '08_80_80_1000_CDS_SECOND_008_008'
-    '09_80_80_1000_QUICK_SECOND_008_008'
-    '10_129_129_1000_QUICK_FOURTH_008_008'
+    % 'output'
+    '00_40_40_100_UDS_SECOND_08_08'
+    '01_40_40_400_UDS_SECOND_008_008'
+    '02_40_40_1000_UDS_SECOND_008_008'
+    '03_40_40_1000_CDS_SECOND_008_008'
+    '04_40_40_1000_QUICK_SECOND_008_008'
+    '05_80_80_1000_UDS_SECOND_008_008'
+    '06_80_80_1000_CDS_SECOND_008_008'
+    '07_80_80_1000_QUICK_SECOND_008_008'
+    '08_129_129_1000_UDS_SECOND_008_008'
+    '09_129_129_1000_CDS_SECOND_008_008'
+    '10_129_129_1000_QUICK_SECOND_008_008'
+    '11_129_129_1000_UDS_FOURTH_008_008'
+    '12_129_129_1000_CDS_FOURTH_008_008'
+    '13_129_129_1000_QUICK_FOURTH_008_008'
     };
 
-plots = true * [0 1];
+plots = true * [1 1];
+% latex_img_path = 'C:/Users/Bocchio/Documents/GitHub/University_Programming_Classes/07 - ME663 Computational Fluid Dynamics/Report assignment 1/img';
 
 
 %% Loading data
@@ -27,7 +33,13 @@ if(plots(1) == true)
     for file_idx = 1:length(fileNames)
         close all
 
-        result = readtable(['../' fileNames{file_idx} '.dat'], 'NumHeaderLines', 6);
+        file_path = ['../' fileNames{file_idx} '.dat'];
+        if (exist(file_path, 'file') ~= 2)
+            disp(['File ' fileNames{file_idx} ' doesnt exists'])
+            continue;
+        end
+
+        result = readtable(file_path, 'NumHeaderLines', 7);
 
         x = result.Var1;
         y = result.Var2;
@@ -60,10 +72,14 @@ if(plots(1) == true)
         clear sort_idx
 
 
-        % % Plot states distribution
+        %% Plot states distribution
 
-        figure_state_distribution = figure('Name', 'States distribution', 'NumberTitle', 'off');
-        tiledlayout(1, 3);
+        figure_state_distribution = figure( ...
+            'Name', 'States distribution', ...
+            'NumberTitle', 'off', ...
+            'Position', [100, 100, 1500, 600]);
+        t = tiledlayout(1, 3);
+        title(t, strrep(fileNames{file_idx}, '_', '-'))
 
         states_name = ["P", "U", "V"];
         states_matrix = {P, U, V};
@@ -88,10 +104,14 @@ if(plots(1) == true)
         clear state_idx states_name states_matrix
 
 
-        % % Plot velocity
+        %% Plot velocity
 
-        figure_velocity = figure('Name', 'Velocity visualization', 'NumberTitle', 'off');
-        tiledlayout(1, 2);
+        figure_velocity = figure( ...
+            'Name', 'Velocity visualization', ...
+            'NumberTitle', 'off', ...
+            'Position', [100, 100, 1500, 600]);
+        t = tiledlayout(1, 2);
+        title(t, strrep(fileNames{file_idx}, '_', '-'))
 
         % Vectorial
         nexttile
@@ -107,7 +127,7 @@ if(plots(1) == true)
         axis(axis_limit);
 
         % Streamlines
-        nexttile
+        plot_streamline = nexttile;
         hold on
         grid on
 
@@ -116,17 +136,20 @@ if(plots(1) == true)
 
         title('Velocity streamlines');
         xlabel('X');
-        ylabel('Y');
+        ylabel('Y'  );
         axis equal;
         axis(axis_limit);
 
         clear verts averts
 
+        %% Plots for comparison with Ghia's solution
 
-        % % Plots for comparison with Ghia's solution
-
-        figure_ghia_comparison = figure('Name', 'Ghia solution comparison', 'NumberTitle', 'off');
-        tiledlayout(1, 2);
+        figure_ghia_comparison = figure( ...
+            'Name', 'Ghia solution comparison', ...
+            'NumberTitle', 'off', ...
+            'Position', [100, 100, 1500, 600]);
+        t = tiledlayout(1, 2);
+        title(t, strrep(fileNames{file_idx}, '_', '-'))
 
         % Comparison of u component with Ghia's solution
         nexttile
@@ -139,6 +162,10 @@ if(plots(1) == true)
         plot([Ghia_Solution_U.Re1000], [Ghia_Solution_U.y], 'ro');
 
         title("u velocity @x/LX=0.5")
+        xlabel("u");
+        xlabel("y");
+        axis tight;
+        axis equal;
         legend("u velocity @x/LX=0.5", ...
             "Ghia (Re = 100)", ...
             "Ghia (Re = 400)", ...
@@ -156,59 +183,110 @@ if(plots(1) == true)
         plot([Ghia_Solution_V.x], [Ghia_Solution_V.Re1000], 'ro');
 
         title("v velocity @y/LY=0.5")
+        xlabel("v");
+        xlabel("x");
+        axis tight;
+        axis equal;
         legend("v velocity @y/LY=0.5", ...
             "Ghia (Re = 100)", ...
             "Ghia (Re = 400)", ...
             "Ghia (Re = 1000)", ...
             "Location", "best")
 
-        disp(fileNames{file_idx})
-        disp('Press a key for the next result')
-        pause;
+        disp(['Current visalized: ' fileNames{file_idx}])
+        if (length(fileNames) > 1)
+            disp('Press a key for the next result')
+            % pause;
+        end
 
+        if(exist('latex_img_path', 'var') == 1)
+            saveas(figure_state_distribution, [latex_img_path '/states/' strrep(fileNames{file_idx}, '_', '-') '.png']);
+            saveas(figure_velocity, [latex_img_path '/velocity/' strrep(fileNames{file_idx}, '_', '-') '.png']);
+            saveas(plot_streamline, [latex_img_path '/streamline/' strrep(fileNames{file_idx}, '_', '-') '.png']);
+            saveas(figure_ghia_comparison, [latex_img_path '/ghia_comparison/' strrep(fileNames{file_idx}, '_', '-') '.png']);
+        end
     end
 end
 
+clear t plot_streamline
 
-%% Residual analysis
 
-if(plot(2) == true)
+%% Residual and CPU analysis
 
-    figure_ghia_comparison = figure('Name', 'Residual analysis', 'NumberTitle', 'off');
+if(plots(2) == true)
+
+    figure_residual_analysis = figure( ...
+        'Name', 'Residual analysis', ...
+        'NumberTitle', 'off', ...
+        'Position', [100, 100, 1500, 600]);
 
     nexttile
     hold on
     grid on
 
+    legends = {};
+    CPU_times = [];
     for file_idx = 1:length(fileNames)
 
-        fileID = fopen(['../' fileNames{file_idx} '.dat'], 'r');
+        file_path = ['../' fileNames{file_idx} '.dat'];
+        if (exist(file_path, 'file') ~= 2)
+            disp(['File ' fileNames{file_idx} ' doesnt exists'])
+            continue;
+        end
 
-        % File name
-        line = fgetl(fileID)
+        fileID = fopen(file_path, 'r');
 
-        RE = sscanf(fgetl(fileID), 'RE: %f');
-        iterations = sscanf(fgetl(fileID), 'ITERATIONS: %d');
+        input_json_name = fgetl(fileID);
+
+        RE = sscanf(fgetl(fileID), 'RE=%f');
+        iterations = sscanf(fgetl(fileID), 'ITERATIONS=%d');
+
+        CPU_times = [CPU_times sscanf(fgetl(fileID), 'CPU_TIME=%f')];
 
         residuals_str = strsplit(fgetl(fileID), ' ');
-        % Skip the first element, it's just 'RESIDUALS:'
+        % Skip 'RESIDUALS:'
         residuals = cellfun(@str2double, residuals_str(2:end));
 
         fclose(fileID);
 
-        length(1:50:iterations)
-        length(residuals)
+        it = [0:50:iterations iterations];
+        plot(it(1:length(residuals)), residuals, "LineWidth", 2);
 
-        plot(0:50:iterations, residuals, "LineWidth", 2);
+        legends = [legends fileNames{file_idx}];
 
     end
 
     yline(1e-5,'--', 'Tolerance')
 
     title("Residual analysis");
-    legend(fileNames, "Interpreter", "none")
+    xlabel("Iteration #")
+    ylabel("Residual")
+    legend(legends, 'Location','best', "Interpreter", "none")
+
+
+
+    %%
+    figure_CPU_analysis = figure( ...
+        'Name', 'CPU analysis', ...
+        'NumberTitle', 'off', ...
+        'Position', [100, 100, 800, 600]);
+
+    nexttile
+    hold on
+    grid on
+
+    bar(cellfun(@(x) x(1:2), legends, 'UniformOutput', false), CPU_times);
+    % legend(legends,'Location','best', "Interpreter", "none")
+    xlabel("Simulation ID");
+    ylabel('CPU Time [s]');
+
 
     clear residuals_str
+
+    if(exist('latex_img_path', 'var') == 1)
+        saveas(figure_residual_analysis, [latex_img_path '/residual.png']);
+        saveas(figure_CPU_analysis, [latex_img_path '/CPU_time.png']);
+    end
 
 end
 

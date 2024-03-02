@@ -60,13 +60,16 @@ void CFD_Save_Results(CFD_t *cfd)
     sprintf(cfd->out->file->buffer, "%s\n", cfd->in->file->name);
     FILE_Write(cfd->out->file, WRITE);
 
-    sprintf(cfd->out->file->buffer, "RE: %f\n", cfd->in->fluid->Re);
+    sprintf(cfd->out->file->buffer, "RE=%f\n", cfd->in->fluid->Re);
     FILE_Write(cfd->out->file, APPEND);
 
-    sprintf(cfd->out->file->buffer, "ITERATIONS: %d\n", cfd->engine->method->iteractions + 1);
+    sprintf(cfd->out->file->buffer, "ITERATIONS=%d\n", cfd->engine->method->iteractions + 1);
     FILE_Write(cfd->out->file, APPEND);
 
-    sprintf(cfd->out->file->buffer, "RESIDUALS:");
+    sprintf(cfd->out->file->buffer, "CPU_TIME=%f\n", cfd->engine->method->CPU_time);
+    FILE_Write(cfd->out->file, APPEND);
+
+    sprintf(cfd->out->file->buffer, "RESIDUALS=");
     FILE_Write(cfd->out->file, APPEND);
 
     for (uint16_t i = 0; i < cfd->engine->method->iteractions; i += 50)
@@ -81,7 +84,7 @@ void CFD_Save_Results(CFD_t *cfd)
     sprintf(cfd->out->file->buffer, "\n");
     FILE_Write(cfd->out->file, APPEND);
 
-    sprintf(cfd->out->file->buffer, "VARIABLES = \"X\", \"Y\", \"U\", \"V\", \"P\"\n");
+    sprintf(cfd->out->file->buffer, "VARIABLES=\"X\", \"Y\", \"U\", \"V\", \"P\"\n");
     FILE_Write(cfd->out->file, APPEND);
 
     sprintf(cfd->out->file->buffer, "ZONE F=POINT, I=%d, J=%d\n", cfd->engine->mesh->nodes->Nx, cfd->engine->mesh->nodes->Ny);

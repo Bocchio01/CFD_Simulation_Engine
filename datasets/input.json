@@ -11,35 +11,27 @@
     },
     "engine": {
         "mesh": {
-            "type": "STAGGERED",
             "nodes": {
                 "Nx": 129,
                 "Ny": 129
-            },
-            "elements": {
-                "type": "RECTANGULAR"
             }
         },
         "method": {
-            "type": "SCGS",
-            "tolerance": 1e-4,
+            "tolerance": 1e-05,
             "maxIter": 5000,
             "underRelaxation": {
                 "u": 0.08,
-                "v": 0.08,
-                "p": 0.3
+                "v": 0.08
             }
         },
         "schemes": {
             "convection": "QUICK",
-            "diffusion": "FOURTH"
+            "diffusion": "SECOND"
         }
     },
     "out": {
         "file": {
-            "path": "results",
-            "name": "output",
-            "format": "DAT"
+            "name": "output"
         }
     }
 }

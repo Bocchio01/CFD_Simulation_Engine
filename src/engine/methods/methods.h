@@ -42,6 +42,7 @@ typedef struct
     float tolerance;
     int maxIter;
     int iteractions;
+    double CPU_time;
     cVEC_t *residual;
     under_relaxation_factors_t *under_relaxation_factors;
     method_index_t *index;

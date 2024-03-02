@@ -54,17 +54,20 @@ if __name__ == "__main__":
         "80_80_1000_UDS_SECOND_008_008",
         "80_80_1000_CDS_SECOND_008_008",
         "80_80_1000_QUICK_SECOND_008_008",
+        "129_129_1000_UDS_SECOND_008_008",
+        "129_129_1000_CDS_SECOND_008_008",
+        "129_129_1000_QUICK_SECOND_008_008",
         "129_129_1000_UDS_FOURTH_008_008",
         "129_129_1000_CDS_FOURTH_008_008",
         "129_129_1000_QUICK_FOURTH_008_008",
     ]
 
     for filename in os.listdir('.'):
-        if filename.endswith('.json'):
+        if filename.endswith('.json') and filename != 'input.json':
             os.remove(filename)
             print(f"Deleted existing file: {filename}")
 
-    for i, file_name in enumerate(file_names, start=1):
+    for i, file_name in enumerate(file_names, start=0):
         generated_json = generate_json(file_name)
         output_filename = f"{str(i).zfill(2)}_{file_name}.json"
         save_json(generated_json, output_filename)

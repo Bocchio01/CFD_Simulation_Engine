@@ -38,16 +38,16 @@ void CFD_Setup_Engine(CFD_t *cfd)
     switch (cfd->engine->schemes->convection->type)
     {
     case UDS:
-        log_info("Scheme convection :\tUDS");
+        log_info("Scheme convection:\tUDS");
         break;
     case CDS:
-        log_info("Scheme convection :\tCDS");
+        log_info("Scheme convection:\tCDS");
         break;
     case QUICK:
-        log_info("Scheme convection :\tQUICK");
+        log_info("Scheme convection:\tQUICK");
         break;
     case HYBRID:
-        log_info("Scheme convection :\tHYBRID");
+        log_info("Scheme convection:\tHYBRID");
         break;
     }
 
