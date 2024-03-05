@@ -79,7 +79,12 @@ bool FILE_Read(cFILE_t *file)
 
     file->buffer = (char *)malloc(file->size + 1);
 
-    fread(file->buffer, 1, file->size, file->pointer);
+    if (fread(file->buffer, 1, file->size, file->pointer) != file->size)
+    {
+        log_error("Error: Unable to read file %s", full_path);
+        return false;
+    }
+
     file->buffer[file->size] = '\0';
 
     fclose(file->pointer);
@@ -87,7 +92,7 @@ bool FILE_Read(cFILE_t *file)
     return true;
 }
 
-bool FILE_Write(cFILE_t *file, mode_t mode)
+bool FILE_Write(cFILE_t *file, cFILE_opening_mode_t mode)
 {
     char full_path[100] = {0};
 

@@ -16,11 +16,11 @@ typedef enum
 {
     WRITE = 'w',
     APPEND = 'a'
-} mode_t;
+} cFILE_opening_mode_t;
 
 typedef struct
 {
-    int size;
+    size_t size;
     char *name;
     char *buffer;
     FILE *pointer;
@@ -34,7 +34,7 @@ void FILE_Free(cFILE_t *file);
 
 bool FILE_Read(cFILE_t *file);
 
-bool FILE_Write(cFILE_t *file, mode_t mode);
+bool FILE_Write(cFILE_t *file, cFILE_opening_mode_t mode);
 
 char *FILE_Extension_to_String(extension_t extension);
 

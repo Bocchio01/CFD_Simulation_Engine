@@ -13,7 +13,7 @@ if(MSVC)
 endif()
 
 if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(-w)
+    target_compile_options(${PROJECT_NAME} PRIVATE -w)
 elseif(CMAKE_C_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(${PROJECT_NAME} PRIVATE /w)
 endif()

@@ -153,7 +153,7 @@ Here is an example of how to run the code with the default parameters:
 
 ### Plot the results
 
-You can plot the results using the `MATLAB` script provided in the `sim_output/plotting` folder.
+You can plot the results using the `MATLAB` script provided in the `sim_plotting` folder.
 
 ## Trouble shooting
 
