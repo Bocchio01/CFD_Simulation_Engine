@@ -42,7 +42,6 @@ In particular, we can choose the following options:
 The code reads the input parameters from a file in JSON format.
 
 ```json
-// Example of in file
 {
     "in": {
         "uLid": 1.0,
@@ -109,44 +108,57 @@ ZONE F=POINT, I=80, J=80
 
 ## How to...
 
-> [!WARNING]
-> The `Makefile` is platform dependent and the one included here works for Windows.
+### Clone/Download the repository
+
+You can clone the repository either using git or downloading the zip file from the button `Code` on the top right of the repository.
+
+```bash
+git clone https://github.com/Bocchio01/CFD_Simulation_Engine.git
+```
+<!--
+### Clone/Download the executables
+
+You can download the executables from the `releases` section of the repository.
+The executables are provided for the following platforms:
+
+- Windows
+- Linux
+- MacOS
+-->
 
 ### Compile the source code
 
+Given the relavitely complexity of the code, it is recommended to use the `CMake` build system to compile the code.
 You can compile the code by typing the following command from the root folder of the repository:
-
-```bash
-gcc -DLOG_USE_COLOR -Wall -Wextra -Werror -std=c99 -O2  src/utils/cALGEBRA/*.c src/utils/cJSON/*.c  src/utils/cFILE/*.c src/utils/cLOG/*.c src/main.c src/CFD.c src/in/*.c src/out/*.c src/in/parsers/*.c src/engine/*.c src/engine/mesh/*.c src/engine/methods/*.c src/engine/schemes/*.c -o main
-```
-
-Or, alternatively, you can use the `Makefile` included in the repository by typing:
-
-```bash
-make
-```
-
-### Run the code
-
-The most straightforward way to run the code is by typing:
-
-```bash
-./main
-```
-
-Here is an example of how to run the code with the default parameters:
-
-```bash
-./main -i sim_input/input.json -f DAT
-```
-
-### CMake version
 
 ```bash
 mkdir build
 cmake -S . -B build
 cmake --build build
-
-# Picking a compiler
-CC=clang CXX=clang++ cmake -S . -B build
 ```
+
+### Run the code
+
+If you have compiled the code using the `CMake` build system, you can run the code by typing the following command from the root folder of the repository:
+
+```bash
+./build/Debug/CFD_Simulation_Engine
+```
+
+Here is an example of how to run the code with the default parameters:
+
+```bash
+./build/Debug/CFD_Simulation_Engine -i sim_input/input.json -f DAT
+```
+
+### Plot the results
+
+You can plot the results using the `MATLAB` script provided in the `sim_output/plotting` folder.
+
+## Trouble shooting
+
+If you have any trouble, please feel free to contact me.
+
+Have a nice coding day,
+
+Tommaso :panda_face:
