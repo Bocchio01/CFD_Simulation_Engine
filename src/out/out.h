@@ -1,9 +1,9 @@
-#ifndef OUTPUT_H
-#define OUTPUT_H
+#ifndef OUT_H
+#define OUT_H
 
 typedef struct CFD_t CFD_t;
 
-#include "../utils/cFILE/cFILE.h"
+#include "libs/cFILE/cFILE.h"
 
 #include <stdio.h>
 #include <stdint.h>

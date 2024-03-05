@@ -2,7 +2,7 @@
 
 #include "SCGS.h"
 #include "../../CFD.h"
-#include "../../utils/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT.h"
 
 void CFD_SCGS_BC_NoSlip_Normal(CFD_t *cfd, SCGS_t *scgs)
 {

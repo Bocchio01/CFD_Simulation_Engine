@@ -6,7 +6,7 @@ typedef struct CFD_t CFD_t;
 #include "SCGS.h"
 #include "SIMPLE.h"
 
-#include "../../utils/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT.h"
 
 typedef void (*method_function_t)(CFD_t *cfd);
 
@@ -40,8 +40,8 @@ typedef struct
 {
     method_type_t type;
     float tolerance;
-    int maxIter;
-    int iteractions;
+    uint16_t maxIter;
+    uint16_t iteractions;
     double CPU_time;
     cVEC_t *residual;
     under_relaxation_factors_t *under_relaxation_factors;

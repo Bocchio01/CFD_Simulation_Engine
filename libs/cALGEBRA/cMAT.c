@@ -11,7 +11,7 @@
 #include <assert.h>
 
 #include "cMAT.h"
-#include "../cLOG/cLOG.h"
+#include "libs/cLOG/cLOG.h"
 
 cMAT_t *MAT_Init(uint16_t rows, uint16_t cols)
 {

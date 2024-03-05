@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "mesh.h"
 
-#include "../../utils/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT.h"
 
 #include "../../CFD.h"
 

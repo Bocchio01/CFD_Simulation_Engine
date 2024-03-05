@@ -139,3 +139,14 @@ Here is an example of how to run the code with the default parameters:
 ```bash
 ./main -i datasets/input.json -f DAT
 ```
+
+### CMake version
+
+```bash
+mkdir build
+cmake -S . -B build
+cmake --build build
+
+# Picking a compiler
+CC=clang CXX=clang++ cmake -S . -B build
+```

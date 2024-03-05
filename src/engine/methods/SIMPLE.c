@@ -2,7 +2,12 @@
 
 #include "../../CFD.h"
 
-void CFD_SIMPLE()
+#include "libs/cLOG/cLOG.h"
+
+void CFD_SIMPLE(CFD_t *cfd)
 {
-    printf("SIMPLE method\n");
+    (void)cfd;
+
+    log_fatal("SIMPLE method not implemented yet");
+    exit(EXIT_FAILURE);
 }

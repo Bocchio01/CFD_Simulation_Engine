@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "src/utils/cLOG/cLOG.h"
+#include "libs/cLOG/cLOG.h"
 
 #include "src/CFD.h"
 
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
         CFD_Free(cfd);
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 bool isSkipping(uint8_t index)

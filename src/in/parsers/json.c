@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <string.h>
-#include "../../utils/cJSON/cJSON.h"
-#include "../../utils/cLOG/cLOG.h"
+#include "libs/cFILE/cFILE.h"
+#include "libs/cJSON/cJSON.h"
+#include "libs/cLOG/cLOG.h"
 
 #include "json.h"
 #include "../../CFD.h"
@@ -49,10 +50,10 @@ void CFD_JSON_Parse_In_Geometry(CFD_t *cfd, cJSON *geometry)
     const cJSON *y = NULL;
 
     x = cJSON_GetObjectItemCaseSensitive(geometry, "x");
-    cfd->in->geometry->x = cJSON_IsNumber(x) ? cJSON_GetNumberValue(x) : DEFAULT_IN_GEOMETRY_X;
+    cfd->in->geometry->x = (float)(cJSON_IsNumber(x) ? cJSON_GetNumberValue(x) : DEFAULT_IN_GEOMETRY_X);
 
     y = cJSON_GetObjectItemCaseSensitive(geometry, "y");
-    cfd->in->geometry->y = cJSON_IsNumber(y) ? cJSON_GetNumberValue(y) : DEFAULT_IN_GEOMETRY_Y;
+    cfd->in->geometry->y = (float)(cJSON_IsNumber(y) ? cJSON_GetNumberValue(y) : DEFAULT_IN_GEOMETRY_Y);
 }
 
 void CFD_JSON_Parse_In_Fluid(CFD_t *cfd, cJSON *fluid)
@@ -81,11 +82,11 @@ void CFD_JSON_Parse_Engine_Mesh(CFD_t *cfd, cJSON *mesh)
     const cJSON *elements = NULL;
 
     type = cJSON_GetObjectItemCaseSensitive(mesh, "type");
-    if (strcasecmp(cJSON_IsString(type) ? type->valuestring : DEFAULT_ENGINE_MESH_TYPE, "STAGGERED") == 0)
+    if (FILE_String_Compare_Insensitive(cJSON_IsString(type) ? type->valuestring : DEFAULT_ENGINE_MESH_TYPE, "STAGGERED") == 0)
     {
         cfd->engine->mesh->type = STAGGERED;
     }
-    else if (strcasecmp(type->valuestring, "COLLOCATED") == 0)
+    else if (FILE_String_Compare_Insensitive(type->valuestring, "COLLOCATED") == 0)
     {
         cfd->engine->mesh->type = COLLOCATED;
     }
@@ -99,16 +100,16 @@ void CFD_JSON_Parse_Engine_Mesh(CFD_t *cfd, cJSON *mesh)
     nodes = cJSON_GetObjectItemCaseSensitive(mesh, "nodes");
     const cJSON *Nx = cJSON_GetObjectItemCaseSensitive(nodes, "Nx");
     const cJSON *Ny = cJSON_GetObjectItemCaseSensitive(nodes, "Ny");
-    cfd->engine->mesh->nodes->Nx = cJSON_IsNumber(Nx) ? cJSON_GetNumberValue(Nx) : DEFAULT_ENGINE_MESH_NODES_X;
-    cfd->engine->mesh->nodes->Ny = cJSON_IsNumber(Ny) ? cJSON_GetNumberValue(Ny) : DEFAULT_ENGINE_MESH_NODES_Y;
+    cfd->engine->mesh->nodes->Nx = (uint16_t)(cJSON_IsNumber(Nx) ? cJSON_GetNumberValue(Nx) : DEFAULT_ENGINE_MESH_NODES_X);
+    cfd->engine->mesh->nodes->Ny = (uint16_t)(cJSON_IsNumber(Ny) ? cJSON_GetNumberValue(Ny) : DEFAULT_ENGINE_MESH_NODES_Y);
 
     elements = cJSON_GetObjectItemCaseSensitive(mesh, "elements");
     const cJSON *element_type = cJSON_GetObjectItemCaseSensitive(elements, "type");
-    if (strcasecmp(cJSON_IsString(element_type) ? element_type->valuestring : DEFAULT_ENGINE_MESH_ELEMENTS_TYPE, "RECTANGULAR") == 0)
+    if (FILE_String_Compare_Insensitive(cJSON_IsString(element_type) ? element_type->valuestring : DEFAULT_ENGINE_MESH_ELEMENTS_TYPE, "RECTANGULAR") == 0)
     {
         cfd->engine->mesh->element->type = RECTANGULAR;
     }
-    else if (strcasecmp(element_type->valuestring, "TRIANGULAR") == 0)
+    else if (FILE_String_Compare_Insensitive(element_type->valuestring, "TRIANGULAR") == 0)
     {
         cfd->engine->mesh->element->type = TRIANGULAR;
     }
@@ -128,11 +129,11 @@ void CFD_JSON_Parse_Engine_Method(CFD_t *cfd, cJSON *method)
     const cJSON *underRelaxation = NULL;
 
     type = cJSON_GetObjectItemCaseSensitive(method, "type");
-    if (strcasecmp(cJSON_IsString(type) ? type->valuestring : DEFAULT_ENGINE_METHOD_TYPE, "SCGS") == 0)
+    if (FILE_String_Compare_Insensitive(cJSON_IsString(type) ? type->valuestring : DEFAULT_ENGINE_METHOD_TYPE, "SCGS") == 0)
     {
         cfd->engine->method->type = SCGS;
     }
-    else if (strcasecmp(type->valuestring, "SIMPLE") == 0)
+    else if (FILE_String_Compare_Insensitive(type->valuestring, "SIMPLE") == 0)
     {
         cfd->engine->method->type = SIMPLE;
     }
@@ -144,18 +145,18 @@ void CFD_JSON_Parse_Engine_Method(CFD_t *cfd, cJSON *method)
     }
 
     tolerance = cJSON_GetObjectItemCaseSensitive(method, "tolerance");
-    cfd->engine->method->tolerance = cJSON_IsNumber(tolerance) ? cJSON_GetNumberValue(tolerance) : DEFAULT_ENGINE_METHOD_TOLERANCE;
+    cfd->engine->method->tolerance = (float)(cJSON_IsNumber(tolerance) ? cJSON_GetNumberValue(tolerance) : DEFAULT_ENGINE_METHOD_TOLERANCE);
 
     maxIter = cJSON_GetObjectItemCaseSensitive(method, "maxIter");
-    cfd->engine->method->maxIter = cJSON_IsNumber(maxIter) ? cJSON_GetNumberValue(maxIter) : DEFAULT_ENGINE_METHOD_MAX_ITER;
+    cfd->engine->method->maxIter = (uint16_t)(cJSON_IsNumber(maxIter) ? cJSON_GetNumberValue(maxIter) : DEFAULT_ENGINE_METHOD_MAX_ITER);
 
     underRelaxation = cJSON_GetObjectItemCaseSensitive(method, "underRelaxation");
     const cJSON *u = cJSON_GetObjectItemCaseSensitive(underRelaxation, "u");
     const cJSON *v = cJSON_GetObjectItemCaseSensitive(underRelaxation, "v");
     const cJSON *p = cJSON_GetObjectItemCaseSensitive(underRelaxation, "p");
-    cfd->engine->method->under_relaxation_factors->u = cJSON_IsNumber(u) ? cJSON_GetNumberValue(u) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_U;
-    cfd->engine->method->under_relaxation_factors->v = cJSON_IsNumber(v) ? cJSON_GetNumberValue(v) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_V;
-    cfd->engine->method->under_relaxation_factors->p = cJSON_IsNumber(p) ? cJSON_GetNumberValue(p) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_P;
+    cfd->engine->method->under_relaxation_factors->u = (float)(cJSON_IsNumber(u) ? cJSON_GetNumberValue(u) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_U);
+    cfd->engine->method->under_relaxation_factors->v = (float)(cJSON_IsNumber(v) ? cJSON_GetNumberValue(v) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_V);
+    cfd->engine->method->under_relaxation_factors->p = (float)(cJSON_IsNumber(p) ? cJSON_GetNumberValue(p) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_P);
 }
 
 void CFD_JSON_Parse_Engine_Schemes(CFD_t *cfd, cJSON *schemes)
@@ -164,19 +165,19 @@ void CFD_JSON_Parse_Engine_Schemes(CFD_t *cfd, cJSON *schemes)
     const cJSON *diffusion = NULL;
 
     convection = cJSON_GetObjectItemCaseSensitive(schemes, "convection");
-    if (strcasecmp(cJSON_IsString(convection) ? convection->valuestring : DEFAULT_ENGINE_SCHEMES_CONVECTION, "UDS") == 0)
+    if (FILE_String_Compare_Insensitive(cJSON_IsString(convection) ? convection->valuestring : DEFAULT_ENGINE_SCHEMES_CONVECTION, "UDS") == 0)
     {
         cfd->engine->schemes->convection->type = UDS;
     }
-    else if (strcasecmp(convection->valuestring, "CDS") == 0)
+    else if (FILE_String_Compare_Insensitive(convection->valuestring, "CDS") == 0)
     {
         cfd->engine->schemes->convection->type = CDS;
     }
-    else if (strcasecmp(convection->valuestring, "QUICK") == 0)
+    else if (FILE_String_Compare_Insensitive(convection->valuestring, "QUICK") == 0)
     {
         cfd->engine->schemes->convection->type = QUICK;
     }
-    else if (strcasecmp(convection->valuestring, "HYBRID") == 0)
+    else if (FILE_String_Compare_Insensitive(convection->valuestring, "HYBRID") == 0)
     {
         cfd->engine->schemes->convection->type = HYBRID;
     }
@@ -188,11 +189,11 @@ void CFD_JSON_Parse_Engine_Schemes(CFD_t *cfd, cJSON *schemes)
     }
 
     diffusion = cJSON_GetObjectItemCaseSensitive(schemes, "diffusion");
-    if (strcasecmp(cJSON_IsString(diffusion) ? diffusion->valuestring : DEFAULT_ENGINE_SCHEMES_DIFFUSION, "SECOND") == 0)
+    if (FILE_String_Compare_Insensitive(cJSON_IsString(diffusion) ? diffusion->valuestring : DEFAULT_ENGINE_SCHEMES_DIFFUSION, "SECOND") == 0)
     {
         cfd->engine->schemes->diffusion->type = SECOND;
     }
-    else if (strcasecmp(diffusion->valuestring, "FOURTH") == 0)
+    else if (FILE_String_Compare_Insensitive(diffusion->valuestring, "FOURTH") == 0)
     {
         cfd->engine->schemes->diffusion->type = FOURTH;
     }

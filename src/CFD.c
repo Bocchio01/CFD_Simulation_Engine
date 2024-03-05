@@ -3,11 +3,11 @@
 #include <string.h>
 #include <time.h>
 
-#include "utils/cLOG/cLOG.h"
+#include "libs/cLOG/cLOG.h"
+#include "libs/cFILE/cFILE.h"
 
 #include "CFD.h"
 #include "in/in.h"
-#include "engine/engine.h"
 #include "out/out.h"
 
 CFD_t *CFD_Allocate()
@@ -34,7 +34,7 @@ CFD_t *CFD_Allocate()
 void CFD_Prepare(CFD_t *cfd, int argc, char **argv)
 {
     CFD_CMD_Parse(cfd, argc, argv);
-    if (strcasecmp(cfd->in->file->name, "") == 0)
+    if (FILE_String_Compare_Insensitive(cfd->in->file->name, "") == 0)
     {
         sprintf(cfd->in->file->path, "%s", DEFAULT_IN_FILE_PATH);
         sprintf(cfd->in->file->name, "%s", DEFAULT_IN_FILE_NAME);

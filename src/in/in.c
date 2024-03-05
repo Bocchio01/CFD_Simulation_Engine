@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
-#include "../utils/cLOG/cLOG.h"
-#include "../utils/cFILE/cFILE.h"
+#include "libs/cLOG/cLOG.h"
+#include "libs/cFILE/cFILE.h"
 
 #include "in.h"
 

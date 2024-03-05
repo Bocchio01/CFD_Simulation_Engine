@@ -2,9 +2,9 @@
 
 #include "methods.h"
 
-#include "../../utils/cLOG/cLOG.h"
-#include "../../utils/cALGEBRA/cVEC.h"
-#include "../../utils/cALGEBRA/cMAT.h"
+#include "libs/cLOG/cLOG.h"
+#include "libs/cALGEBRA/cVEC.h"
+#include "libs/cALGEBRA/cMAT.h"
 
 #include "../../CFD.h"
 

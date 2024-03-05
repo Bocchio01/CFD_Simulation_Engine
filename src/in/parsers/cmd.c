@@ -4,6 +4,8 @@
 
 #include "cmd.h"
 
+#include "libs/cLOG/cLOG.h"
+
 #include "../../CFD.h"
 
 void CFD_CMD_Parse(CFD_t *cfd, int argc, char *argv[])
@@ -78,7 +80,7 @@ void CFD_CMD_Parse_i(CFD_t *cfd, char *arg)
 
     if (sscanf(arg, "%s", full_path) != 1)
     {
-        fprintf(stderr, "Invalid argument for input file name\n");
+        log_fatal("Invalid argument for input file name");
         exit(EXIT_FAILURE);
     }
 
@@ -86,7 +88,7 @@ void CFD_CMD_Parse_i(CFD_t *cfd, char *arg)
 
     if (partial_file->extension == false)
     {
-        fprintf(stderr, "Invalid file extension\n");
+        log_fatal("Invalid file extension");
         exit(EXIT_FAILURE);
     }
     else if (partial_file->name != NULL &&
@@ -106,7 +108,7 @@ void CFD_CMD_Parse_o(CFD_t *cfd, char *arg)
 
     if (sscanf(arg, "%s", full_path) != 1)
     {
-        fprintf(stderr, "Invalid argument for output file name\n");
+        log_fatal("Invalid argument for output file name");
         exit(EXIT_FAILURE);
     }
 
@@ -114,7 +116,7 @@ void CFD_CMD_Parse_o(CFD_t *cfd, char *arg)
 
     if (partial_file->extension == false)
     {
-        fprintf(stderr, "Invalid file extension\n");
+        log_fatal("Invalid file extension");
         exit(EXIT_FAILURE);
     }
     else if (partial_file->name != NULL &&

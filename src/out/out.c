@@ -1,11 +1,11 @@
 #include <stdlib.h>
 
-#include "../utils/cLOG/cLOG.h"
+#include "libs/cLOG/cLOG.h"
 
-#include "../utils/cFILE/cFILE.h"
-#include "../utils/cALGEBRA/cMAT.h"
+#include "libs/cFILE/cFILE.h"
+#include "libs/cALGEBRA/cMAT.h"
 
-#include "../CFD.h"
+#include "src/CFD.h"
 
 #include "out.h"
 

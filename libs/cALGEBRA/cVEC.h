@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#include "cMAT.h"
+#include "libs/cALGEBRA/cMAT.h"
 
 typedef struct
 {

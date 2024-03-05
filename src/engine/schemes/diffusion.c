@@ -1,8 +1,8 @@
 #include "diffusion.h"
 
 #include "../../CFD.h"
-#include "../../utils/cLOG/cLOG.h"
-#include "../../utils/cALGEBRA/cVEC.h"
+#include "libs/cLOG/cLOG.h"
+#include "libs/cALGEBRA/cVEC.h"
 #include "schemes.h"
 
 void CFD_Setup_Diffusion(CFD_t *cfd)

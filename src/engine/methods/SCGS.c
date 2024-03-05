@@ -7,9 +7,9 @@ typedef struct CFD_t CFD_t;
 #include "methods.h"
 #include "../../CFD.h"
 #include "../schemes/schemes.h"
-#include "../../utils/cALGEBRA/cMAT.h"
-#include "../../utils/cALGEBRA/cVEC.h"
-#include "../../utils/cLOG/cLOG.h"
+#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cVEC.h"
+#include "libs/cLOG/cLOG.h"
 
 void CFD_SCGS(CFD_t *cfd)
 {
@@ -132,13 +132,6 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
     uint16_t i = cfd->engine->method->index->i;
     uint16_t j = cfd->engine->method->index->j;
 
-    typedef struct
-    {
-        int i;
-        int j;
-        phi_t phi;
-    } position;
-
     position positions[] = {
         {-1, +0, u},
         {+0, +0, u},
@@ -202,10 +195,10 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
     scgs->vanka->A->data[2][4] = +1.0 * cfd->engine->mesh->element->size->dx;
     scgs->vanka->A->data[3][4] = -1.0 * cfd->engine->mesh->element->size->dx;
 
-    if (abs(scgs->vanka->A->data[0][0]) < abs(scgs->vanka->A->data[4][0]) ||
-        abs(scgs->vanka->A->data[1][1]) < abs(scgs->vanka->A->data[4][1]) ||
-        abs(scgs->vanka->A->data[2][2]) < abs(scgs->vanka->A->data[4][2]) ||
-        abs(scgs->vanka->A->data[3][3]) < abs(scgs->vanka->A->data[4][3]))
+    if (fabs(scgs->vanka->A->data[0][0]) < fabs(scgs->vanka->A->data[4][0]) ||
+        fabs(scgs->vanka->A->data[1][1]) < fabs(scgs->vanka->A->data[4][1]) ||
+        fabs(scgs->vanka->A->data[2][2]) < fabs(scgs->vanka->A->data[4][2]) ||
+        fabs(scgs->vanka->A->data[3][3]) < fabs(scgs->vanka->A->data[4][3]))
     {
         log_info("Matrix A is not diagonally dominant @ (it=%d, i=%d, j=%d)", cfd->engine->method->iteractions, i, j);
     }

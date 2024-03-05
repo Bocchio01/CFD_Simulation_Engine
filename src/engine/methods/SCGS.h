@@ -6,12 +6,19 @@ typedef struct CFD_t CFD_t;
 #include <stdio.h>
 #include <stdint.h>
 
-#include "../../utils/cALGEBRA/cMAT.h"
-#include "../../utils/cALGEBRA/cVEC.h"
+#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cVEC.h"
 
 #include "../schemes/schemes.h"
 #include "../methods/methods.h"
 #include "SCGS_BC.h"
+
+typedef struct
+{
+    int8_t i;
+    int8_t j;
+    phi_t phi;
+} position;
 
 typedef struct residual_t
 {

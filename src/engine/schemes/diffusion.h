@@ -2,7 +2,7 @@
 #define DIFFUSION_H
 
 #include <stdint.h>
-#include "../../utils/cALGEBRA/cVEC.h"
+#include "libs/cALGEBRA/cVEC.h"
 
 typedef struct CFD_t CFD_t;
 typedef struct F_coefficients_t F_coefficients_t;

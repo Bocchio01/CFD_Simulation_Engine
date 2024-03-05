@@ -1,5 +1,5 @@
-#ifndef PARSE_H
-#define PARSE_H
+#ifndef CMD_H
+#define CMD_H
 
 typedef struct CFD_t CFD_t;
 

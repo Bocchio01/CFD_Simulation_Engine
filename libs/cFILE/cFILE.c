@@ -9,10 +9,11 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "cFILE.h"
 
-#include "../cLOG/cLOG.h"
+#include "libs/cLOG/cLOG.h"
 
 cFILE_t *FILE_Init()
 {
@@ -140,15 +141,15 @@ char *FILE_Extension_to_String(extension_t extension)
 
 extension_t FILE_String_to_Extension(char *extension)
 {
-    if (strcasecmp(extension, "dat") == 0)
+    if (FILE_String_Compare_Insensitive(extension, "dat") == 0)
     {
         return DAT;
     }
-    else if (strcasecmp(extension, "txt") == 0)
+    else if (FILE_String_Compare_Insensitive(extension, "txt") == 0)
     {
         return TXT;
     }
-    else if (strcasecmp(extension, "json") == 0)
+    else if (FILE_String_Compare_Insensitive(extension, "json") == 0)
     {
         return JSON;
     }
@@ -172,14 +173,29 @@ cFILE_t *FILE_Parse_Path(char *full_path)
     cFILE_t *file = FILE_Init();
 
     *lastSlash = '\0';
-    file->path = strdup(full_path);
+    sprintf(file->path, "%s", full_path);
     *lastSlash = '/';
 
     *lastDot = '\0';
-    file->name = strdup(lastSlash + 1);
+    sprintf(file->name, "%s", lastSlash + 1);
     *lastDot = '.';
 
     file->extension = FILE_String_to_Extension(lastDot + 1);
 
     return file;
+}
+
+int FILE_String_Compare_Insensitive(const char *a, const char *b)
+{
+    int ca, cb;
+
+    do
+    {
+        ca = *((unsigned char *)a++);
+        cb = *((unsigned char *)b++);
+        ca = tolower(toupper(ca));
+        cb = tolower(toupper(cb));
+    } while (ca == cb && ca != '\0');
+
+    return ca - cb;
 }

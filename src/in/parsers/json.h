@@ -1,9 +1,9 @@
-#ifndef LOAD_H
-#define LOAD_H
+#ifndef JSON_H
+#define JSON_H
 
 typedef struct CFD_t CFD_t;
 
-#include "../../utils/cJSON/cJSON.h"
+#include "libs/cJSON/cJSON.h"
 
 void CFD_JSON_Parse(CFD_t *cfd);
 
@@ -13,7 +13,7 @@ void CFD_JSON_Parse_In_Geometry(CFD_t *cfd, cJSON *geometry);
 
 void CFD_JSON_Parse_In_Fluid(CFD_t *cfd, cJSON *fluid);
 
-// void CFD_LoadInputChecher(CFD_t *cfd);
+// void CFD_JSON_Check(CFD_t *cfd);
 
 void CFD_JSON_Parse_Engine(CFD_t *cfd, cJSON *engine);
 

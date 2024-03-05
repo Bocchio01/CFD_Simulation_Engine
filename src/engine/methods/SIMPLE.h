@@ -7,6 +7,6 @@ typedef struct CFD_t CFD_t;
 // {
 // } SIMPLE_t;
 
-void CFD_SIMPLE();
+void CFD_SIMPLE(CFD_t *cfd);
 
 #endif

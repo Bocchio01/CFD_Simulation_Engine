@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "utils/cLOG/cLOG.h"
+#include "libs/cLOG/cLOG.h"
 
-#include "CFD.h"
+#include "src/CFD.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,5 +29,5 @@ int main(int argc, char *argv[])
     log_info("#############################################");
     log_info("\n\n");
 
-    return 0;
+    return EXIT_SUCCESS;
 }

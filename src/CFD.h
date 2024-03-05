@@ -1,6 +1,9 @@
 #ifndef CFD_H
 #define CFD_H
 
+#define VERSION_MAJOR @CFD_Simulation_Engine_VERSION_MAJOR @
+#define VERSION_MINOR @CFD_Simulation_Engine_VERSION_MINOR @
+
 #define DEFAULT_IN_FILE_PATH "datasets" // Input file path
 #define DEFAULT_IN_FILE_NAME "input"    // Input file name
 #define DEFAULT_IN_FILE_FORMAT "JSON"   // Input file format

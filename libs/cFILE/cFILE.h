@@ -42,4 +42,6 @@ extension_t FILE_String_to_Extension(char *extension);
 
 cFILE_t *FILE_Parse_Path(char *full_path);
 
+int FILE_String_Compare_Insensitive(const char *a, const char *b);
+
 #endif

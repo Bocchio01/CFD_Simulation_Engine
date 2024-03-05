@@ -1,11 +1,11 @@
-#ifndef INIT_H
-#define INIT_H
+#ifndef IN_H
+#define IN_H
 
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "../utils/cFILE/cFILE.h"
+#include "libs/cFILE/cFILE.h"
 
 #include "parsers/cmd.h"
 #include "parsers/json.h"
@@ -18,8 +18,8 @@ typedef enum
 
 typedef struct
 {
-    double x;
-    double y;
+    float x;
+    float y;
 } geometry_t;
 
 typedef struct

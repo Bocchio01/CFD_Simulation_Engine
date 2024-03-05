@@ -1,9 +1,13 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "../utils/cLOG/cLOG.h"
+#include "libs/cALGEBRA/cVEC.h"
+#include "libs/cLOG/cLOG.h"
 
 #include "engine.h"
+#include "mesh/mesh.h"
+#include "methods/methods.h"
+#include "schemes/schemes.h"
 
 #include "../CFD.h"
 
@@ -11,7 +15,7 @@ void CFD_Setup_Engine(CFD_t *cfd)
 {
     if (!isnan(cfd->in->fluid->Re))
     {
-        cfd->in->fluid->nu = abs(cfd->in->uLid) * cfd->in->geometry->x / cfd->in->fluid->Re;
+        cfd->in->fluid->nu = fabs(cfd->in->uLid) * cfd->in->geometry->x / cfd->in->fluid->Re;
     }
 
     CFD_Setup_Mesh(cfd);

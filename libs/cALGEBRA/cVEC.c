@@ -11,7 +11,7 @@
 #include <assert.h>
 
 #include "cVEC.h"
-#include "../cLOG/cLOG.h"
+#include "libs/cLOG/cLOG.h"
 
 cVEC_t *VEC_Init(uint16_t length)
 {

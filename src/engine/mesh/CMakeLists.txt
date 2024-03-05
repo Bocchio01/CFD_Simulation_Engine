@@ -1,0 +1,13 @@
+project(mesh
+    VERSION 1.0
+    DESCRIPTION "Mesh module for CFD simulation software"
+    LANGUAGES C
+)
+
+add_library(${PROJECT_NAME}
+    mesh.c
+    mesh.h
+)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR})
