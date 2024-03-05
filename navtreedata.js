@@ -24,37 +24,12 @@
 */
 var NAVTREE =
 [
-  [ "CFD_Simulation_Engine", "index.html", [
-    [ "Classes", "annotated.html", [
-      [ "Class List", "annotated.html", "annotated_dup" ],
-      [ "Class Index", "classes.html", null ],
-      [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
-      ] ]
-    ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", "globals_dup" ],
-        [ "Functions", "globals_func.html", "globals_func" ],
-        [ "Variables", "globals_vars.html", null ],
-        [ "Typedefs", "globals_type.html", null ],
-        [ "Enumerations", "globals_enum.html", null ],
-        [ "Enumerator", "globals_eval.html", null ],
-        [ "Macros", "globals_defs.html", null ]
-      ] ]
-    ] ]
-  ] ]
+  [ "CFD_Simulation_Engine", "index.html", ]
 ];
 
 var NAVTREEINDEX =
 [
-"CFD_8c.html",
-"cJSON_8h.html#a7b4bf8943b2666b8ef4b719b97a0a603",
-"engine_8h.html#a83c1b28472f9f48a5cd6b1e304678cf0",
-"structinternal__hooks.html#a5cc2dd5383da5f20b19e0f27fa59e123"
+"index.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
