@@ -83,12 +83,12 @@ From the command line, the possible input arguments are:
 
 - `-h` or `--help` to print the help
 - `-v` or `--version` to print the version
-- `-i` or `--in` to specify the input file path (relative or absolute). Default: `-i datasets/input.json`
+- `-i` or `--in` to specify the input file path (relative or absolute). Default: `-i sim_input/input.json`
 - `-f` or `--format` to specify the out file format. Default: `-f DAT`
 
 ## Output
 
-The output is saved in a `DAT` file and it is possible to visualize it using the `MATLAB` script provided in the `results/plotting` folder.
+The output is saved in a `DAT` file and it is possible to visualize it using the `MATLAB` script provided in the `sim_output/plotting` folder.
 
 An example of the output file is:
 
@@ -137,7 +137,7 @@ The most straightforward way to run the code is by typing:
 Here is an example of how to run the code with the default parameters:
 
 ```bash
-./main -i datasets/input.json -f DAT
+./main -i sim_input/input.json -f DAT
 ```
 
 ### CMake version

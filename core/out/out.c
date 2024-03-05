@@ -5,7 +5,7 @@
 #include "libs/cFILE/cFILE.h"
 #include "libs/cALGEBRA/cMAT.h"
 
-#include "src/CFD.h"
+#include "core/CFD.h"
 
 #include "out.h"
 

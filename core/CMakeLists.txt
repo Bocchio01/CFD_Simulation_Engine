@@ -1,4 +1,4 @@
-project(src
+project(core
     VERSION 1.0
     DESCRIPTION "Core of the CFD library"
     LANGUAGES C

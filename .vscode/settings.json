@@ -2,9 +2,9 @@
     "cmake.debugConfig": {
         "cwd": "${workspaceFolder}",
         "args": [
-            "-i datasets/00_40_40_100_UDS_SECOND_08_08.json"
+            "-i sim_input/00_40_40_100_UDS_SECOND_08_08.json"
         ],
         "console": "integratedTerminal",
     },
-    "cmake.revealLog": "focus",
+    "cmake.revealLog": "never",
 }

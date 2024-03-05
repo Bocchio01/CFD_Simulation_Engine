@@ -4,7 +4,7 @@
 
 #include "libs/cLOG/cLOG.h"
 
-#include "src/CFD.h"
+#include "core/CFD.h"
 
 int main(int argc, char *argv[])
 {

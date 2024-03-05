@@ -63,8 +63,8 @@ void CFD_CMD_Print_Help()
     printf("Options:\n");
     printf("\t-h, --help\tPrint this help message\n");
     printf("\t-v, --version\tPrint the version of the program\n");
-    printf("\t-i, --input\tInput file path (relative or absolute). Default: -i datasets/input.json\n");
-    printf("\t-o, --output\tOutput file path (relative or absolute). Default: -i datasets/output.json\n");
+    printf("\t-i, --input\tInput file path (relative or absolute). Default: -i sim_input/input.json\n");
+    printf("\t-o, --output\tOutput file path (relative or absolute). Default: -i sim_input/output.json\n");
     printf("\n");
 }
 

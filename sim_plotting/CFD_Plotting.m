@@ -33,7 +33,7 @@ if(plots(1) == true)
     for file_idx = 1:length(fileNames)
         close all
 
-        file_path = ['../' fileNames{file_idx} '.dat'];
+        file_path = ['../sim_output/' fileNames{file_idx} '.dat'];
         if (exist(file_path, 'file') ~= 2)
             disp(['File ' fileNames{file_idx} ' doesnt exists'])
             continue;
@@ -172,7 +172,7 @@ if(plots(1) == true)
             "Ghia (Re = 1000)", ...
             "Location", "best")
 
-        % Comparison of v component with Ghia's solution
+        % Comparison of v component with Ghia solution
         nexttile
         hold on;
         grid on;
@@ -228,7 +228,7 @@ if(plots(2) == true)
     CPU_times = [];
     for file_idx = 1:length(fileNames)
 
-        file_path = ['../' fileNames{file_idx} '.dat'];
+        file_path = ['../sim_output/' fileNames{file_idx} '.dat'];
         if (exist(file_path, 'file') ~= 2)
             disp(['File ' fileNames{file_idx} ' doesnt exists'])
             continue;

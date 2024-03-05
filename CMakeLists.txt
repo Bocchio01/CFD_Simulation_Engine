@@ -16,7 +16,6 @@ elseif(CMAKE_C_COMPILER_ID STREQUAL "MSVC")
     add_compile_definitions(_CRT_SECURE_NO_WARNINGS)
 endif()
 
-# Used by the log library
 add_definitions(-DLOG_USE_COLOR)
 
 include_directories(
@@ -24,16 +23,5 @@ include_directories(
 )
 
 add_subdirectory(libs)
-add_subdirectory(src)
-
-add_executable(${PROJECT_NAME} main.c)
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    libs
-    src
-)
-
-add_executable(${PROJECT_NAME}_bench bench.c)
-target_link_libraries(${PROJECT_NAME}_bench PRIVATE
-    libs
-    src
-)
+add_subdirectory(core)
+add_subdirectory(apps)
