@@ -118,10 +118,10 @@ Enumerations</h2></td></tr>
 , <a class="el" href="cFILE_8h.html#a6f3768057511843752341564d681b2c9aa5210511e3859748f136ab50c313ef05">JSON</a>
  }</td></tr>
 <tr class="separator:a6f3768057511843752341564d681b2c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18c6d44ab22b2cd0d38a2dd0ef13ed1c"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cFILE_8h.html#a18c6d44ab22b2cd0d38a2dd0ef13ed1c">mode_t</a> { <a class="el" href="cFILE_8h.html#a18c6d44ab22b2cd0d38a2dd0ef13ed1ca61aa7ff70b76bff0fda378cf61d6afbc">WRITE</a> = 'w'
-, <a class="el" href="cFILE_8h.html#a18c6d44ab22b2cd0d38a2dd0ef13ed1caf38784ef4b08f294d4a78f62181729a0">APPEND</a> = 'a'
+<tr class="memitem:a6e27fbdf9ffcd23fa9fd62a8c5020236"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cFILE_8h.html#a6e27fbdf9ffcd23fa9fd62a8c5020236">cFILE_opening_mode_t</a> { <a class="el" href="cFILE_8h.html#a6e27fbdf9ffcd23fa9fd62a8c5020236a61aa7ff70b76bff0fda378cf61d6afbc">WRITE</a> = 'w'
+, <a class="el" href="cFILE_8h.html#a6e27fbdf9ffcd23fa9fd62a8c5020236af38784ef4b08f294d4a78f62181729a0">APPEND</a> = 'a'
  }</td></tr>
-<tr class="separator:a18c6d44ab22b2cd0d38a2dd0ef13ed1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a6e27fbdf9ffcd23fa9fd62a8c5020236"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -131,8 +131,8 @@ Functions</h2></td></tr>
 <tr class="separator:aaaee239f2085828059fcedb5aa605f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83e29c39dc4a3a525ba1f31a9c0dab58"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cFILE_8h.html#a83e29c39dc4a3a525ba1f31a9c0dab58">FILE_Read</a> (<a class="el" href="structcFILE__t.html">cFILE_t</a> *file)</td></tr>
 <tr class="separator:a83e29c39dc4a3a525ba1f31a9c0dab58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8adc1e72b840f82199cf8367b8956ecc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cFILE_8h.html#a8adc1e72b840f82199cf8367b8956ecc">FILE_Write</a> (<a class="el" href="structcFILE__t.html">cFILE_t</a> *file, <a class="el" href="cFILE_8h.html#a18c6d44ab22b2cd0d38a2dd0ef13ed1c">mode_t</a> mode)</td></tr>
-<tr class="separator:a8adc1e72b840f82199cf8367b8956ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a268fca2e3f6078fc2d72b006028ca24b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cFILE_8h.html#a268fca2e3f6078fc2d72b006028ca24b">FILE_Write</a> (<a class="el" href="structcFILE__t.html">cFILE_t</a> *file, <a class="el" href="cFILE_8h.html#a6e27fbdf9ffcd23fa9fd62a8c5020236">cFILE_opening_mode_t</a> mode)</td></tr>
+<tr class="separator:a268fca2e3f6078fc2d72b006028ca24b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7dfb1b6665844d328a817da1aa0dbe7"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cFILE_8h.html#af7dfb1b6665844d328a817da1aa0dbe7">FILE_Extension_to_String</a> (<a class="el" href="cFILE_8h.html#a6f3768057511843752341564d681b2c9">extension_t</a> extension)</td></tr>
 <tr class="separator:af7dfb1b6665844d328a817da1aa0dbe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9379940dd98d65f822263a40cf32d3d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="cFILE_8h.html#a6f3768057511843752341564d681b2c9">extension_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cFILE_8h.html#a9379940dd98d65f822263a40cf32d3d2">FILE_String_to_Extension</a> (char *extension)</td></tr>
@@ -143,6 +143,26 @@ Functions</h2></td></tr>
 <tr class="separator:a423e768ba9da653982fff4bf1b275c56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a6e27fbdf9ffcd23fa9fd62a8c5020236" name="a6e27fbdf9ffcd23fa9fd62a8c5020236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e27fbdf9ffcd23fa9fd62a8c5020236">&#9670;&#160;</a></span>cFILE_opening_mode_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="cFILE_8h.html#a6e27fbdf9ffcd23fa9fd62a8c5020236">cFILE_opening_mode_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a6e27fbdf9ffcd23fa9fd62a8c5020236a61aa7ff70b76bff0fda378cf61d6afbc" name="a6e27fbdf9ffcd23fa9fd62a8c5020236a61aa7ff70b76bff0fda378cf61d6afbc"></a>WRITE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6e27fbdf9ffcd23fa9fd62a8c5020236af38784ef4b08f294d4a78f62181729a0" name="a6e27fbdf9ffcd23fa9fd62a8c5020236af38784ef4b08f294d4a78f62181729a0"></a>APPEND&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="cFILE_8h_source.html#l00015">15</a> of file <a class="el" href="cFILE_8h_source.html">cFILE.h</a>.</p>
+
+</div>
+</div>
 <a id="a6f3768057511843752341564d681b2c9" name="a6f3768057511843752341564d681b2c9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f3768057511843752341564d681b2c9">&#9670;&#160;</a></span>extension_t</h2>
 
@@ -162,26 +182,6 @@ Functions</h2></td></tr>
 </table>
 
 <p class="definition">Definition at line <a class="el" href="cFILE_8h_source.html#l00007">7</a> of file <a class="el" href="cFILE_8h_source.html">cFILE.h</a>.</p>
-
-</div>
-</div>
-<a id="a18c6d44ab22b2cd0d38a2dd0ef13ed1c" name="a18c6d44ab22b2cd0d38a2dd0ef13ed1c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a18c6d44ab22b2cd0d38a2dd0ef13ed1c">&#9670;&#160;</a></span>mode_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="cFILE_8h.html#a18c6d44ab22b2cd0d38a2dd0ef13ed1c">mode_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a18c6d44ab22b2cd0d38a2dd0ef13ed1ca61aa7ff70b76bff0fda378cf61d6afbc" name="a18c6d44ab22b2cd0d38a2dd0ef13ed1ca61aa7ff70b76bff0fda378cf61d6afbc"></a>WRITE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a18c6d44ab22b2cd0d38a2dd0ef13ed1caf38784ef4b08f294d4a78f62181729a0" name="a18c6d44ab22b2cd0d38a2dd0ef13ed1caf38784ef4b08f294d4a78f62181729a0"></a>APPEND&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="cFILE_8h_source.html#l00015">15</a> of file <a class="el" href="cFILE_8h_source.html">cFILE.h</a>.</p>
 
 </div>
 </div>
@@ -335,8 +335,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a8adc1e72b840f82199cf8367b8956ecc" name="a8adc1e72b840f82199cf8367b8956ecc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8adc1e72b840f82199cf8367b8956ecc">&#9670;&#160;</a></span>FILE_Write()</h2>
+<a id="a268fca2e3f6078fc2d72b006028ca24b" name="a268fca2e3f6078fc2d72b006028ca24b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a268fca2e3f6078fc2d72b006028ca24b">&#9670;&#160;</a></span>FILE_Write()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -350,7 +350,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="cFILE_8h.html#a18c6d44ab22b2cd0d38a2dd0ef13ed1c">mode_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="cFILE_8h.html#a6e27fbdf9ffcd23fa9fd62a8c5020236">cFILE_opening_mode_t</a>&#160;</td>
           <td class="paramname"><em>mode</em>&#160;</td>
         </tr>
         <tr>

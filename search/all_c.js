@@ -27,6 +27,5 @@ var searchData=
   ['method_5ft_24',['method_t',['../structmethod__t.html',1,'']]],
   ['method_5ftype_5ft_25',['method_type_t',['../methods_8h.html#a249a4b0176792693b424a56e30810f49',1,'methods.h']]],
   ['methods_2ec_26',['methods.c',['../methods_8c.html',1,'']]],
-  ['methods_2eh_27',['methods.h',['../methods_8h.html',1,'']]],
-  ['mode_5ft_28',['mode_t',['../cFILE_8h.html#a18c6d44ab22b2cd0d38a2dd0ef13ed1c',1,'cFILE.h']]]
+  ['methods_2eh_27',['methods.h',['../methods_8h.html',1,'']]]
 ];
