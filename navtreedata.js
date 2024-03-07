@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "CFD_Simulation_Engine", "index.html", [
+    [ "CFD_Simulation_Engine (Core)", "md_core_README.html", null ],
     [ "getopt-for-windows", "md_libs_cGETOPT_README.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -55,7 +56,7 @@ var NAVTREEINDEX =
 "CFD_8c.html",
 "cJSON_8h.html#a70709a6f2a7e45debe4f5abe345fcb86",
 "engine_8h.html#a5973c99218d987f39b1db16c8fcd5d0f",
-"structcFILE__t.html"
+"structVanka__t.html#aff2be1c9e3f2964b8e614005738e658b"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
