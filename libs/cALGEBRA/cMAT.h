@@ -1,5 +1,5 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef CMAT_H
+#define CMAT_H
 
 #include <stdint.h>
 

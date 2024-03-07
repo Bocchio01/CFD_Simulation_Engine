@@ -7,4 +7,7 @@
         "console": "integratedTerminal",
     },
     "cmake.revealLog": "never",
+    "files.associations": {
+        "Doxyfile": "shellscript",
+    }
 }
