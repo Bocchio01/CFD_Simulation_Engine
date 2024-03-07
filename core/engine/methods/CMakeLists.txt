@@ -17,7 +17,8 @@ add_library(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    m
-    libs
-)
+target_link_libraries(${PROJECT_NAME} PUBLIC libs)
+
+if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
+    target_link_libraries(${PROJECT_NAME} PUBLIC m)
+endif()
