@@ -66,7 +66,7 @@ bool FILE_Read(cFILE_t *file)
     strcat(full_path, ".");
     strcat(full_path, FILE_Extension_to_String(file->extension));
 
-    file->pointer = fopen(full_path, "r");
+    file->pointer = fopen(full_path, "rb");
     if (file->pointer == NULL)
     {
         log_error("Error: Unable to open file %s", full_path);
