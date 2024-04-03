@@ -2,7 +2,6 @@ var methods_8h =
 [
     [ "method_index_t", "structmethod__index__t.html", "structmethod__index__t" ],
     [ "method_state_t", "structmethod__state__t.html", "structmethod__state__t" ],
-    [ "under_relaxation_factors_t", "structunder__relaxation__factors__t.html", "structunder__relaxation__factors__t" ],
     [ "method_t", "structmethod__t.html", "structmethod__t" ],
     [ "CFD_t", "methods_8h.html#a87428633d2aa9352ce0d27306f685824", null ],
     [ "method_function_t", "methods_8h.html#a0e1d7f0a1f6de83b49806d708b8cc333", null ],

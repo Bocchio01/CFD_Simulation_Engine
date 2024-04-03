@@ -10,6 +10,7 @@ var searchData=
   ['nodes_7',['nodes',['../structmesh__t.html#a8c215663e46231b63b4b0bcb64284a98',1,'mesh_t']]],
   ['nonoption_5fp_8',['NONOPTION_P',['../getopt_8c.html#a71ceb8911d64b39b402041ba5ea8453c',1,'getopt.c']]],
   ['nu_9',['nu',['../structfluid__t.html#ada125a1e9709aba58e771e21bfd9b7b6',1,'fluid_t']]],
-  ['nx_10',['Nx',['../structmesh__nodes__t.html#ad6ad3da1534268140bdff090472d4913',1,'mesh_nodes_t']]],
-  ['ny_11',['Ny',['../structmesh__nodes__t.html#a5dac7920f5b78dacce03ce8afd2a56b6',1,'mesh_nodes_t']]]
+  ['number_5fof_5fsweeps_10',['number_of_sweeps',['../structSIMPLE__t.html#ab42f602c0b32b89803ca5276be47bc90',1,'SIMPLE_t']]],
+  ['nx_11',['Nx',['../structmesh__nodes__t.html#ad6ad3da1534268140bdff090472d4913',1,'mesh_nodes_t']]],
+  ['ny_12',['Ny',['../structmesh__nodes__t.html#a5dac7920f5b78dacce03ce8afd2a56b6',1,'mesh_nodes_t']]]
 ];

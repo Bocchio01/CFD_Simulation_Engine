@@ -7,6 +7,7 @@ var searchData=
   ['noalloc_4',['noalloc',['../structprintbuffer.html#adcbf0a5cd38757076cc8809c79eaf66f',1,'printbuffer']]],
   ['nodes_5',['nodes',['../structmesh__t.html#a8c215663e46231b63b4b0bcb64284a98',1,'mesh_t']]],
   ['nu_6',['nu',['../structfluid__t.html#ada125a1e9709aba58e771e21bfd9b7b6',1,'fluid_t']]],
-  ['nx_7',['Nx',['../structmesh__nodes__t.html#ad6ad3da1534268140bdff090472d4913',1,'mesh_nodes_t']]],
-  ['ny_8',['Ny',['../structmesh__nodes__t.html#a5dac7920f5b78dacce03ce8afd2a56b6',1,'mesh_nodes_t']]]
+  ['number_5fof_5fsweeps_7',['number_of_sweeps',['../structSIMPLE__t.html#ab42f602c0b32b89803ca5276be47bc90',1,'SIMPLE_t']]],
+  ['nx_8',['Nx',['../structmesh__nodes__t.html#ad6ad3da1534268140bdff090472d4913',1,'mesh_nodes_t']]],
+  ['ny_9',['Ny',['../structmesh__nodes__t.html#a5dac7920f5b78dacce03ce8afd2a56b6',1,'mesh_nodes_t']]]
 ];

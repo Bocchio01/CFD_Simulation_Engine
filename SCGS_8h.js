@@ -1,11 +1,11 @@
 var SCGS_8h =
 [
-    [ "position", "structposition.html", "structposition" ],
-    [ "residual_t", "structresidual__t.html", "structresidual__t" ],
-    [ "Vanka_t", "structVanka__t.html", "structVanka__t" ],
+    [ "SCGS_residual_t", "structSCGS__residual__t.html", "structSCGS__residual__t" ],
+    [ "SCGS_position", "structSCGS__position.html", "structSCGS__position" ],
+    [ "SCGS_vanka_t", "structSCGS__vanka__t.html", "structSCGS__vanka__t" ],
+    [ "SCGS_under_relaxation_factors_t", "structSCGS__under__relaxation__factors__t.html", "structSCGS__under__relaxation__factors__t" ],
     [ "SCGS_t", "structSCGS__t.html", "structSCGS__t" ],
     [ "CFD_t", "SCGS_8h.html#a87428633d2aa9352ce0d27306f685824", null ],
-    [ "residual_t", "SCGS_8h.html#a023b752562d9eed48967a4ce35a036dc", null ],
     [ "SCGS_t", "SCGS_8h.html#a46376ead89f34801ca195074b5000c4b", null ],
     [ "CFD_SCGS", "SCGS_8h.html#a4322047454744e4754e42e8f1bdb9c23", null ],
     [ "CFD_SCGS_Allocate", "SCGS_8h.html#a42b24f0c35a29b079f35ac251843771f", null ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>CFD_Simulation_Engine: core/engine/methods/SCGS.h File Reference</title>
+<title>CFD_Simulation_Engine: core/engine/methods/SCGS/SCGS.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -102,21 +102,23 @@ $(document).ready(function(){initNavTree('SCGS_8h.html',''); initResizable(); })
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="cMAT_8h_source.html">libs/cALGEBRA/cMAT.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="cMAT2D_8h_source.html">libs/cALGEBRA/cMAT2D.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cVEC_8h_source.html">libs/cALGEBRA/cVEC.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="schemes_8h_source.html">../schemes/schemes.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="methods_8h_source.html">../methods/methods.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="schemes_8h_source.html">../../schemes/schemes.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="methods_8h_source.html">../../methods/methods.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="SCGS__BC_8h_source.html">SCGS_BC.h</a>&quot;</code><br />
 </div>
 <p><a href="SCGS_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structposition.html">position</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSCGS__residual__t.html">SCGS_residual_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structresidual__t.html">residual_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSCGS__position.html">SCGS_position</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVanka__t.html">Vanka_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSCGS__vanka__t.html">SCGS_vanka_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSCGS__under__relaxation__factors__t.html">SCGS_under_relaxation_factors_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSCGS__t.html">SCGS_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -125,8 +127,6 @@ Data Structures</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a87428633d2aa9352ce0d27306f685824"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structCFD__t.html">CFD_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SCGS_8h.html#a87428633d2aa9352ce0d27306f685824">CFD_t</a></td></tr>
 <tr class="separator:a87428633d2aa9352ce0d27306f685824"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a023b752562d9eed48967a4ce35a036dc"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structresidual__t.html">residual_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SCGS_8h.html#a023b752562d9eed48967a4ce35a036dc">residual_t</a></td></tr>
-<tr class="separator:a023b752562d9eed48967a4ce35a036dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46376ead89f34801ca195074b5000c4b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structSCGS__t.html">SCGS_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SCGS_8h.html#a46376ead89f34801ca195074b5000c4b">SCGS_t</a></td></tr>
 <tr class="separator:a46376ead89f34801ca195074b5000c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -163,20 +163,6 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="SCGS_8h_source.html#l00004">4</a> of file <a class="el" href="SCGS_8h_source.html">SCGS.h</a>.</p>
-
-</div>
-</div>
-<a id="a023b752562d9eed48967a4ce35a036dc" name="a023b752562d9eed48967a4ce35a036dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a023b752562d9eed48967a4ce35a036dc">&#9670;&#160;</a></span>residual_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="structresidual__t.html">residual_t</a> <a class="el" href="structresidual__t.html">residual_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -230,7 +216,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00077">77</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00079">79</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
 
 </div>
 </div>
@@ -260,7 +246,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00238">238</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00247">247</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
 
 </div>
 </div>
@@ -280,7 +266,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00110">110</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00119">119</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
 
 </div>
 </div>
@@ -300,7 +286,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00121">121</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00130">130</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
 
 </div>
 </div>
@@ -330,7 +316,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00128">128</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00137">137</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
 
 </div>
 </div>
@@ -350,7 +336,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00207">207</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00216">216</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
 
 </div>
 </div>
@@ -370,7 +356,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00250">250</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SCGS_8c_source.html#l00259">259</a> of file <a class="el" href="SCGS_8c_source.html">SCGS.c</a>.</p>
 
 </div>
 </div>
@@ -379,7 +365,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_4270bfced15e0e73154b13468c7c9ad9.html">core</a></li><li class="navelem"><a class="el" href="dir_65e22fd0f0cbe57228942e8d55f7ea3b.html">engine</a></li><li class="navelem"><a class="el" href="dir_783f01a810354b47cfbe9ef792f38377.html">methods</a></li><li class="navelem"><a class="el" href="SCGS_8h.html">SCGS.h</a></li>
+    <li class="navelem"><a class="el" href="dir_4270bfced15e0e73154b13468c7c9ad9.html">core</a></li><li class="navelem"><a class="el" href="dir_65e22fd0f0cbe57228942e8d55f7ea3b.html">engine</a></li><li class="navelem"><a class="el" href="dir_783f01a810354b47cfbe9ef792f38377.html">methods</a></li><li class="navelem"><a class="el" href="dir_aa7db53e8bd0bfdc583f9350a6709d9a.html">SCGS</a></li><li class="navelem"><a class="el" href="SCGS_8h.html">SCGS.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>

@@ -1,11 +1,7 @@
 var dir_783f01a810354b47cfbe9ef792f38377 =
 [
+    [ "SCGS", "dir_aa7db53e8bd0bfdc583f9350a6709d9a.html", "dir_aa7db53e8bd0bfdc583f9350a6709d9a" ],
+    [ "SIMPLE", "dir_e8816ad765bd6653ca374942bfbb302b.html", "dir_e8816ad765bd6653ca374942bfbb302b" ],
     [ "methods.c", "methods_8c.html", "methods_8c" ],
-    [ "methods.h", "methods_8h.html", "methods_8h" ],
-    [ "SCGS.c", "SCGS_8c.html", "SCGS_8c" ],
-    [ "SCGS.h", "SCGS_8h.html", "SCGS_8h" ],
-    [ "SCGS_BC.c", "SCGS__BC_8c.html", "SCGS__BC_8c" ],
-    [ "SCGS_BC.h", "SCGS__BC_8h.html", "SCGS__BC_8h" ],
-    [ "SIMPLE.c", "SIMPLE_8c.html", "SIMPLE_8c" ],
-    [ "SIMPLE.h", "SIMPLE_8h.html", "SIMPLE_8h" ]
+    [ "methods.h", "methods_8h.html", "methods_8h" ]
 ];
