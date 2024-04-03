@@ -6,39 +6,47 @@ typedef struct CFD_t CFD_t;
 #include <stdio.h>
 #include <stdint.h>
 
-#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT2D.h"
 #include "libs/cALGEBRA/cVEC.h"
 
-#include "../schemes/schemes.h"
-#include "../methods/methods.h"
+#include "../../schemes/schemes.h"
+#include "../../methods/methods.h"
 #include "SCGS_BC.h"
+
+typedef struct
+{
+    double u;
+    double v;
+    double p;
+} SCGS_residual_t;
 
 typedef struct
 {
     int8_t i;
     int8_t j;
     phi_t phi;
-} position;
-
-typedef struct residual_t
-{
-    double u;
-    double v;
-    double p;
-} residual_t;
+} SCGS_position;
 
 typedef struct
 {
     cVEC_t *x;
     cVEC_t *R;
-    cMAT_t *A;
-} Vanka_t;
+    cMAT2D_t *A;
+} SCGS_vanka_t;
+
+typedef struct
+{
+    float u;
+    float v;
+    float p;
+} SCGS_under_relaxation_factors_t;
 
 typedef struct SCGS_t
 {
-    residual_t *residual;
-    Vanka_t *vanka;
+    SCGS_residual_t *residual;
+    SCGS_vanka_t *vanka;
     cVEC_t *A_coefficients;
+    SCGS_under_relaxation_factors_t *under_relaxation_factors;
 } SCGS_t;
 
 void CFD_SCGS(CFD_t *cfd);

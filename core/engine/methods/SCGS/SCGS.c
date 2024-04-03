@@ -4,10 +4,10 @@ typedef struct CFD_t CFD_t;
 
 #include <stdlib.h>
 #include <math.h>
-#include "methods.h"
-#include "../../CFD.h"
-#include "../schemes/schemes.h"
-#include "libs/cALGEBRA/cMAT.h"
+#include "../methods.h"
+#include "../../../CFD.h"
+#include "../../schemes/schemes.h"
+#include "libs/cALGEBRA/cMAT2D.h"
 #include "libs/cALGEBRA/cVEC.h"
 #include "libs/cLOG/cLOG.h"
 
@@ -46,7 +46,9 @@ void CFD_SCGS(CFD_t *cfd)
 
         CFD_SCGS_BC_NoSlip_Tangetial(cfd);
 
-        cfd->engine->method->residual->data[cfd->engine->method->iteractions] = fmax(fmax(scgs->residual->u, scgs->residual->v), scgs->residual->p);
+        cfd->engine->method->residual->data[cfd->engine->method->iteractions] = fmax(
+            fmax(scgs->residual->u, scgs->residual->v),
+            scgs->residual->p);
 
         if (isnan(cfd->engine->method->residual->data[cfd->engine->method->iteractions]) ||
             isinf(cfd->engine->method->residual->data[cfd->engine->method->iteractions]))
@@ -82,17 +84,24 @@ SCGS_t *CFD_SCGS_Allocate()
 
     if (scgs != NULL)
     {
-        scgs->vanka = (Vanka_t *)malloc(sizeof(Vanka_t));
-        scgs->residual = (residual_t *)malloc(sizeof(residual_t));
+        scgs->vanka = (SCGS_vanka_t *)malloc(sizeof(SCGS_vanka_t));
+        scgs->residual = (SCGS_residual_t *)malloc(sizeof(SCGS_residual_t));
         scgs->A_coefficients = VEC_Init(EENN + 1);
+        scgs->under_relaxation_factors = (SCGS_under_relaxation_factors_t *)malloc(sizeof(SCGS_under_relaxation_factors_t));
 
         if (scgs->vanka != NULL &&
             scgs->residual != NULL &&
-            scgs->A_coefficients != NULL)
+            scgs->A_coefficients != NULL &&
+            scgs->under_relaxation_factors != NULL)
         {
-            scgs->vanka->A = MAT_Init(5, 5);
+            scgs->vanka->A = MAT2D_Init(5, 5);
             scgs->vanka->R = VEC_Init(5);
             scgs->vanka->x = VEC_Init(5);
+
+            // TODO: Load under_relaxation_factors from configuration file
+            scgs->under_relaxation_factors->u = 0.7;
+            scgs->under_relaxation_factors->v = 0.7;
+            scgs->under_relaxation_factors->p = 0.7;
 
             if (scgs->vanka->A != NULL &&
                 scgs->vanka->R != NULL &&
@@ -109,7 +118,7 @@ SCGS_t *CFD_SCGS_Allocate()
 
 void CFD_SCGS_Free(SCGS_t *scgs)
 {
-    MAT_Free(scgs->vanka->A);
+    MAT2D_Free(scgs->vanka->A);
     VEC_Free(scgs->vanka->R);
     VEC_Free(scgs->vanka->x);
     free(scgs->residual);
@@ -132,7 +141,7 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
     uint16_t i = cfd->engine->method->index->i;
     uint16_t j = cfd->engine->method->index->j;
 
-    position positions[] = {
+    SCGS_position positions[] = {
         {-1, +0, u},
         {+0, +0, u},
         {+0, -1, v},
@@ -180,10 +189,10 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
     scgs->vanka->R->data[4] = -((CFD_Get_State(cfd, u, i + 0, j + 0) - CFD_Get_State(cfd, u, i - 1, j + 0)) * cfd->engine->mesh->element->size->dy +
                                 (CFD_Get_State(cfd, v, i + 0, j + 0) - CFD_Get_State(cfd, v, i + 0, j - 1)) * cfd->engine->mesh->element->size->dx);
 
-    scgs->vanka->A->data[0][0] = Ap[0] / cfd->engine->method->under_relaxation_factors->u;
-    scgs->vanka->A->data[1][1] = Ap[1] / cfd->engine->method->under_relaxation_factors->u;
-    scgs->vanka->A->data[2][2] = Ap[2] / cfd->engine->method->under_relaxation_factors->v;
-    scgs->vanka->A->data[3][3] = Ap[3] / cfd->engine->method->under_relaxation_factors->v;
+    scgs->vanka->A->data[0][0] = Ap[0] / scgs->under_relaxation_factors->u;
+    scgs->vanka->A->data[1][1] = Ap[1] / scgs->under_relaxation_factors->u;
+    scgs->vanka->A->data[2][2] = Ap[2] / scgs->under_relaxation_factors->v;
+    scgs->vanka->A->data[3][3] = Ap[3] / scgs->under_relaxation_factors->v;
 
     scgs->vanka->A->data[4][0] = -1.0 * cfd->engine->mesh->element->size->dy;
     scgs->vanka->A->data[4][1] = +1.0 * cfd->engine->mesh->element->size->dy;

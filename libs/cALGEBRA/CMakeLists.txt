@@ -5,8 +5,10 @@ project(cALGEBRA
 )
 
 add_library(${PROJECT_NAME} STATIC
-    cMAT.c
-    cMAT.h
+    cMAT3D.c
+    cMAT3D.h
+    cMAT2D.c
+    cMAT2D.h
     cVEC.c
     cVEC.h
 )

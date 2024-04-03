@@ -3,7 +3,7 @@
 #include "libs/cLOG/cLOG.h"
 
 #include "libs/cFILE/cFILE.h"
-#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT2D.h"
 
 #include "core/CFD.h"
 
@@ -37,8 +37,8 @@ void CFD_Collocate_Fields(CFD_t *cfd)
     uint16_t rows = cfd->engine->mesh->data->x->rows;
     uint16_t cols = cfd->engine->mesh->data->x->cols;
 
-    cMAT_t *UC = MAT_Init(rows, cols);
-    cMAT_t *VC = MAT_Init(rows, cols);
+    cMAT2D_t *UC = MAT2D_Init(rows, cols);
+    cMAT2D_t *VC = MAT2D_Init(rows, cols);
 
     for (uint16_t j = cfd->engine->mesh->n_ghosts; j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts; j++)
     {
@@ -50,8 +50,8 @@ void CFD_Collocate_Fields(CFD_t *cfd)
         }
     }
 
-    MAT_Copy(UC, cfd->engine->method->state->u);
-    MAT_Copy(VC, cfd->engine->method->state->v);
+    MAT2D_Copy(UC, cfd->engine->method->state->u);
+    MAT2D_Copy(VC, cfd->engine->method->state->v);
 }
 
 void CFD_Save_Results(CFD_t *cfd)

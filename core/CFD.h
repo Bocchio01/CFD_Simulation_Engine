@@ -4,9 +4,9 @@
 #define VERSION_MAJOR @CFD_Simulation_Engine_VERSION_MAJOR @
 #define VERSION_MINOR @CFD_Simulation_Engine_VERSION_MINOR @
 
-#define DEFAULT_IN_FILE_PATH "sim_input" // Input file path
-#define DEFAULT_IN_FILE_NAME "input"     // Input file name
-#define DEFAULT_IN_FILE_FORMAT "JSON"    // Input file format
+#define DEFAULT_IN_FILE_PATH "simulations/input" // Input file path
+#define DEFAULT_IN_FILE_NAME "input"             // Input file name
+#define DEFAULT_IN_FILE_FORMAT "JSON"            // Input file format
 
 #define DEFAULT_IN_ULID 1.0       // Lid velocity
 #define DEFAULT_IN_GEOMETRY_X 1.0 // Geometry X
@@ -19,19 +19,24 @@
 #define DEFAULT_ENGINE_MESH_NODES_Y 100                 // Mesh nodes Y
 #define DEFAULT_ENGINE_MESH_ELEMENTS_TYPE "RECTANGULAR" // Elements type
 
-#define DEFAULT_ENGINE_METHOD_TYPE "SCGS"            // Method type
-#define DEFAULT_ENGINE_METHOD_TOLERANCE 1e-4         // Method tolerance
-#define DEFAULT_ENGINE_METHOD_MAX_ITER 1000          // Method max iterations
+#define DEFAULT_ENGINE_METHOD_TYPE "SCGS"    // Method type
+#define DEFAULT_ENGINE_METHOD_TOLERANCE 1e-4 // Method tolerance
+#define DEFAULT_ENGINE_METHOD_MAX_ITER 1000  // Method max iterations
+
 #define DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_U 0.5 // Method under relaxation u
 #define DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_V 0.5 // Method under relaxation v
 #define DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_P 0.3 // Method under relaxation p
 
+#define DEFAULT_ENGINE_METHOD_SWEEPS_U 4 // Method number of sweeps for u
+#define DEFAULT_ENGINE_METHOD_SWEEPS_V 4 // Method number of sweeps for v
+#define DEFAULT_ENGINE_METHOD_SWEEPS_P 8 // Method number of sweeps for p
+
 #define DEFAULT_ENGINE_SCHEMES_CONVECTION "UDS"   // Schemes convection
 #define DEFAULT_ENGINE_SCHEMES_DIFFUSION "SECOND" // Schemes diffusion
 
-#define DEFAULT_OUT_FILE_PATH "sim_output" // Output file path
-#define DEFAULT_OUT_FILE_NAME "output"     // Output file name
-#define DEFAULT_OUT_FILE_FORMAT "DAT"      // Output file format
+#define DEFAULT_OUT_FILE_PATH "simulations/output" // Output file path
+#define DEFAULT_OUT_FILE_NAME "output"             // Output file name
+#define DEFAULT_OUT_FILE_FORMAT "DAT"              // Output file format
 
 #include "in/in.h"
 #include "engine/engine.h"

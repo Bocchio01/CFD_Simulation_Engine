@@ -6,22 +6,29 @@
             "y": 1.0
         },
         "fluid": {
-            "Re": 10
+            "Re": 100
         }
     },
     "engine": {
         "mesh": {
             "nodes": {
-                "Nx": 10,
-                "Ny": 10
+                "Nx": 5,
+                "Ny": 5
             }
         },
         "method": {
-            "tolerance": 1e-05,
+            "type": "SIMPLE",
+            "tolerance": 1e-04,
             "maxIter": 5000,
             "underRelaxation": {
-                "u": 0.8,
-                "v": 0.8
+                "u": 0.5,
+                "v": 0.5,
+                "p": 0.3
+            },
+            "sweeps": {
+                "u": 4,
+                "v": 4,
+                "p": 8
             }
         },
         "schemes": {

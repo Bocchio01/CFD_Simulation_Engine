@@ -1,24 +1,19 @@
-project(methods
+project(SCGS
     VERSION 1.0
-    DESCRIPTION "Methods module for CFD simulation software"
+    DESCRIPTION "SCGS module for CFD simulation software"
     LANGUAGES C
 )
 
-add_subdirectory(SCGS)
-add_subdirectory(SIMPLE)
-
 add_library(${PROJECT_NAME}
-    methods.c
-    methods.h
+    SCGS.c
+    SCGS.h
+    SCGS_BC.c
+    SCGS_BC.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-    SCGS
-    SIMPLE
-    libs
-)
+target_link_libraries(${PROJECT_NAME} PUBLIC libs)
 
 if(CMAKE_C_COMPILER_ID MATCHES "GNU|Clang")
     target_link_libraries(${PROJECT_NAME} PUBLIC m)

@@ -5,7 +5,7 @@ typedef struct CFD_t CFD_t;
 
 #include <stdint.h>
 
-#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT2D.h"
 
 typedef enum
 {
@@ -39,8 +39,8 @@ typedef struct
 
 typedef struct
 {
-    cMAT_t *x;
-    cMAT_t *y;
+    cMAT2D_t *x;
+    cMAT2D_t *y;
 } mesh_data_t;
 
 typedef struct

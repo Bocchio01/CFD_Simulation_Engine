@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT2D.h"
 
 typedef struct
 {
@@ -17,7 +17,7 @@ cVEC_t *VEC_Sum(cVEC_t *V1, cVEC_t *V2);
 
 cVEC_t *VEC_Multiply(double scalar, cVEC_t *V);
 
-cMAT_t *VEC_ToMatrix(cVEC_t *V);
+cMAT2D_t *VEC_ToMatrix(cVEC_t *V);
 
 void VEC_Free(cVEC_t *V);
 

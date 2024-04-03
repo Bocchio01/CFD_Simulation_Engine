@@ -4,23 +4,23 @@ close all
 
 fileNames = {
     % 'output'
-    '00_40_40_100_UDS_SECOND_08_08'
-    '01_40_40_400_UDS_SECOND_008_008'
-    '02_40_40_1000_UDS_SECOND_008_008'
-    '03_40_40_1000_CDS_SECOND_008_008'
-    '04_40_40_1000_QUICK_SECOND_008_008'
-    '05_80_80_1000_UDS_SECOND_008_008'
-    '06_80_80_1000_CDS_SECOND_008_008'
+    % '00_40_40_100_UDS_SECOND_08_08'
+    % '01_40_40_400_UDS_SECOND_008_008'
+    % '02_40_40_1000_UDS_SECOND_008_008'
+    % '03_40_40_1000_CDS_SECOND_008_008'
+    % '04_40_40_1000_QUICK_SECOND_008_008'
+    % '05_80_80_1000_UDS_SECOND_008_008'
+    % '06_80_80_1000_CDS_SECOND_008_008'
     '07_80_80_1000_QUICK_SECOND_008_008'
-    '08_129_129_1000_UDS_SECOND_008_008'
-    '09_129_129_1000_CDS_SECOND_008_008'
-    '10_129_129_1000_QUICK_SECOND_008_008'
-    '11_129_129_1000_UDS_FOURTH_008_008'
-    '12_129_129_1000_CDS_FOURTH_008_008'
-    '13_129_129_1000_QUICK_FOURTH_008_008'
+    % '08_129_129_1000_UDS_SECOND_008_008'
+    % '09_129_129_1000_CDS_SECOND_008_008'
+    % '10_129_129_1000_QUICK_SECOND_008_008'
+    % '11_129_129_1000_UDS_FOURTH_008_008'
+    % '12_129_129_1000_CDS_FOURTH_008_008'
+    % '13_129_129_1000_QUICK_FOURTH_008_008'
     };
 
-plots = true * [1 1];
+plots = true * [1 0];
 % latex_img_path = 'C:/Users/Bocchio/Documents/GitHub/University_Programming_Classes/07 - ME663 Computational Fluid Dynamics/Report assignment 1/img';
 
 
@@ -33,7 +33,7 @@ if(plots(1) == true)
     for file_idx = 1:length(fileNames)
         close all
 
-        file_path = ['../sim_output/' fileNames{file_idx} '.dat'];
+        file_path = ['../output/' fileNames{file_idx} '.dat'];
         if (exist(file_path, 'file') ~= 2)
             disp(['File ' fileNames{file_idx} ' doesnt exists'])
             continue;
@@ -104,35 +104,28 @@ if(plots(1) == true)
         clear state_idx states_name states_matrix
 
 
-        %% Plot velocity
+        %% Plot velocity by streamlines
 
         figure_velocity = figure( ...
             'Name', 'Velocity visualization', ...
             'NumberTitle', 'off', ...
             'Position', [100, 100, 1500, 600]);
-        t = tiledlayout(1, 2);
+        t = tiledlayout(1, 1);
         title(t, strrep(fileNames{file_idx}, '_', '-'))
-
-        % Vectorial
-        nexttile
-        hold on
-        grid on
-
-        quiver(X, Y, U, V);
-
-        title('Velocity vectorial field');
-        xlabel('X');
-        ylabel('Y');
-        axis equal;
-        axis(axis_limit);
 
         % Streamlines
         plot_streamline = nexttile;
         hold on
         grid on
 
-        [verts, averts] = streamslice(X, Y, U, V);
-        streamline([verts, averts]);
+        pcolor(X, Y, sqrt(U.^2 + V.^2));
+        colorbar;
+        shading interp;
+        
+        stream_obj = streamslice(X, Y, U, V, 3);
+        set(stream_obj, ...
+            'color', [0.0 0.0 0.0], ...
+            'linewidth', 1);
 
         title('Velocity streamlines');
         xlabel('X');
@@ -228,7 +221,7 @@ if(plots(2) == true)
     CPU_times = [];
     for file_idx = 1:length(fileNames)
 
-        file_path = ['../sim_output/' fileNames{file_idx} '.dat'];
+        file_path = ['../output/' fileNames{file_idx} '.dat'];
         if (exist(file_path, 'file') ~= 2)
             disp(['File ' fileNames{file_idx} ' doesnt exists'])
             continue;

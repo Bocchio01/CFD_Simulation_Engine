@@ -3,10 +3,10 @@
 
 typedef struct CFD_t CFD_t;
 
-#include "SCGS.h"
-#include "SIMPLE.h"
+#include "SCGS/SCGS.h"
+#include "SIMPLE/SIMPLE.h"
 
-#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT2D.h"
 
 typedef void (*method_function_t)(CFD_t *cfd);
 
@@ -24,17 +24,10 @@ typedef struct
 
 typedef struct method_state_t
 {
-    cMAT_t *u;
-    cMAT_t *v;
-    cMAT_t *p;
+    cMAT2D_t *u;
+    cMAT2D_t *v;
+    cMAT2D_t *p;
 } method_state_t;
-
-typedef struct
-{
-    float u;
-    float v;
-    float p;
-} under_relaxation_factors_t;
 
 typedef struct
 {
@@ -44,7 +37,6 @@ typedef struct
     uint16_t iteractions;
     double CPU_time;
     cVEC_t *residual;
-    under_relaxation_factors_t *under_relaxation_factors;
     method_index_t *index;
     method_state_t *state;
     method_function_t callable;

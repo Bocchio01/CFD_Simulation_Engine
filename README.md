@@ -82,12 +82,12 @@ From the command line, the possible input arguments are:
 
 - `-h` or `--help` to print the help
 - `-v` or `--version` to print the version
-- `-i` or `--in` to specify the input file path (relative or absolute). Default: `-i sim_input/input.json`
+- `-i` or `--in` to specify the input file path (relative or absolute). Default: `-i simulations/input/input.json`
 - `-f` or `--format` to specify the out file format. Default: `-f DAT`
 
 ## Output
 
-The output is saved in a `DAT` file and it is possible to visualize it using the `MATLAB` script provided in the `sim_output/plotting` folder.
+The output is saved in a `DAT` file and it is possible to visualize it using the `MATLAB` script provided in the `simulations/plotting` folder.
 
 An example of the output file is:
 
@@ -148,12 +148,12 @@ If you have compiled the code using the `CMake` build system, you can run the co
 Here is an example of how to run the code with the default parameters:
 
 ```bash
-./build/Debug/CFD_Simulation_Engine -i sim_input/input.json -f DAT
+./build/Debug/CFD_Simulation_Engine -i simulations/input/input.json -f DAT
 ```
 
 ### Plot the results
 
-You can plot the results using the `MATLAB` script provided in the `sim_plotting` folder.
+You can plot the results using the `MATLAB` script provided in the `simulations/plotting` folder.
 
 ## Trouble shooting
 

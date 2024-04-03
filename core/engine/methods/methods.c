@@ -4,7 +4,7 @@
 
 #include "libs/cLOG/cLOG.h"
 #include "libs/cALGEBRA/cVEC.h"
-#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT2D.h"
 
 #include "../../CFD.h"
 
@@ -26,19 +26,20 @@ void CFD_Setup_Method(CFD_t *cfd)
 
     cfd->engine->method->residual = VEC_Init(maxIter);
 
-    cfd->engine->method->state->u = MAT_Init(rows, cols);
-    cfd->engine->method->state->v = MAT_Init(rows, cols);
-    cfd->engine->method->state->p = MAT_Init(rows, cols);
+    cfd->engine->method->state->u = MAT2D_Init(rows, cols);
+    cfd->engine->method->state->v = MAT2D_Init(rows, cols);
+    cfd->engine->method->state->p = MAT2D_Init(rows, cols);
 
-    for (uint16_t j = 0; j < rows; j++)
-    {
-        for (uint16_t i = 0; i < cols; i++)
-        {
-            cfd->engine->method->state->u->data[j][i] = 0.0;
-            cfd->engine->method->state->v->data[j][i] = 0.0;
-            cfd->engine->method->state->p->data[j][i] = 0.0;
-        }
-    }
+    // Already initialized to 0 in MAT2D_Init
+    // for (uint16_t j = 0; j < rows; j++)
+    // {
+    //     for (uint16_t i = 0; i < cols; i++)
+    //     {
+    //         cfd->engine->method->state->u->data[j][i] = 0.0;
+    //         cfd->engine->method->state->v->data[j][i] = 0.0;
+    //         cfd->engine->method->state->p->data[j][i] = 0.0;
+    //     }
+    // }
 }
 
 void CFD_Run_Method(CFD_t *cfd)

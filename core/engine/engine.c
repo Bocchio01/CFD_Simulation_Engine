@@ -37,7 +37,6 @@ void CFD_Setup_Engine(CFD_t *cfd)
 
     log_info("Solver tolerance:\t%f", cfd->engine->method->tolerance);
     log_info("Solver max iterations:\t%d", cfd->engine->method->maxIter);
-    log_info("Solver under-relaxation-factors:\t%.3f, %.3f, %.3f", cfd->engine->method->under_relaxation_factors->u, cfd->engine->method->under_relaxation_factors->v, cfd->engine->method->under_relaxation_factors->p);
 
     switch (cfd->engine->schemes->convection->type)
     {
@@ -150,8 +149,8 @@ mesh_data_t *CFD_Allocate_Engine_Mesh_Data()
     mesh_data_t *data = (mesh_data_t *)malloc(sizeof(mesh_data_t));
     if (data != NULL)
     {
-        // data->x = (cMAT_t *)malloc(sizeof(cMAT_t));
-        // data->y = (cMAT_t *)malloc(sizeof(cMAT_t));
+        // data->x = (cMAT2D_t *)malloc(sizeof(cMAT2D_t));
+        // data->y = (cMAT2D_t *)malloc(sizeof(cMAT2D_t));
         return data;
     }
 
@@ -176,11 +175,9 @@ method_t *CFD_Allocate_Engine_Method()
     method_t *method = (method_t *)malloc(sizeof(method_t));
     if (method != NULL)
     {
-        method->under_relaxation_factors = CFD_Allocate_Engine_Method_UnderRelaxationFactors();
         method->state = CFD_Allocate_Engine_Method_State();
         method->index = CFD_Allocate_Engine_Method_Index();
-        if (method->under_relaxation_factors != NULL &&
-            method->state != NULL &&
+        if (method->state != NULL &&
             method->index != NULL)
         {
             return method;
@@ -191,17 +188,17 @@ method_t *CFD_Allocate_Engine_Method()
     exit(EXIT_FAILURE);
 }
 
-under_relaxation_factors_t *CFD_Allocate_Engine_Method_UnderRelaxationFactors()
-{
-    under_relaxation_factors_t *under_relaxation_factors = (under_relaxation_factors_t *)malloc(sizeof(under_relaxation_factors_t));
-    if (under_relaxation_factors != NULL)
-    {
-        return under_relaxation_factors;
-    }
+// number_of_sweeps_t *CFD_Allocate_Engine_Method_NumberOfSweeps()
+// {
+//     number_of_sweeps_t *number_of_sweeps = (number_of_sweeps_t *)malloc(sizeof(number_of_sweeps_t));
+//     if (number_of_sweeps != NULL)
+//     {
+//         return number_of_sweeps;
+//     }
 
-    log_fatal("Error: Could not allocate memory for engine->method->under_relaxation_factors");
-    exit(EXIT_FAILURE);
-}
+//     log_fatal("Error: Could not allocate memory for engine->method->number_of_sweeps");
+//     exit(EXIT_FAILURE);
+// }
 
 method_state_t *CFD_Allocate_Engine_Method_State()
 {
@@ -314,7 +311,6 @@ void CFD_Free_Engine_Method(method_t *method)
 {
     if (method != NULL)
     {
-        CFD_Free_Engine_Method_UnderRelaxationFactors(method->under_relaxation_factors);
         CFD_Free_Engine_Method_State(method->state);
         CFD_Free_Engine_Method_Index(method->index);
         free(method);
@@ -356,13 +352,13 @@ void CFD_Free_Engine_Mesh_Data(mesh_data_t *data)
     }
 }
 
-void CFD_Free_Engine_Method_UnderRelaxationFactors(under_relaxation_factors_t *under_relaxation_factors)
-{
-    if (under_relaxation_factors != NULL)
-    {
-        free(under_relaxation_factors);
-    }
-}
+// void CFD_Free_Engine_Method_UnderRelaxationFactors(under_relaxation_factors_t *under_relaxation_factors)
+// {
+//     if (under_relaxation_factors != NULL)
+//     {
+//         free(under_relaxation_factors);
+//     }
+// }
 
 void CFD_Free_Engine_Method_State(method_state_t *state)
 {

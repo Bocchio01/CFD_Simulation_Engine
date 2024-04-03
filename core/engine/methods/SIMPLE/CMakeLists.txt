@@ -1,22 +1,20 @@
-project(methods
+project(SIMPLE
     VERSION 1.0
-    DESCRIPTION "Methods module for CFD simulation software"
+    DESCRIPTION "SIMPLE module for CFD simulation software"
     LANGUAGES C
 )
 
-add_subdirectory(SCGS)
-add_subdirectory(SIMPLE)
+add_subdirectory(equations)
 
 add_library(${PROJECT_NAME}
-    methods.c
-    methods.h
+    SIMPLE.c
+    SIMPLE.h
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
-    SCGS
-    SIMPLE
+    EQUATIONS
     libs
 )
 

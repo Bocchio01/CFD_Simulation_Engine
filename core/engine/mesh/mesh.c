@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "mesh.h"
 
-#include "libs/cALGEBRA/cMAT.h"
+#include "libs/cALGEBRA/cMAT2D.h"
 
 #include "../../CFD.h"
 
@@ -14,11 +14,11 @@ void CFD_Setup_Mesh(CFD_t *cfd)
     uint16_t rows = cfd->engine->mesh->nodes->Ny + 2 * cfd->engine->mesh->n_ghosts;
     uint16_t cols = cfd->engine->mesh->nodes->Nx + 2 * cfd->engine->mesh->n_ghosts;
 
-    cfd->engine->mesh->data->x = MAT_Init(
+    cfd->engine->mesh->data->x = MAT2D_Init(
         rows,
         cols);
 
-    cfd->engine->mesh->data->y = MAT_Init(
+    cfd->engine->mesh->data->y = MAT2D_Init(
         rows,
         cols);
 }

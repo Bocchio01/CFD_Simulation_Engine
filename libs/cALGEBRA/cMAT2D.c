@@ -1,6 +1,6 @@
 /**
- * @file cMAT.c
- * @brief cMAT_t operations module
+ * @file cMAT2D.c
+ * @brief cMAT2D_t operations module
  * @details This module implements the basic matrix operations.
  * @date 2024-02-13
  */
@@ -10,15 +10,15 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "cMAT.h"
+#include "cMAT2D.h"
 #include "libs/cLOG/cLOG.h"
 
-cMAT_t *MAT_Init(uint16_t rows, uint16_t cols)
+cMAT2D_t *MAT2D_Init(uint16_t rows, uint16_t cols)
 {
-    cMAT_t *mat = (cMAT_t *)malloc(sizeof(cMAT_t));
+    cMAT2D_t *mat = (cMAT2D_t *)malloc(sizeof(cMAT2D_t));
     if (mat == NULL)
     {
-        log_fatal("Failed to allocate memory for cMAT_t");
+        log_fatal("Failed to allocate memory for cMAT2D_t");
         exit(EXIT_FAILURE);
     }
 
@@ -27,7 +27,7 @@ cMAT_t *MAT_Init(uint16_t rows, uint16_t cols)
     mat->data = (double **)malloc(rows * sizeof(double *));
     if (mat->data == NULL)
     {
-        log_fatal("Failed to allocate memory for cMAT_t data");
+        log_fatal("Failed to allocate memory for cMAT2D_t data");
         exit(EXIT_FAILURE);
     }
 
@@ -36,7 +36,7 @@ cMAT_t *MAT_Init(uint16_t rows, uint16_t cols)
         mat->data[i] = (double *)malloc(cols * sizeof(double));
         if (mat->data[i] == NULL)
         {
-            log_fatal("Failed to allocate memory for cMAT_t data");
+            log_fatal("Failed to allocate memory for cMAT2D_t data");
             exit(EXIT_FAILURE);
         }
     }
@@ -52,9 +52,9 @@ cMAT_t *MAT_Init(uint16_t rows, uint16_t cols)
     return mat;
 }
 
-cMAT_t *MAT_Transpose(cMAT_t *A)
+cMAT2D_t *MAT2D_Transpose(cMAT2D_t *A)
 {
-    cMAT_t *result = MAT_Init(A->cols, A->rows);
+    cMAT2D_t *result = MAT2D_Init(A->cols, A->rows);
 
     for (uint16_t i = 0; i < A->rows; i++)
     {
@@ -67,9 +67,9 @@ cMAT_t *MAT_Transpose(cMAT_t *A)
     return result;
 }
 
-cMAT_t *MAT_MultiplyScalar(double scalar, cMAT_t *A)
+cMAT2D_t *MAT2D_MultiplyScalar(double scalar, cMAT2D_t *A)
 {
-    cMAT_t *result = MAT_Init(A->rows, A->cols);
+    cMAT2D_t *result = MAT2D_Init(A->rows, A->cols);
 
     for (uint16_t i = 0; i < A->rows; i++)
     {
@@ -82,11 +82,11 @@ cMAT_t *MAT_MultiplyScalar(double scalar, cMAT_t *A)
     return result;
 }
 
-cMAT_t *MAT_Sum(cMAT_t *A, cMAT_t *B)
+cMAT2D_t *MAT2D_Sum(cMAT2D_t *A, cMAT2D_t *B)
 {
     assert(A->rows == B->rows && A->cols == B->cols);
 
-    cMAT_t *result = MAT_Init(A->rows, A->cols);
+    cMAT2D_t *result = MAT2D_Init(A->rows, A->cols);
 
     for (uint16_t i = 0; i < A->rows; i++)
     {
@@ -99,11 +99,11 @@ cMAT_t *MAT_Sum(cMAT_t *A, cMAT_t *B)
     return result;
 }
 
-cMAT_t *MAT_Multiply(cMAT_t *A, cMAT_t *B)
+cMAT2D_t *MAT2D_Multiply(cMAT2D_t *A, cMAT2D_t *B)
 {
     assert(A->cols == B->rows);
 
-    cMAT_t *result = MAT_Init(A->rows, B->cols);
+    cMAT2D_t *result = MAT2D_Init(A->rows, B->cols);
 
     for (uint16_t i = 0; i < A->rows; i++)
     {
@@ -120,7 +120,7 @@ cMAT_t *MAT_Multiply(cMAT_t *A, cMAT_t *B)
     return result;
 }
 
-void MAT_Free(cMAT_t *A)
+void MAT2D_Free(cMAT2D_t *A)
 {
     for (uint16_t i = 0; i < A->rows; i++)
     {
@@ -129,7 +129,7 @@ void MAT_Free(cMAT_t *A)
     free(A->data);
 }
 
-void MAT_Copy(cMAT_t *A, cMAT_t *B)
+void MAT2D_Copy(cMAT2D_t *A, cMAT2D_t *B)
 {
     assert(A->rows == B->rows && A->cols == B->cols);
 
@@ -142,9 +142,9 @@ void MAT_Copy(cMAT_t *A, cMAT_t *B)
     }
 }
 
-void MAT_Print(cMAT_t *A)
+void MAT2D_Print(cMAT2D_t *A)
 {
-    printf("cMAT_t %dx%d:\n", A->rows, A->cols);
+    printf("cMAT2D_t %dx%d:\n", A->rows, A->cols);
     printf("[\n");
 
     for (int i = 0; i < A->rows; i++)
@@ -160,9 +160,9 @@ void MAT_Print(cMAT_t *A)
     printf("]\n");
 }
 
-void MAT_Print_States(cMAT_t *state)
+void MAT2D_Print_States(cMAT2D_t *state)
 {
-    printf("cMAT_t %dx%d:\n", state->rows, state->cols);
+    printf("cMAT2D_t %dx%d:\n", state->rows, state->cols);
     printf("[\n");
 
     for (int j = state->rows - 1; j >= 0; j--)

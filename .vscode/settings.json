@@ -2,12 +2,31 @@
     "cmake.debugConfig": {
         "cwd": "${workspaceFolder}",
         "args": [
-            "-i sim_input/00_40_40_100_UDS_SECOND_08_08.json"
+            // "-i simulations/input/00_40_40_100_UDS_SECOND_08_08.json"
         ],
         "console": "integratedTerminal",
     },
     "cmake.revealLog": "never",
     "files.associations": {
         "Doxyfile": "shellscript",
+        "schemes.h": "c",
+        "methods.h": "c",
+        "cvec.h": "c",
+        "cmat.h": "c",
+        "out.h": "c",
+        "engine.h": "c",
+        "scgs.h": "c",
+        "stdint.h": "c",
+        "math.h": "c",
+        "mesh.h": "c",
+        "stdio.h": "c",
+        "simple.h": "c",
+        "simple_bc.h": "c",
+        "stdlib.h": "c",
+        "U_equation.h": "c",
+        "cmat2d.h": "c",
+        "cfd.h": "c",
+        "cjson.h": "c",
+        "v_equation.h": "c"
     }
 }

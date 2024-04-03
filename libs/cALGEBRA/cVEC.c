@@ -65,9 +65,9 @@ cVEC_t *VEC_Multiply(double scalar, cVEC_t *V)
     return result;
 }
 
-cMAT_t *VEC_ToMatrix(cVEC_t *V)
+cMAT2D_t *VEC_ToMatrix(cVEC_t *V)
 {
-    cMAT_t *result = MAT_Init(V->length, 1);
+    cMAT2D_t *result = MAT2D_Init(V->length, 1);
 
     for (uint16_t i = 0; i < V->length; i++)
     {
