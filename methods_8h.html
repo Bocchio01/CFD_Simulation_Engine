@@ -103,6 +103,7 @@ $(document).ready(function(){initNavTree('methods_8h.html',''); initResizable();
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="SCGS_8h_source.html">SCGS/SCGS.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="SIMPLE_8h_source.html">SIMPLE/SIMPLE.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="cJSON_8h_source.html">libs/cJSON/cJSON.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="cMAT2D_8h_source.html">libs/cALGEBRA/cMAT2D.h</a>&quot;</code><br />
 </div>
 <p><a href="methods_8h_source.html">Go to the source code of this file.</a></p>
@@ -120,8 +121,8 @@ Data Structures</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a87428633d2aa9352ce0d27306f685824"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structCFD__t.html">CFD_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="methods_8h.html#a87428633d2aa9352ce0d27306f685824">CFD_t</a></td></tr>
 <tr class="separator:a87428633d2aa9352ce0d27306f685824"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e1d7f0a1f6de83b49806d708b8cc333"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="methods_8h.html#a0e1d7f0a1f6de83b49806d708b8cc333">method_function_t</a>) (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd)</td></tr>
-<tr class="separator:a0e1d7f0a1f6de83b49806d708b8cc333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1113f146f8ae35b1d8dfc7b068998d02"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="methods_8h.html#a1113f146f8ae35b1d8dfc7b068998d02">method_function_t</a>) (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd, <a class="el" href="structcJSON.html">cJSON</a> *args)</td></tr>
+<tr class="separator:a1113f146f8ae35b1d8dfc7b068998d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59a57c59c2b5f08784896ede95237330"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structmethod__state__t.html">method_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="methods_8h.html#a59a57c59c2b5f08784896ede95237330">method_state_t</a></td></tr>
 <tr class="separator:a59a57c59c2b5f08784896ede95237330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -136,8 +137,8 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:abb575128de742f30f04a528c800aed74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="methods_8h.html#abb575128de742f30f04a528c800aed74">CFD_Setup_Method</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd)</td></tr>
 <tr class="separator:abb575128de742f30f04a528c800aed74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab883f4ad3ebd707cc900503447974e53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="methods_8h.html#ab883f4ad3ebd707cc900503447974e53">CFD_Run_Method</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd)</td></tr>
-<tr class="separator:ab883f4ad3ebd707cc900503447974e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d7c8fbd4426e4c5bf2c1258c7354712"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="methods_8h.html#a4d7c8fbd4426e4c5bf2c1258c7354712">CFD_Run_Method</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd, <a class="el" href="structcJSON.html">cJSON</a> *args)</td></tr>
+<tr class="separator:a4d7c8fbd4426e4c5bf2c1258c7354712"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a434883fd5cd3fab6c624143513269628"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="methods_8h.html#a434883fd5cd3fab6c624143513269628">CFD_Get_State</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd, <a class="el" href="schemes_8h.html#a0ee62639c6565c20d7869c313890b16f">phi_t</a> phi, int i, int j)</td></tr>
 <tr class="separator:a434883fd5cd3fab6c624143513269628"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -158,19 +159,19 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a0e1d7f0a1f6de83b49806d708b8cc333" name="a0e1d7f0a1f6de83b49806d708b8cc333"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e1d7f0a1f6de83b49806d708b8cc333">&#9670;&#160;</a></span>method_function_t</h2>
+<a id="a1113f146f8ae35b1d8dfc7b068998d02" name="a1113f146f8ae35b1d8dfc7b068998d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1113f146f8ae35b1d8dfc7b068998d02">&#9670;&#160;</a></span>method_function_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef void(* method_function_t) (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd)</td>
+          <td class="memname">typedef void(* method_function_t) (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd, <a class="el" href="structcJSON.html">cJSON</a> *args)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="methods_8h_source.html#l00011">11</a> of file <a class="el" href="methods_8h_source.html">methods.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="methods_8h_source.html#l00012">12</a> of file <a class="el" href="methods_8h_source.html">methods.h</a>.</p>
 
 </div>
 </div>
@@ -205,7 +206,7 @@ Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a249a4b0176792693b424a56e30810f49a1a6b6e9893ec9e5d9710335b4c74d3f6" name="a249a4b0176792693b424a56e30810f49a1a6b6e9893ec9e5d9710335b4c74d3f6"></a>SIMPLE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="methods_8h_source.html#l00013">13</a> of file <a class="el" href="methods_8h_source.html">methods.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="methods_8h_source.html#l00020">20</a> of file <a class="el" href="methods_8h_source.html">methods.h</a>.</p>
 
 </div>
 </div>
@@ -248,12 +249,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="methods_8c_source.html#l00050">50</a> of file <a class="el" href="methods_8c_source.html">methods.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="methods_8c_source.html#l00049">49</a> of file <a class="el" href="methods_8c_source.html">methods.c</a>.</p>
 
 </div>
 </div>
-<a id="ab883f4ad3ebd707cc900503447974e53" name="ab883f4ad3ebd707cc900503447974e53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab883f4ad3ebd707cc900503447974e53">&#9670;&#160;</a></span>CFD_Run_Method()</h2>
+<a id="a4d7c8fbd4426e4c5bf2c1258c7354712" name="a4d7c8fbd4426e4c5bf2c1258c7354712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d7c8fbd4426e4c5bf2c1258c7354712">&#9670;&#160;</a></span>CFD_Run_Method()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -262,13 +263,23 @@ Functions</h2></td></tr>
           <td class="memname">void CFD_Run_Method </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structCFD__t.html">CFD_t</a> *&#160;</td>
-          <td class="paramname"><em>cfd</em></td><td>)</td>
+          <td class="paramname"><em>cfd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="structcJSON.html">cJSON</a> *&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="methods_8c_source.html#l00045">45</a> of file <a class="el" href="methods_8c_source.html">methods.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="methods_8c_source.html#l00044">44</a> of file <a class="el" href="methods_8c_source.html">methods.c</a>.</p>
 
 </div>
 </div>

@@ -30,8 +30,9 @@ var annotated_dup =
     [ "printbuffer", "structprintbuffer.html", "structprintbuffer" ],
     [ "SCGS_position", "structSCGS__position.html", "structSCGS__position" ],
     [ "SCGS_residual_t", "structSCGS__residual__t.html", "structSCGS__residual__t" ],
+    [ "SCGS_state_t", "structSCGS__state__t.html", "structSCGS__state__t" ],
     [ "SCGS_t", "structSCGS__t.html", "structSCGS__t" ],
-    [ "SCGS_under_relaxation_factors_t", "structSCGS__under__relaxation__factors__t.html", "structSCGS__under__relaxation__factors__t" ],
+    [ "SCGS_under_relaxation_t", "structSCGS__under__relaxation__t.html", "structSCGS__under__relaxation__t" ],
     [ "SCGS_vanka_t", "structSCGS__vanka__t.html", "structSCGS__vanka__t" ],
     [ "scheme_convection_t", "structscheme__convection__t.html", "structscheme__convection__t" ],
     [ "scheme_diffusion_t", "structscheme__diffusion__t.html", "structscheme__diffusion__t" ],
@@ -40,5 +41,6 @@ var annotated_dup =
     [ "SIMPLE_number_of_sweeps_t", "structSIMPLE__number__of__sweeps__t.html", "structSIMPLE__number__of__sweeps__t" ],
     [ "SIMPLE_residual_t", "structSIMPLE__residual__t.html", "structSIMPLE__residual__t" ],
     [ "SIMPLE_state_t", "structSIMPLE__state__t.html", "structSIMPLE__state__t" ],
-    [ "SIMPLE_t", "structSIMPLE__t.html", "structSIMPLE__t" ]
+    [ "SIMPLE_t", "structSIMPLE__t.html", "structSIMPLE__t" ],
+    [ "SIMPLE_under_relaxation_t", "structSIMPLE__under__relaxation__t.html", "structSIMPLE__under__relaxation__t" ]
 ];

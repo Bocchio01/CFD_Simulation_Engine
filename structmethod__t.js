@@ -1,5 +1,6 @@
 var structmethod__t =
 [
+    [ "args", "structmethod__t.html#aab302be1da701bf1a6f8e67c0de2d90a", null ],
     [ "callable", "structmethod__t.html#a88e369ca6bb95ef62bc6e840480806d9", null ],
     [ "CPU_time", "structmethod__t.html#a3c4f07d9d2a8426d01df39000ad6ac8d", null ],
     [ "index", "structmethod__t.html#abe34e2ff63f2c86a2a97ac9e83bc6a16", null ],

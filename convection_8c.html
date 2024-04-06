@@ -113,8 +113,8 @@ $(document).ready(function(){initNavTree('convection_8c.html',''); initResizable
 Functions</h2></td></tr>
 <tr class="memitem:a6136554896e8d8bf7a3bf6fcd19f1d93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="convection_8c.html#a6136554896e8d8bf7a3bf6fcd19f1d93">CFD_Setup_Convection</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd)</td></tr>
 <tr class="separator:a6136554896e8d8bf7a3bf6fcd19f1d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbba9516d23f91ec3bf749d00b707899"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="convection_8c.html#afbba9516d23f91ec3bf749d00b707899">CFD_Scheme_Get_Flux</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd, uint16_t i, uint16_t j, <a class="el" href="schemes_8h.html#a0ee62639c6565c20d7869c313890b16f">phi_t</a> phi)</td></tr>
-<tr class="separator:afbba9516d23f91ec3bf749d00b707899"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7bc096c7008ceca898a5aa597538f54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="convection_8c.html#ac7bc096c7008ceca898a5aa597538f54">CFD_Scheme_Get_Flux</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd, int i, int j, <a class="el" href="schemes_8h.html#a0ee62639c6565c20d7869c313890b16f">phi_t</a> phi)</td></tr>
+<tr class="separator:ac7bc096c7008ceca898a5aa597538f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1f792df7d7692f965496a4bdaa8fa88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="convection_8c.html#af1f792df7d7692f965496a4bdaa8fa88">CFD_Scheme_Convection_UDS</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd, uint16_t i, uint16_t j, <a class="el" href="schemes_8h.html#a0ee62639c6565c20d7869c313890b16f">phi_t</a> phi)</td></tr>
 <tr class="separator:af1f792df7d7692f965496a4bdaa8fa88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa193225ab211cbd00247f045898f7f7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="convection_8c.html#aa193225ab211cbd00247f045898f7f7d">CFD_Scheme_Convection_CDS</a> (<a class="el" href="structCFD__t.html">CFD_t</a> *cfd, uint16_t i, uint16_t j, <a class="el" href="schemes_8h.html#a0ee62639c6565c20d7869c313890b16f">phi_t</a> phi)</td></tr>
@@ -293,8 +293,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afbba9516d23f91ec3bf749d00b707899" name="afbba9516d23f91ec3bf749d00b707899"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbba9516d23f91ec3bf749d00b707899">&#9670;&#160;</a></span>CFD_Scheme_Get_Flux()</h2>
+<a id="ac7bc096c7008ceca898a5aa597538f54" name="ac7bc096c7008ceca898a5aa597538f54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7bc096c7008ceca898a5aa597538f54">&#9670;&#160;</a></span>CFD_Scheme_Get_Flux()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,13 +308,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>i</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>j</em>, </td>
         </tr>
         <tr>
