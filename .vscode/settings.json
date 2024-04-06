@@ -2,7 +2,7 @@
     "cmake.debugConfig": {
         "cwd": "${workspaceFolder}",
         "args": [
-            "-i sim_input/00_40_40_100_UDS_SECOND_08_08.json"
+            // "-i simulations/input/00_40_40_100_UDS_SECOND_08_08.json"
         ],
         "console": "integratedTerminal",
     },

@@ -145,7 +145,7 @@ extern "C"
   CJSON_PUBLIC(void)
   cJSON_AllocateHooks(cJSON_Hooks *hooks);
 
-  /* Memory Management: the caller is always responsible to free the sim_output from all variants of cJSON_Parse (with cJSON_Delete) and cJSON_Print (with stdlib free, cJSON_Hooks.free_fn, or cJSON_free as appropriate). The exception is cJSON_PrintPreallocated, where the caller has full responsibility of the buffer. */
+  /* Memory Management: the caller is always responsible to free the simulations/output from all variants of cJSON_Parse (with cJSON_Delete) and cJSON_Print (with stdlib free, cJSON_Hooks.free_fn, or cJSON_free as appropriate). The exception is cJSON_PrintPreallocated, where the caller has full responsibility of the buffer. */
   /* Supply a block of JSON, and this returns a cJSON object you can interrogate. */
   CJSON_PUBLIC(cJSON *)
   cJSON_Parse(const char *value);

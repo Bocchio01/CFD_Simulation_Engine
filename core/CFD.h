@@ -4,9 +4,9 @@
 #define VERSION_MAJOR @CFD_Simulation_Engine_VERSION_MAJOR @
 #define VERSION_MINOR @CFD_Simulation_Engine_VERSION_MINOR @
 
-#define DEFAULT_IN_FILE_PATH "sim_input" // Input file path
-#define DEFAULT_IN_FILE_NAME "input"     // Input file name
-#define DEFAULT_IN_FILE_FORMAT "JSON"    // Input file format
+#define DEFAULT_IN_FILE_PATH "simulations/input" // Input file path
+#define DEFAULT_IN_FILE_NAME "input"             // Input file name
+#define DEFAULT_IN_FILE_FORMAT "JSON"            // Input file format
 
 #define DEFAULT_IN_ULID 1.0       // Lid velocity
 #define DEFAULT_IN_GEOMETRY_X 1.0 // Geometry X
@@ -29,9 +29,9 @@
 #define DEFAULT_ENGINE_SCHEMES_CONVECTION "UDS"   // Schemes convection
 #define DEFAULT_ENGINE_SCHEMES_DIFFUSION "SECOND" // Schemes diffusion
 
-#define DEFAULT_OUT_FILE_PATH "sim_output" // Output file path
-#define DEFAULT_OUT_FILE_NAME "output"     // Output file name
-#define DEFAULT_OUT_FILE_FORMAT "DAT"      // Output file format
+#define DEFAULT_OUT_FILE_PATH "simulations/output" // Output file path
+#define DEFAULT_OUT_FILE_NAME "output"             // Output file name
+#define DEFAULT_OUT_FILE_FORMAT "DAT"              // Output file format
 
 #include "in/in.h"
 #include "engine/engine.h"
