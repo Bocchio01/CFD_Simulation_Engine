@@ -30,16 +30,15 @@ void CFD_Setup_Method(CFD_t *cfd)
     cfd->engine->method->state->v = MAT2D_Init(rows, cols);
     cfd->engine->method->state->p = MAT2D_Init(rows, cols);
 
-    // Already initialized to 0 in MAT2D_Init
-    // for (uint16_t j = 0; j < rows; j++)
-    // {
-    //     for (uint16_t i = 0; i < cols; i++)
-    //     {
-    //         cfd->engine->method->state->u->data[j][i] = 0.0;
-    //         cfd->engine->method->state->v->data[j][i] = 0.0;
-    //         cfd->engine->method->state->p->data[j][i] = 0.0;
-    //     }
-    // }
+    for (uint16_t j = 0; j < rows; j++)
+    {
+        for (uint16_t i = 0; i < cols; i++)
+        {
+            cfd->engine->method->state->u->data[j][i] = 0.0;
+            cfd->engine->method->state->v->data[j][i] = 0.0;
+            cfd->engine->method->state->p->data[j][i] = 0.0;
+        }
+    }
 }
 
 void CFD_Run_Method(CFD_t *cfd, cJSON *args)

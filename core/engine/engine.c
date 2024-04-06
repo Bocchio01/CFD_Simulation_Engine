@@ -176,7 +176,9 @@ method_t *CFD_Allocate_Engine_Method()
     if (method != NULL)
     {
         method->state = CFD_Allocate_Engine_Method_State();
-        if (method->state != NULL)
+        method->index = CFD_Allocate_Engine_Method_Index();
+        if (method->state != NULL &&
+            method->index != NULL)
         {
             return method;
         }
@@ -207,6 +209,18 @@ method_state_t *CFD_Allocate_Engine_Method_State()
     }
 
     log_fatal("Error: Could not allocate memory for engine->method->state");
+    exit(EXIT_FAILURE);
+}
+
+method_index_t *CFD_Allocate_Engine_Method_Index()
+{
+    method_index_t *index = (method_index_t *)malloc(sizeof(method_index_t));
+    if (index != NULL)
+    {
+        return index;
+    }
+
+    log_fatal("Error: Could not allocate memory for engine->method->index");
     exit(EXIT_FAILURE);
 }
 
@@ -298,6 +312,7 @@ void CFD_Free_Engine_Method(method_t *method)
     if (method != NULL)
     {
         CFD_Free_Engine_Method_State(method->state);
+        CFD_Free_Engine_Method_Index(method->index);
         free(method);
     }
 }
@@ -350,6 +365,14 @@ void CFD_Free_Engine_Method_State(method_state_t *state)
     if (state != NULL)
     {
         free(state);
+    }
+}
+
+void CFD_Free_Engine_Method_Index(method_index_t *index)
+{
+    if (index != NULL)
+    {
+        free(index);
     }
 }
 

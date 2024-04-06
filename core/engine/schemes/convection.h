@@ -36,7 +36,7 @@ typedef struct
 
 void CFD_Setup_Convection(CFD_t *cfd);
 
-void CFD_Scheme_Get_Flux(CFD_t *cfd, uint16_t i, uint16_t j, phi_t phi);
+void CFD_Scheme_Get_Flux(CFD_t *cfd, int i, int j, phi_t phi);
 
 void CFD_Scheme_Convection_UDS(CFD_t *cfd, uint16_t i, uint16_t j, phi_t phi);
 

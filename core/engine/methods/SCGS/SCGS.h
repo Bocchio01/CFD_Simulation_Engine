@@ -16,12 +16,6 @@ typedef struct CFD_t CFD_t;
 
 typedef struct
 {
-    uint16_t i;
-    uint16_t j;
-} SCGS_index_t;
-
-typedef struct
-{
     double u;
     double v;
     double p;
@@ -57,13 +51,10 @@ typedef struct
 
 typedef struct SCGS_t
 {
-    SCGS_index_t *index;
     SCGS_residual_t *residual;
     SCGS_vanka_t *vanka;
     cVEC_t *A_coefficients;
     SCGS_under_relaxation_t *under_relaxation;
-    SCGS_state_t *state;
-    SCGS_state_t *state_star;
 } SCGS_t;
 
 void CFD_SCGS(CFD_t *cfd, cJSON *args);

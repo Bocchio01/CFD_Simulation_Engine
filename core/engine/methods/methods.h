@@ -11,6 +11,12 @@ typedef struct CFD_t CFD_t;
 
 typedef void (*method_function_t)(CFD_t *cfd, cJSON *args);
 
+typedef struct
+{
+    uint16_t i;
+    uint16_t j;
+} method_index_t;
+
 typedef enum
 {
     SCGS,
@@ -32,6 +38,7 @@ typedef struct
     uint16_t iteractions;
     double CPU_time;
     cVEC_t *residual;
+    method_index_t *index;
     method_state_t *state;
     method_function_t callable;
     cJSON *args;

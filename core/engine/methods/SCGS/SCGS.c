@@ -24,13 +24,13 @@ void CFD_SCGS(CFD_t *cfd, cJSON *args)
     {
         CFD_SCGS_Reset(scgs);
 
-        for (scgs->index->j = cfd->engine->mesh->n_ghosts;
-             scgs->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
-             scgs->index->j++)
+        for (cfd->engine->method->index->j = cfd->engine->mesh->n_ghosts;
+             cfd->engine->method->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
+             cfd->engine->method->index->j++)
         {
-            for (scgs->index->i = cfd->engine->mesh->n_ghosts;
-                 scgs->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
-                 scgs->index->i++)
+            for (cfd->engine->method->index->i = cfd->engine->mesh->n_ghosts;
+                 cfd->engine->method->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
+                 cfd->engine->method->index->i++)
             {
 
                 CFD_SCGS_System_Compose(cfd, scgs);
@@ -47,9 +47,7 @@ void CFD_SCGS(CFD_t *cfd, cJSON *args)
 
         CFD_SCGS_BC_NoSlip_Tangetial(cfd);
 
-        cfd->engine->method->residual->data[cfd->engine->method->iteractions] = fmax(
-            fmax(scgs->residual->u, scgs->residual->v),
-            scgs->residual->p);
+        cfd->engine->method->residual->data[cfd->engine->method->iteractions] = fmax(fmax(scgs->residual->u, scgs->residual->v), scgs->residual->p);
 
         if (isnan(cfd->engine->method->residual->data[cfd->engine->method->iteractions]) ||
             isinf(cfd->engine->method->residual->data[cfd->engine->method->iteractions]))
@@ -87,33 +85,19 @@ SCGS_t *CFD_SCGS_Allocate(CFD_t *cfd, cJSON *args)
 
     if (scgs != NULL)
     {
-        scgs->index = (SCGS_index_t *)malloc(sizeof(SCGS_index_t));
         scgs->vanka = (SCGS_vanka_t *)malloc(sizeof(SCGS_vanka_t));
         scgs->residual = (SCGS_residual_t *)malloc(sizeof(SCGS_residual_t));
         scgs->A_coefficients = VEC_Init(EENN + 1);
         scgs->under_relaxation = (SCGS_under_relaxation_t *)malloc(sizeof(SCGS_under_relaxation_t));
-        scgs->state = (SCGS_state_t *)malloc(sizeof(SCGS_state_t));
-        scgs->state_star = (SCGS_state_t *)malloc(sizeof(SCGS_state_t));
 
-        if (scgs->index != NULL &&
-            scgs->vanka != NULL &&
+        if (scgs->vanka != NULL &&
             scgs->residual != NULL &&
             scgs->A_coefficients != NULL &&
-            scgs->under_relaxation != NULL &&
-            scgs->state != NULL &&
-            scgs->state_star != NULL)
+            scgs->under_relaxation != NULL)
         {
             scgs->vanka->A = MAT2D_Init(5, 5);
             scgs->vanka->R = VEC_Init(5);
             scgs->vanka->x = VEC_Init(5);
-
-            scgs->state->u = MAT2D_Init(rows, cols);
-            scgs->state->v = MAT2D_Init(rows, cols);
-            scgs->state->p = MAT2D_Init(rows, cols);
-
-            scgs->state_star->u = MAT2D_Init(rows, cols);
-            scgs->state_star->v = MAT2D_Init(rows, cols);
-            scgs->state_star->p = MAT2D_Init(rows, cols);
 
             // TODO: Load under_relaxation_factors from configuration file
             const cJSON *under_relaxation = cJSON_GetObjectItemCaseSensitive(args, "under_relaxation");
@@ -159,8 +143,8 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
 {
     double Ap[4];
 
-    uint16_t i = scgs->index->i;
-    uint16_t j = scgs->index->j;
+    uint16_t i = cfd->engine->method->index->i;
+    uint16_t j = cfd->engine->method->index->j;
 
     SCGS_position positions[] = {
         {-1, +0, u},
@@ -267,8 +251,8 @@ void CFD_SCGS_System_Solve(SCGS_t *scgs)
 
 void CFD_SCGS_Apply_Correction(CFD_t *cfd, SCGS_t *scgs)
 {
-    uint16_t i = scgs->index->i;
-    uint16_t j = scgs->index->j;
+    uint16_t i = cfd->engine->method->index->i;
+    uint16_t j = cfd->engine->method->index->j;
 
     cfd->engine->method->state->u->data[j + 0][i - 1] += scgs->vanka->x->data[0];
     cfd->engine->method->state->u->data[j + 0][i + 0] += scgs->vanka->x->data[1];

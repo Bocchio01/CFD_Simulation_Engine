@@ -1,14 +1,12 @@
 #include "SCGS_BC.h"
 
-typedef struct CFD_t CFD_t;
-
 #include "SCGS.h"
 #include "../../../CFD.h"
-#include "libs/cALGEBRA/cMAT2D.h"
+#include "libs/cALGEBRA/cMAT2D.h "
 
 void CFD_SCGS_BC_NoSlip_Normal(CFD_t *cfd, SCGS_t *scgs)
 {
-    if (scgs->index->i == cfd->engine->mesh->n_ghosts)
+    if (cfd->engine->method->index->i == cfd->engine->mesh->n_ghosts)
     {
         scgs->vanka->A->data[0][0] = 1.0;
         scgs->vanka->A->data[0][4] = 0.0;
@@ -17,7 +15,7 @@ void CFD_SCGS_BC_NoSlip_Normal(CFD_t *cfd, SCGS_t *scgs)
         scgs->vanka->A->data[4][0] = 0.0;
     }
 
-    if (scgs->index->i == cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts - 1)
+    if (cfd->engine->method->index->i == cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts - 1)
     {
         scgs->vanka->A->data[1][1] = 1.0;
         scgs->vanka->A->data[1][4] = 0.0;
@@ -26,7 +24,7 @@ void CFD_SCGS_BC_NoSlip_Normal(CFD_t *cfd, SCGS_t *scgs)
         scgs->vanka->A->data[4][1] = 0.0;
     }
 
-    if (scgs->index->j == cfd->engine->mesh->n_ghosts)
+    if (cfd->engine->method->index->j == cfd->engine->mesh->n_ghosts)
     {
         scgs->vanka->A->data[2][2] = 1.0;
         scgs->vanka->A->data[2][4] = 0.0;
@@ -35,7 +33,7 @@ void CFD_SCGS_BC_NoSlip_Normal(CFD_t *cfd, SCGS_t *scgs)
         scgs->vanka->A->data[4][2] = 0.0;
     }
 
-    if (scgs->index->j == cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts - 1)
+    if (cfd->engine->method->index->j == cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts - 1)
     {
         scgs->vanka->A->data[3][3] = 1.0;
         scgs->vanka->A->data[3][4] = 0.0;

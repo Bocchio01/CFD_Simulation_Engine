@@ -83,14 +83,12 @@ SIMPLE_t *CFD_SIMPLE_Allocate(CFD_t *cfd, cJSON *args)
     {
         simple->residual = (SIMPLE_residual_t *)malloc(sizeof(SIMPLE_residual_t));
         simple->state = (SIMPLE_state_t *)malloc(sizeof(SIMPLE_state_t));
-        simple->index = (SIMPLE_index_t *)malloc(sizeof(SIMPLE_index_t));
         simple->Ap_coefficients = (SIMPLE_Ap_coefficients_t *)malloc(sizeof(SIMPLE_Ap_coefficients_t));
         simple->number_of_sweeps = (SIMPLE_number_of_sweeps_t *)malloc(sizeof(SIMPLE_number_of_sweeps_t));
         simple->under_relaxation = (SIMPLE_under_relaxation_t *)malloc(sizeof(SIMPLE_under_relaxation_t));
 
         if (simple->residual != NULL &&
             simple->state != NULL &&
-            simple->index != NULL &&
             simple->Ap_coefficients != NULL &&
             simple->number_of_sweeps != NULL &&
             simple->under_relaxation != NULL)
@@ -133,12 +131,12 @@ SIMPLE_t *CFD_SIMPLE_Allocate(CFD_t *cfd, cJSON *args)
 
 void CFD_SIMPLE_Free(SIMPLE_t *simple)
 {
-    MAT2D_Free(simple->state->u);
-    MAT2D_Free(simple->state->v);
-    MAT2D_Free(simple->state->pp);
-    free(simple->residual);
-    free(simple->state);
-    free(simple);
+    // MAT2D_Free(simple->state->u);
+    // MAT2D_Free(simple->state->v);
+    // MAT2D_Free(simple->state->pp);
+    // free(simple->residual);
+    // free(simple->state);
+    // free(simple);
 }
 
 void CFD_SIMPLE_Compute_U(CFD_t *cfd, SIMPLE_t *simple)

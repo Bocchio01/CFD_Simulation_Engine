@@ -22,9 +22,9 @@
             "maxIter": 5000,
             "args": {
                 "under_relaxation": {
-                    "u": 0.5,
-                    "v": 0.5,
-                    "p": 0.3
+                    "u": 0.08,
+                    "v": 0.08,
+                    "p": 0.03
                 },
                 "number_of_sweeps": {
                     "u": 4,

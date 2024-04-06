@@ -37,12 +37,6 @@ typedef struct
 
 typedef struct
 {
-    uint16_t i;
-    uint16_t j;
-} SIMPLE_index_t;
-
-typedef struct
-{
     float u;
     float v;
     float pp;
@@ -60,7 +54,6 @@ typedef struct SIMPLE_t
     SIMPLE_residual_t *residual;
     SIMPLE_Ap_coefficients_t *Ap_coefficients;
     SIMPLE_state_t *state;
-    SIMPLE_index_t *index;
     SIMPLE_number_of_sweeps_t *number_of_sweeps;
     SIMPLE_under_relaxation_t *under_relaxation;
 } SIMPLE_t;
