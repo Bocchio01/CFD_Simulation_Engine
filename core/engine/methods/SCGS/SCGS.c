@@ -7,15 +7,16 @@ typedef struct CFD_t CFD_t;
 #include "../methods.h"
 #include "../../../CFD.h"
 #include "../../schemes/schemes.h"
+#include "libs/cJSON/cJSON.h"
 #include "libs/cALGEBRA/cMAT2D.h"
 #include "libs/cALGEBRA/cVEC.h"
 #include "libs/cLOG/cLOG.h"
 
-void CFD_SCGS(CFD_t *cfd)
+void CFD_SCGS(CFD_t *cfd, cJSON *args)
 {
     SCGS_t *scgs;
 
-    scgs = CFD_SCGS_Allocate();
+    scgs = CFD_SCGS_Allocate(cfd, args);
 
     for (cfd->engine->method->iteractions = 0;
          cfd->engine->method->iteractions < cfd->engine->method->maxIter;
@@ -23,13 +24,13 @@ void CFD_SCGS(CFD_t *cfd)
     {
         CFD_SCGS_Reset(scgs);
 
-        for (cfd->engine->method->index->j = cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->j++)
+        for (scgs->index->j = cfd->engine->mesh->n_ghosts;
+             scgs->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
+             scgs->index->j++)
         {
-            for (cfd->engine->method->index->i = cfd->engine->mesh->n_ghosts;
-                 cfd->engine->method->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
-                 cfd->engine->method->index->i++)
+            for (scgs->index->i = cfd->engine->mesh->n_ghosts;
+                 scgs->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
+                 scgs->index->i++)
             {
 
                 CFD_SCGS_System_Compose(cfd, scgs);
@@ -76,32 +77,52 @@ void CFD_SCGS(CFD_t *cfd)
     }
 }
 
-SCGS_t *CFD_SCGS_Allocate()
+SCGS_t *CFD_SCGS_Allocate(CFD_t *cfd, cJSON *args)
 {
     SCGS_t *scgs;
+    uint16_t rows = cfd->engine->mesh->data->x->rows;
+    uint16_t cols = cfd->engine->mesh->data->x->cols;
 
     scgs = (SCGS_t *)malloc(sizeof(SCGS_t));
 
     if (scgs != NULL)
     {
+        scgs->index = (SCGS_index_t *)malloc(sizeof(SCGS_index_t));
         scgs->vanka = (SCGS_vanka_t *)malloc(sizeof(SCGS_vanka_t));
         scgs->residual = (SCGS_residual_t *)malloc(sizeof(SCGS_residual_t));
         scgs->A_coefficients = VEC_Init(EENN + 1);
-        scgs->under_relaxation_factors = (SCGS_under_relaxation_factors_t *)malloc(sizeof(SCGS_under_relaxation_factors_t));
+        scgs->under_relaxation = (SCGS_under_relaxation_t *)malloc(sizeof(SCGS_under_relaxation_t));
+        scgs->state = (SCGS_state_t *)malloc(sizeof(SCGS_state_t));
+        scgs->state_star = (SCGS_state_t *)malloc(sizeof(SCGS_state_t));
 
-        if (scgs->vanka != NULL &&
+        if (scgs->index != NULL &&
+            scgs->vanka != NULL &&
             scgs->residual != NULL &&
             scgs->A_coefficients != NULL &&
-            scgs->under_relaxation_factors != NULL)
+            scgs->under_relaxation != NULL &&
+            scgs->state != NULL &&
+            scgs->state_star != NULL)
         {
             scgs->vanka->A = MAT2D_Init(5, 5);
             scgs->vanka->R = VEC_Init(5);
             scgs->vanka->x = VEC_Init(5);
 
+            scgs->state->u = MAT2D_Init(rows, cols);
+            scgs->state->v = MAT2D_Init(rows, cols);
+            scgs->state->p = MAT2D_Init(rows, cols);
+
+            scgs->state_star->u = MAT2D_Init(rows, cols);
+            scgs->state_star->v = MAT2D_Init(rows, cols);
+            scgs->state_star->p = MAT2D_Init(rows, cols);
+
             // TODO: Load under_relaxation_factors from configuration file
-            scgs->under_relaxation_factors->u = 0.7;
-            scgs->under_relaxation_factors->v = 0.7;
-            scgs->under_relaxation_factors->p = 0.7;
+            const cJSON *under_relaxation = cJSON_GetObjectItemCaseSensitive(args, "under_relaxation");
+            const cJSON *u_urf = cJSON_GetObjectItemCaseSensitive(under_relaxation, "u");
+            const cJSON *v_urf = cJSON_GetObjectItemCaseSensitive(under_relaxation, "v");
+            const cJSON *p_urf = cJSON_GetObjectItemCaseSensitive(under_relaxation, "p");
+            scgs->under_relaxation->u = (float)(cJSON_IsNumber(u_urf) ? cJSON_GetNumberValue(u_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_U);
+            scgs->under_relaxation->v = (float)(cJSON_IsNumber(v_urf) ? cJSON_GetNumberValue(v_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_V);
+            scgs->under_relaxation->p = (float)(cJSON_IsNumber(p_urf) ? cJSON_GetNumberValue(p_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_P);
 
             if (scgs->vanka->A != NULL &&
                 scgs->vanka->R != NULL &&
@@ -138,8 +159,8 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
 {
     double Ap[4];
 
-    uint16_t i = cfd->engine->method->index->i;
-    uint16_t j = cfd->engine->method->index->j;
+    uint16_t i = scgs->index->i;
+    uint16_t j = scgs->index->j;
 
     SCGS_position positions[] = {
         {-1, +0, u},
@@ -189,10 +210,10 @@ void CFD_SCGS_System_Compose(CFD_t *cfd, SCGS_t *scgs)
     scgs->vanka->R->data[4] = -((CFD_Get_State(cfd, u, i + 0, j + 0) - CFD_Get_State(cfd, u, i - 1, j + 0)) * cfd->engine->mesh->element->size->dy +
                                 (CFD_Get_State(cfd, v, i + 0, j + 0) - CFD_Get_State(cfd, v, i + 0, j - 1)) * cfd->engine->mesh->element->size->dx);
 
-    scgs->vanka->A->data[0][0] = Ap[0] / scgs->under_relaxation_factors->u;
-    scgs->vanka->A->data[1][1] = Ap[1] / scgs->under_relaxation_factors->u;
-    scgs->vanka->A->data[2][2] = Ap[2] / scgs->under_relaxation_factors->v;
-    scgs->vanka->A->data[3][3] = Ap[3] / scgs->under_relaxation_factors->v;
+    scgs->vanka->A->data[0][0] = Ap[0] / scgs->under_relaxation->u;
+    scgs->vanka->A->data[1][1] = Ap[1] / scgs->under_relaxation->u;
+    scgs->vanka->A->data[2][2] = Ap[2] / scgs->under_relaxation->v;
+    scgs->vanka->A->data[3][3] = Ap[3] / scgs->under_relaxation->v;
 
     scgs->vanka->A->data[4][0] = -1.0 * cfd->engine->mesh->element->size->dy;
     scgs->vanka->A->data[4][1] = +1.0 * cfd->engine->mesh->element->size->dy;
@@ -246,8 +267,8 @@ void CFD_SCGS_System_Solve(SCGS_t *scgs)
 
 void CFD_SCGS_Apply_Correction(CFD_t *cfd, SCGS_t *scgs)
 {
-    uint16_t i = cfd->engine->method->index->i;
-    uint16_t j = cfd->engine->method->index->j;
+    uint16_t i = scgs->index->i;
+    uint16_t j = scgs->index->j;
 
     cfd->engine->method->state->u->data[j + 0][i - 1] += scgs->vanka->x->data[0];
     cfd->engine->method->state->u->data[j + 0][i + 0] += scgs->vanka->x->data[1];

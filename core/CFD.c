@@ -60,7 +60,7 @@ void CFD_Solve(CFD_t *cfd)
     CFD_Generate_Mesh(cfd);
 
     clock_t tic = clock();
-    CFD_Run_Method(cfd);
+    CFD_Run_Method(cfd, cfd->engine->method->args);
     clock_t toc = clock();
 
     cfd->engine->method->CPU_time = (double)(toc - tic) / CLOCKS_PER_SEC;

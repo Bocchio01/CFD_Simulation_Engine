@@ -63,7 +63,7 @@ The code reads the input parameters from a file in JSON format.
         "method": {
             "tolerance": 1e-05,
             "maxIter": 5000,
-            "underRelaxation": {
+            "under_relaxation": {
                 "u": 0.08,
                 "v": 0.08
             }

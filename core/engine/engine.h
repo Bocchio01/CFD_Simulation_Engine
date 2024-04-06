@@ -33,13 +33,11 @@ element_size_t *CFD_Allocate_Engine_Mesh_Element_Size();
 
 method_t *CFD_Allocate_Engine_Method();
 
-// under_relaxation_factors_t *CFD_Allocate_Engine_Method_UnderRelaxationFactors();
+// under_relaxation_factors_t *CFD_Allocate_Engine_Method_under_relaxationFactors();
 
 // number_of_sweeps_t *CFD_Allocate_Engine_Method_NumberOfSweeps();
 
 method_state_t *CFD_Allocate_Engine_Method_State();
-
-method_index_t *CFD_Allocate_Engine_Method_Index();
 
 schemes_t *CFD_Allocate_Engine_Schemes();
 
@@ -65,11 +63,9 @@ void CFD_Free_Engine_Mesh_Data(mesh_data_t *data);
 
 void CFD_Free_Engine_Mesh_Element_Size(element_size_t *size);
 
-// void CFD_Free_Engine_Method_UnderRelaxationFactors(under_relaxation_factors_t *under_relaxation_factors);
+// void CFD_Free_Engine_Method_under_relaxationFactors(under_relaxation_factors_t *under_relaxation);
 
 void CFD_Free_Engine_Method_State(method_state_t *state);
-
-void CFD_Free_Engine_Method_Index(method_index_t *index);
 
 void CFD_Free_Engine_Schemes_Convection(scheme_convection_t *convection);
 

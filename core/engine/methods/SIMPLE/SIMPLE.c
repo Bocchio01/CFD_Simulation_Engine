@@ -15,11 +15,11 @@ typedef struct CFD_t CFD_t;
 #include "V_equation.h"
 #include "U_equation.h"
 
-void CFD_SIMPLE(CFD_t *cfd)
+void CFD_SIMPLE(CFD_t *cfd, cJSON *args)
 {
     SIMPLE_t *simple;
 
-    simple = CFD_SIMPLE_Allocate(cfd);
+    simple = CFD_SIMPLE_Allocate(cfd, args);
 
     for (cfd->engine->method->iteractions = 0;
          cfd->engine->method->iteractions < cfd->engine->method->maxIter;
@@ -30,9 +30,9 @@ void CFD_SIMPLE(CFD_t *cfd)
         CFD_SIMPLE_Compute_V(cfd, simple);
         CFD_SIMPLE_Compute_P(cfd, simple);
 
-        MAT2D_Print_States(cfd->engine->method->state->u);
-        MAT2D_Print_States(cfd->engine->method->state->v);
-        MAT2D_Print_States(cfd->engine->method->state->p);
+        // MAT2D_Print_States(cfd->engine->method->state->u);
+        // MAT2D_Print_States(cfd->engine->method->state->v);
+        // MAT2D_Print_States(cfd->engine->method->state->p);
 
         cfd->engine->method->residual->data[cfd->engine->method->iteractions] = 0.0;
         for (uint16_t j = 0; j < simple->residual->p->rows; j++)
@@ -71,7 +71,7 @@ void CFD_SIMPLE(CFD_t *cfd)
     }
 }
 
-SIMPLE_t *CFD_SIMPLE_Allocate(CFD_t *cfd)
+SIMPLE_t *CFD_SIMPLE_Allocate(CFD_t *cfd, cJSON *args)
 {
     SIMPLE_t *simple;
     uint16_t rows = cfd->engine->mesh->data->x->rows;
@@ -83,13 +83,17 @@ SIMPLE_t *CFD_SIMPLE_Allocate(CFD_t *cfd)
     {
         simple->residual = (SIMPLE_residual_t *)malloc(sizeof(SIMPLE_residual_t));
         simple->state = (SIMPLE_state_t *)malloc(sizeof(SIMPLE_state_t));
+        simple->index = (SIMPLE_index_t *)malloc(sizeof(SIMPLE_index_t));
         simple->Ap_coefficients = (SIMPLE_Ap_coefficients_t *)malloc(sizeof(SIMPLE_Ap_coefficients_t));
         simple->number_of_sweeps = (SIMPLE_number_of_sweeps_t *)malloc(sizeof(SIMPLE_number_of_sweeps_t));
+        simple->under_relaxation = (SIMPLE_under_relaxation_t *)malloc(sizeof(SIMPLE_under_relaxation_t));
 
         if (simple->residual != NULL &&
             simple->state != NULL &&
+            simple->index != NULL &&
             simple->Ap_coefficients != NULL &&
-            simple->number_of_sweeps != NULL)
+            simple->number_of_sweeps != NULL &&
+            simple->under_relaxation != NULL)
         {
             simple->state->u = MAT2D_Init(rows, cols);
             simple->state->v = MAT2D_Init(rows, cols);
@@ -103,10 +107,21 @@ SIMPLE_t *CFD_SIMPLE_Allocate(CFD_t *cfd)
             simple->Ap_coefficients->v = MAT3D_Init(rows, cols, EENN + 1);
             simple->Ap_coefficients->pp = MAT3D_Init(rows, cols, EENN + 1);
 
-            // TODO: load sweeps from configuration file
-            simple->number_of_sweeps->u = 4;
-            simple->number_of_sweeps->v = 4;
-            simple->number_of_sweeps->pp = 8;
+            const cJSON *under_relaxation = cJSON_GetObjectItemCaseSensitive(args, "under_relaxation");
+            const cJSON *u_urf = cJSON_GetObjectItemCaseSensitive(under_relaxation, "u");
+            const cJSON *v_urf = cJSON_GetObjectItemCaseSensitive(under_relaxation, "v");
+            const cJSON *p_urf = cJSON_GetObjectItemCaseSensitive(under_relaxation, "p");
+            simple->under_relaxation->u = (float)(cJSON_IsNumber(u_urf) ? cJSON_GetNumberValue(u_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_U);
+            simple->under_relaxation->v = (float)(cJSON_IsNumber(v_urf) ? cJSON_GetNumberValue(v_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_V);
+            simple->under_relaxation->p = (float)(cJSON_IsNumber(p_urf) ? cJSON_GetNumberValue(p_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_P);
+
+            const cJSON *sweeps = cJSON_GetObjectItemCaseSensitive(args, "sweeps");
+            const cJSON *u_sweep = cJSON_GetObjectItemCaseSensitive(sweeps, "u");
+            const cJSON *v_sweep = cJSON_GetObjectItemCaseSensitive(sweeps, "v");
+            const cJSON *pp_sweep = cJSON_GetObjectItemCaseSensitive(sweeps, "p");
+            simple->number_of_sweeps->u = (float)(cJSON_IsNumber(u_sweep) ? cJSON_GetNumberValue(u_sweep) : DEFAULT_ENGINE_METHOD_SWEEPS_U);
+            simple->number_of_sweeps->v = (float)(cJSON_IsNumber(v_sweep) ? cJSON_GetNumberValue(v_sweep) : DEFAULT_ENGINE_METHOD_SWEEPS_V);
+            simple->number_of_sweeps->pp = (float)(cJSON_IsNumber(pp_sweep) ? cJSON_GetNumberValue(pp_sweep) : DEFAULT_ENGINE_METHOD_SWEEPS_P);
 
             return simple;
         }

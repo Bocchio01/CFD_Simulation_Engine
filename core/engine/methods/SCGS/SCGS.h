@@ -6,12 +6,19 @@ typedef struct CFD_t CFD_t;
 #include <stdio.h>
 #include <stdint.h>
 
+#include "libs/cJSON/cJSON.h"
 #include "libs/cALGEBRA/cMAT2D.h"
 #include "libs/cALGEBRA/cVEC.h"
 
 #include "../../schemes/schemes.h"
 #include "../../methods/methods.h"
 #include "SCGS_BC.h"
+
+typedef struct
+{
+    uint16_t i;
+    uint16_t j;
+} SCGS_index_t;
 
 typedef struct
 {
@@ -39,19 +46,29 @@ typedef struct
     float u;
     float v;
     float p;
-} SCGS_under_relaxation_factors_t;
+} SCGS_under_relaxation_t;
+
+typedef struct
+{
+    cMAT2D_t *u;
+    cMAT2D_t *v;
+    cMAT2D_t *p;
+} SCGS_state_t;
 
 typedef struct SCGS_t
 {
+    SCGS_index_t *index;
     SCGS_residual_t *residual;
     SCGS_vanka_t *vanka;
     cVEC_t *A_coefficients;
-    SCGS_under_relaxation_factors_t *under_relaxation_factors;
+    SCGS_under_relaxation_t *under_relaxation;
+    SCGS_state_t *state;
+    SCGS_state_t *state_star;
 } SCGS_t;
 
-void CFD_SCGS(CFD_t *cfd);
+void CFD_SCGS(CFD_t *cfd, cJSON *args);
 
-SCGS_t *CFD_SCGS_Allocate();
+SCGS_t *CFD_SCGS_Allocate(CFD_t *cfd, cJSON *args);
 
 void CFD_SCGS_Free(SCGS_t *scgs);
 

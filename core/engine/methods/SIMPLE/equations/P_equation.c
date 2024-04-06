@@ -13,16 +13,16 @@ void CFD_SIMPLE_P_Compute_Coefficients(CFD_t *cfd, SIMPLE_t *simple)
     uint16_t i;
     uint16_t j;
 
-    for (cfd->engine->method->index->j = cfd->engine->mesh->n_ghosts;
-         cfd->engine->method->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
-         cfd->engine->method->index->j++)
+    for (simple->index->j = cfd->engine->mesh->n_ghosts;
+         simple->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
+         simple->index->j++)
     {
-        for (cfd->engine->method->index->i = cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->i++)
+        for (simple->index->i = cfd->engine->mesh->n_ghosts;
+             simple->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
+             simple->index->i++)
         {
-            i = cfd->engine->method->index->i;
-            j = cfd->engine->method->index->j;
+            i = simple->index->i;
+            j = simple->index->j;
 
             // Check why they might take consider coefficients out of the MAT3D size
             simple->Ap_coefficients->pp->data[j][i][EP] = cfd->engine->mesh->element->size->dy * cfd->engine->mesh->element->size->dy / simple->Ap_coefficients->u->data[j + 0][i + 0][PP];
@@ -59,16 +59,16 @@ void CFD_SIMPLE_P_Compute_Residuals(CFD_t *cfd, SIMPLE_t *simple)
     uint16_t i;
     uint16_t j;
 
-    for (cfd->engine->method->index->j = cfd->engine->mesh->n_ghosts;
-         cfd->engine->method->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
-         cfd->engine->method->index->j++)
+    for (simple->index->j = cfd->engine->mesh->n_ghosts;
+         simple->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
+         simple->index->j++)
     {
-        for (cfd->engine->method->index->i = cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->i++)
+        for (simple->index->i = cfd->engine->mesh->n_ghosts;
+             simple->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
+             simple->index->i++)
         {
-            i = cfd->engine->method->index->i;
-            j = cfd->engine->method->index->j;
+            i = simple->index->i;
+            j = simple->index->j;
             simple->residual->p->data[j][i] = 0.0;
 
             simple->residual->p->data[j][i] = -((CFD_Get_State(cfd, u, i + 0, j + 0) - CFD_Get_State(cfd, u, i - 1, j + 0)) * cfd->engine->mesh->element->size->dy +
@@ -87,16 +87,16 @@ void CFD_SIMPLE_P_Compute_State(CFD_t *cfd, SIMPLE_t *simple)
 
     for (uint8_t sweep = 0; sweep < simple->number_of_sweeps->pp; sweep++)
     {
-        for (cfd->engine->method->index->j = cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->j++)
+        for (simple->index->j = cfd->engine->mesh->n_ghosts;
+             simple->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
+             simple->index->j++)
         {
-            for (cfd->engine->method->index->i = cfd->engine->mesh->n_ghosts;
-                 cfd->engine->method->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
-                 cfd->engine->method->index->i++)
+            for (simple->index->i = cfd->engine->mesh->n_ghosts;
+                 simple->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
+                 simple->index->i++)
             {
-                i = cfd->engine->method->index->i;
-                j = cfd->engine->method->index->j;
+                i = simple->index->i;
+                j = simple->index->j;
 
                 sum = 0.0;
 
@@ -125,18 +125,18 @@ void CFD_SIMPLE_P_Compute_Correct_States(CFD_t *cfd, SIMPLE_t *simple)
     uint16_t i;
     uint16_t j;
 
-    for (cfd->engine->method->index->j = cfd->engine->mesh->n_ghosts;
-         cfd->engine->method->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
-         cfd->engine->method->index->j++)
+    for (simple->index->j = cfd->engine->mesh->n_ghosts;
+         simple->index->j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
+         simple->index->j++)
     {
-        for (cfd->engine->method->index->i = cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
-             cfd->engine->method->index->i++)
+        for (simple->index->i = cfd->engine->mesh->n_ghosts;
+             simple->index->i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
+             simple->index->i++)
         {
-            i = cfd->engine->method->index->i;
-            j = cfd->engine->method->index->j;
+            i = simple->index->i;
+            j = simple->index->j;
 
-            cfd->engine->method->state->p->data[j][i] = CFD_Get_State(cfd, p, i, j) + 0.3 * simple->state->pp->data[j][i];
+            cfd->engine->method->state->p->data[j][i] = CFD_Get_State(cfd, p, i, j) + simple->under_relaxation->p * simple->state->pp->data[j][i];
         }
     }
 }

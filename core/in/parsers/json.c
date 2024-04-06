@@ -126,8 +126,7 @@ void CFD_JSON_Parse_Engine_Method(CFD_t *cfd, cJSON *method)
     const cJSON *type = NULL;
     const cJSON *tolerance = NULL;
     const cJSON *maxIter = NULL;
-    // const cJSON *underRelaxation = NULL;
-    // const cJSON *sweeps = NULL;
+    const cJSON *args = NULL;
 
     type = cJSON_GetObjectItemCaseSensitive(method, "type");
     if (FILE_String_Compare_Insensitive(cJSON_IsString(type) ? type->valuestring : DEFAULT_ENGINE_METHOD_TYPE, "SCGS") == 0)
@@ -151,21 +150,8 @@ void CFD_JSON_Parse_Engine_Method(CFD_t *cfd, cJSON *method)
     maxIter = cJSON_GetObjectItemCaseSensitive(method, "maxIter");
     cfd->engine->method->maxIter = (uint16_t)(cJSON_IsNumber(maxIter) ? cJSON_GetNumberValue(maxIter) : DEFAULT_ENGINE_METHOD_MAX_ITER);
 
-    // underRelaxation = cJSON_GetObjectItemCaseSensitive(method, "underRelaxation");
-    // const cJSON *u_urf = cJSON_GetObjectItemCaseSensitive(underRelaxation, "u");
-    // const cJSON *v_urf = cJSON_GetObjectItemCaseSensitive(underRelaxation, "v");
-    // const cJSON *p_urf = cJSON_GetObjectItemCaseSensitive(underRelaxation, "p");
-    // cfd->engine->method->under_relaxation_factors->u = (float)(cJSON_IsNumber(u_urf) ? cJSON_GetNumberValue(u_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_U);
-    // cfd->engine->method->under_relaxation_factors->v = (float)(cJSON_IsNumber(v_urf) ? cJSON_GetNumberValue(v_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_V);
-    // cfd->engine->method->under_relaxation_factors->p = (float)(cJSON_IsNumber(p_urf) ? cJSON_GetNumberValue(p_urf) : DEFAULT_ENGINE_METHOD_UNDER_RELAXATION_P);
-
-    // sweeps = cJSON_GetObjectItemCaseSensitive(method, "sweeps");
-    // const cJSON *u_sweep = cJSON_GetObjectItemCaseSensitive(sweeps, "u");
-    // const cJSON *v_sweep = cJSON_GetObjectItemCaseSensitive(sweeps, "v");
-    // const cJSON *p_sweep = cJSON_GetObjectItemCaseSensitive(sweeps, "p");
-    // cfd->engine->method->number_of_sweeps->u = (float)(cJSON_IsNumber(u_sweep) ? cJSON_GetNumberValue(u_sweep) : DEFAULT_ENGINE_METHOD_SWEEPS_U);
-    // cfd->engine->method->number_of_sweeps->v = (float)(cJSON_IsNumber(v_sweep) ? cJSON_GetNumberValue(v_sweep) : DEFAULT_ENGINE_METHOD_SWEEPS_V);
-    // cfd->engine->method->number_of_sweeps->p = (float)(cJSON_IsNumber(p_sweep) ? cJSON_GetNumberValue(p_sweep) : DEFAULT_ENGINE_METHOD_SWEEPS_P);
+    args = cJSON_GetObjectItemCaseSensitive(method, "args");
+    cfd->engine->method->args = cJSON_IsObject(args) ? cJSON_Duplicate(args, 1) : NULL;
 }
 
 void CFD_JSON_Parse_Engine_Schemes(CFD_t *cfd, cJSON *schemes)

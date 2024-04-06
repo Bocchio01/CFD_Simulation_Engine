@@ -42,9 +42,9 @@ void CFD_Setup_Method(CFD_t *cfd)
     // }
 }
 
-void CFD_Run_Method(CFD_t *cfd)
+void CFD_Run_Method(CFD_t *cfd, cJSON *args)
 {
-    cfd->engine->method->callable(cfd);
+    cfd->engine->method->callable(cfd, args);
 }
 
 double CFD_Get_State(CFD_t *cfd, phi_t phi, int i, int j)

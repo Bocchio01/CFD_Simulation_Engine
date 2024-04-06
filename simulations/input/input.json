@@ -12,23 +12,25 @@
     "engine": {
         "mesh": {
             "nodes": {
-                "Nx": 5,
-                "Ny": 5
+                "Nx": 40,
+                "Ny": 40
             }
         },
         "method": {
             "type": "SIMPLE",
             "tolerance": 1e-04,
             "maxIter": 5000,
-            "underRelaxation": {
-                "u": 0.5,
-                "v": 0.5,
-                "p": 0.3
-            },
-            "sweeps": {
-                "u": 4,
-                "v": 4,
-                "p": 8
+            "args": {
+                "under_relaxation": {
+                    "u": 0.5,
+                    "v": 0.5,
+                    "p": 0.3
+                },
+                "number_of_sweeps": {
+                    "u": 4,
+                    "v": 4,
+                    "p": 8
+                }
             }
         },
         "schemes": {

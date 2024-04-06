@@ -26,7 +26,7 @@ def generate_json(input_string):
             "method": {
                 "tolerance": 1e-5,
                 "maxIter": 5000,
-                "underRelaxation": {
+                "under_relaxation": {
                     "u": float(under_relax_u) / (10**(len(under_relax_u)-1)),
                     "v": float(under_relax_v) / (10**(len(under_relax_v)-1))
                 }

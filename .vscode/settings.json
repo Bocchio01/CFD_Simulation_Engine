@@ -27,6 +27,7 @@
         "cmat2d.h": "c",
         "cfd.h": "c",
         "cjson.h": "c",
-        "v_equation.h": "c"
+        "v_equation.h": "c",
+        "cmat3d.h": "c"
     }
 }
