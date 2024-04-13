@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['readme_2emd_0',['README.md',['../core_2README_8md.html',1,'(Global Namespace)'],['../libs_2cGETOPT_2README_8md.html',1,'(Global Namespace)']]]
+  ['p_5fequation_2ec_0',['P_equation.c',['../P__equation_8c.html',1,'']]],
+  ['p_5fequation_2eh_1',['P_equation.h',['../P__equation_8h.html',1,'']]]
 ];
