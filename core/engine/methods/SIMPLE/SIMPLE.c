@@ -30,20 +30,30 @@ void CFD_SIMPLE(CFD_t *cfd, cJSON *args)
         CFD_SIMPLE_Compute_V(cfd, simple);
         CFD_SIMPLE_Compute_P(cfd, simple);
 
+        CFD_SIMPLE_U_Compute_Correct_States(cfd, simple);
+        CFD_SIMPLE_V_Compute_Correct_States(cfd, simple);
+        CFD_SIMPLE_P_Compute_Correct_States(cfd, simple);
+
         // MAT2D_Print_States(cfd->engine->method->state->u);
         // MAT2D_Print_States(cfd->engine->method->state->v);
         // MAT2D_Print_States(cfd->engine->method->state->p);
 
         cfd->engine->method->residual->data[cfd->engine->method->iteractions] = 0.0;
-        for (uint16_t j = 0; j < simple->residual->p->rows; j++)
+        for (uint16_t j = cfd->engine->mesh->n_ghosts;
+             j < cfd->engine->mesh->nodes->Ny + cfd->engine->mesh->n_ghosts;
+             j++)
         {
-            for (uint16_t i = 0; i < simple->residual->p->cols; i++)
+            for (uint16_t i = cfd->engine->mesh->n_ghosts;
+                 i < cfd->engine->mesh->nodes->Nx + cfd->engine->mesh->n_ghosts;
+                 i++)
             {
                 cfd->engine->method->residual->data[cfd->engine->method->iteractions] = fmax(
                     cfd->engine->method->residual->data[cfd->engine->method->iteractions],
                     fmax(fmax(simple->residual->u->data[j][i], simple->residual->v->data[j][i]), simple->residual->p->data[j][i]));
             }
         }
+
+        // printf("Residual: %.10f\n", cfd->engine->method->residual->data[cfd->engine->method->iteractions]);
 
         if (isnan(cfd->engine->method->residual->data[cfd->engine->method->iteractions]) ||
             isinf(cfd->engine->method->residual->data[cfd->engine->method->iteractions]))
@@ -131,12 +141,12 @@ SIMPLE_t *CFD_SIMPLE_Allocate(CFD_t *cfd, cJSON *args)
 
 void CFD_SIMPLE_Free(SIMPLE_t *simple)
 {
-    // MAT2D_Free(simple->state->u);
-    // MAT2D_Free(simple->state->v);
-    // MAT2D_Free(simple->state->pp);
-    // free(simple->residual);
-    // free(simple->state);
-    // free(simple);
+    MAT2D_Free(simple->state->u);
+    MAT2D_Free(simple->state->v);
+    MAT2D_Free(simple->state->pp);
+    free(simple->residual);
+    free(simple->state);
+    free(simple);
 }
 
 void CFD_SIMPLE_Compute_U(CFD_t *cfd, SIMPLE_t *simple)
@@ -161,8 +171,4 @@ void CFD_SIMPLE_Compute_P(CFD_t *cfd, SIMPLE_t *simple)
     CFD_SIMPLE_P_Apply_BC(cfd, simple);
     CFD_SIMPLE_P_Compute_Residuals(cfd, simple);
     CFD_SIMPLE_P_Compute_State(cfd, simple);
-
-    CFD_SIMPLE_U_Compute_Correct_States(cfd, simple);
-    CFD_SIMPLE_V_Compute_Correct_States(cfd, simple);
-    CFD_SIMPLE_P_Compute_Correct_States(cfd, simple);
 }

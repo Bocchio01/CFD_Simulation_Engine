@@ -6,7 +6,7 @@
             "y": 1.0
         },
         "fluid": {
-            "Re": 100
+            "Re": 1000
         }
     },
     "engine": {
@@ -18,12 +18,12 @@
         },
         "method": {
             "type": "SIMPLE",
-            "tolerance": 1e-04,
-            "maxIter": 5000,
+            "tolerance": 1e-05,
+            "maxIter": 3000,
             "args": {
                 "under_relaxation": {
-                    "u": 0.08,
-                    "v": 0.08,
+                    "u": 0.05,
+                    "v": 0.05,
                     "p": 0.03
                 },
                 "number_of_sweeps": {
@@ -34,7 +34,7 @@
             }
         },
         "schemes": {
-            "convection": "QUICK",
+            "convection": "UDS",
             "diffusion": "SECOND"
         }
     },

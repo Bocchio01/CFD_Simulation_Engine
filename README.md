@@ -7,7 +7,7 @@ This assignment was about solving the well known **2D lid-driven cavity incompre
 
 <div align=center>
 
-![Lid-driven cavity incompressible flow](https://www.fifty2.eu/wp-content/uploads/2021/08/thumbnailupdate.png)
+![Lid-driven cavity incompressible flow](docs/readme.png)
 
 Lid-driven cavity incompressible flow solution
 

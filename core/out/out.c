@@ -78,8 +78,8 @@ void CFD_Save_Results(CFD_t *cfd)
         FILE_Write(cfd->out->file, APPEND);
     }
 
-    sprintf(cfd->out->file->buffer, " %f", cfd->engine->method->residual->data[cfd->engine->method->iteractions - 1]);
-    FILE_Write(cfd->out->file, APPEND);
+    // sprintf(cfd->out->file->buffer, " %f", cfd->engine->method->residual->data[cfd->engine->method->iteractions - 1]);
+    // FILE_Write(cfd->out->file, APPEND);
 
     sprintf(cfd->out->file->buffer, "\n");
     FILE_Write(cfd->out->file, APPEND);

@@ -2,7 +2,7 @@
     "cmake.debugConfig": {
         "cwd": "${workspaceFolder}",
         "args": [
-            "-i simulations/input/07_80_80_1000_QUICK_SECOND_008_008.json"
+            // "-i simulations/input/02_40_40_1000_UDS_SECOND_008_008.json"
         ],
         "console": "integratedTerminal",
     },
@@ -28,6 +28,9 @@
         "cfd.h": "c",
         "cjson.h": "c",
         "v_equation.h": "c",
-        "cmat3d.h": "c"
+        "cmat3d.h": "c",
+        "cmath": "c",
+        "*.tcc": "c",
+        "clog.h": "c"
     }
 }

@@ -36,26 +36,26 @@ void CFD_Scheme_Get_Flux(CFD_t *cfd, int i, int j, phi_t phi)
     double uPN = CFD_Get_State(cfd, u, i + 0, j + 1);
     double vPN = CFD_Get_State(cfd, v, i + 0, j + 1);
 
-    // double uEN = CFD_Get_State(cfd, u, i + 1, j + 1);
-    // double vEN = CFD_Get_State(cfd, v, i + 1, j + 1);
+    double uEN = CFD_Get_State(cfd, u, i + 1, j + 1);
+    double vEN = CFD_Get_State(cfd, v, i + 1, j + 1);
 
     double uEP = CFD_Get_State(cfd, u, i + 1, j + 0);
     double vEP = CFD_Get_State(cfd, v, i + 1, j + 0);
 
-    // double uES = CFD_Get_State(cfd, u, i + 1, j - 1);
+    double uES = CFD_Get_State(cfd, u, i + 1, j - 1);
     double vES = CFD_Get_State(cfd, v, i + 1, j - 1);
 
-    // double uPS = CFD_Get_State(cfd, u, i + 0, j - 1);
+    double uPS = CFD_Get_State(cfd, u, i + 0, j - 1);
     double vPS = CFD_Get_State(cfd, v, i + 0, j - 1);
 
-    // double uWS = CFD_Get_State(cfd, u, i - 1, j - 1);
-    // double vWS = CFD_Get_State(cfd, v, i - 1, j - 1);
+    double uWS = CFD_Get_State(cfd, u, i - 1, j - 1);
+    double vWS = CFD_Get_State(cfd, v, i - 1, j - 1);
 
     double uWP = CFD_Get_State(cfd, u, i - 1, j + 0);
-    // double vWP = CFD_Get_State(cfd, v, i - 1, j + 0);
+    double vWP = CFD_Get_State(cfd, v, i - 1, j + 0);
 
     double uWN = CFD_Get_State(cfd, u, i - 1, j + 1);
-    // double vWN = CFD_Get_State(cfd, v, i - 1, j + 1);
+    double vWN = CFD_Get_State(cfd, v, i - 1, j + 1);
 
     double dx = cfd->engine->mesh->element->size->dx;
     double dy = cfd->engine->mesh->element->size->dy;
